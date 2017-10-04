@@ -55,7 +55,7 @@ def delete_backup(logger_name):
 
 
 def move_old_log(logger_name):
-    logger_file = logger_name + ".txt"
+    logger_file = logger_name + ".log"
     logger_backup = logger_name + ".bak"
     if os.path.isfile(logger_file):
         copyfile(logger_file, logger_backup)
@@ -69,7 +69,7 @@ def set_up_logger():
 
 
 def set_up_file_handler(logger, log_file_name):
-    log_file_name_suffix = log_file_name + ".txt"
+    log_file_name_suffix = log_file_name + ".log"
     fh = logging.FileHandler(log_file_name_suffix)
     fh.setLevel(logging.DEBUG)
     logger.addHandler(fh)

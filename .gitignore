@@ -3,3 +3,5 @@
 
 # Logging output
 /logs
+*.log
+*.bak

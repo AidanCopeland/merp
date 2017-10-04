@@ -193,7 +193,7 @@ class EncounterGenerator(Frame):
 
 def main():
     root = Tk()
-    trace.init("EncounterGenerator.txt")
+    trace.init("EncounterGenerator")
     app = EncounterGenerator()
     root.mainloop()
 
