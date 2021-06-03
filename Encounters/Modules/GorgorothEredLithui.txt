@@ -1,0 +1,63 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Gorgoroth (Northern Ered Lithui)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Foothills													Mountains													Plains
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				10	10	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	4	4
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				3	3	3
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Stream			25	42	8
+Waterhole			35	54	12
+Ruins				45	60	13
+Asdriag Camp		49	0	19
+Éothraim Camp		50	0	25
+Donaen Village		56	0	0
+Gondorian Manor		60	0	0
+Axebeak			0	0	30
+Cave Lion			61	65	0
+Deer				84	0	85
+Ashflea			85	85	0
+Wolf				90	90	90
+Donaen (1-5)		98	0	0
+Asdriags			0	0	95
+Éothraim			0	0	100
+Orcs (1-5) (N)		100	100	0
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

@@ -1,0 +1,77 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Mirkwood (Denizens of the Dark Wood)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Open	Forest													Mountain													Swamp
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				40	25	20	15
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				5	3	3	3
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				2	2	4	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Black Bears (N)		0	5	0	0
+Black Minks (D)		0	10	0	15
+Boars (N)			0	17	0	0
+Crebain			5	20	7	20
+Coireals (D)		0	26	0	0
+Dire Wolves			15	30	16	0
+Dwarves (D)			22	31	17	21
+Elves				25	34	18	0
+Fell Beasts (D)		0	0	25	0
+Giant Martens		0	41	0	0
+Giant Spiders (D)		0	45	0	0
+Great Bats (N)		0	50	34	0
+Great Hawks (D)		0	0	41	0
+Grey Wolves			40	56	53	0
+Huorns			0	59	0	0
+Lesser Giants (N)		0	0	59	0
+Men				55	62	61	22
+Merisc Tyka			70	0	0	0
+Nethraich (D)		0	0	0	40
+Nimfiara (D)		0	70	0	0
+Ninevet			0	0	0	54
+Orcs (N)			0	74	69	57
+Pike				0	0	0	75
+Short-eared Owls (D)	0	80	0	85
+Thrushes (D)		85	88	81	0
+Trolls (N)			0	91	91	0
+Wargs (N)			0	95	0	0
+Wels				0	0	0	100
+White Foxes (N)		100	100	100	0
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

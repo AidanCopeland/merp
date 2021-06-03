@@ -1,0 +1,70 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Lorien
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Eregion Wilds												Lorien interior												Lorien wilds outside
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				10	50	15
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				8	3	10
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	1	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Wolves (2-10)		8	0	5
+White Wolves (2-20)	13	0	7
+Wargs (2-20)		16	0	10
+Brown Bear			18	0	13
+Black Bear			20	0	14
+Poisonous Snake		22	0	17
+Deer/Elk (1-20)		24	0	22
+Stone Troll (1-5)		27	0	25
+Hill Troll (1-5)		30	0	30
+Orc scout			35	0	33
+Orc small patrol (2-6)	38	0	36
+Orc large patrol (6-10)	41	0	38
+Local men			50	0	45
+Foreigners			55	0	60
+Brigands			60	0	66
+Merchants			65	0	70
+Silvan Elves		70	70	85
+Sindar Elves		78	89	88
+Noldor Elves		80	94	90
+Dwarves			96	0	93
+Ents				97	0	95
+Huorns			98	0	97
+Other Beings		100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

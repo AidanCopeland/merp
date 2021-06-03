@@ -1,0 +1,80 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Greater Harad
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Coast														Isra (rural)												Isra (city)													Kirmlesra													Chennacatt (rural)											Chennacatt (city)												Túr Betark													Sára Bask
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	15	15	5	10	10	20	20
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				3	5	5	12	6	6	1	6
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				1	2	2	4	2	2	2	3
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Trap				1	1	5	1	1	1	2	5
+Natural Disaster		3	2	6	5	5	2	10	15
+Ruins				5	5	7	6	10	10	12	16
+Tomb				7	8	8	8	12	15	15	17
+Northern Haradrim		9	10	15	10	20	25	0	0
+Local people		19	15	30	15	25	40	20	21
+Merchants			26	20	40	16	27	45	21	22
+Thieves/Sea-raiders	30	22	45	19	28	50	22	25
+Warriors			0	23	60	20	29	55	0	35
+Dwarves			0	25	65	0	30	56	25	0
+Númenóreans			34	26	69	0	31	57	0	36
+Travellers			35	39	74	25	35	65	30	40
+Danak				0	31	0	0	0	0	45	0
+Desert Orcs (N)		37	33	0	35	36	0	0	0
+Orcs (N)			40	35	0	0	45	0	60	45
+Camel				0	37	73	0	0	70	0	0
+Cattle			41	38	74	0	50	72	63	46
+Wild Horses			42	39	0	0	55	74	0	0
+Crocodiles			0	41	0	0	56	0	0	48
+Juthjuth			0	0	45	0	0	0	0	0
+Izhta				0	42	0	60	0	0	0	0
+Lisica			0	45	0	0	0	0	0	0
+Latava			0	50	0	61	58	0	0	0
+Baboons			44	51	0	0	0	0	0	65
+Goats				0	53	0	0	65	75	75	0
+Caja				0	0	0	0	70	0	0	0
+Hanajaib			0	0	0	0	78	0	0	0
+Other Beasts		89	85	89	84	89	89	88	88
+Lesser Demon		91	90	0	88	90	90	90	89
+Greater Demon		0	91	0	0	91	0	91	90
+Undead (N)			0	92	90	90	92	91	92	92
+Special			100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

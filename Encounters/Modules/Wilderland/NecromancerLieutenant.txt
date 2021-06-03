@@ -1,0 +1,74 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Mirkwood (The Necromancer's Lieutenant)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				East-West Trail												Around Dol Guldur												Skauril's March
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				20	40	30
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				2	3	2
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				6	3	1
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Active Tree			1	2	1
+Large bird			7	7	7
+Medium bird			15	14	15
+Small bird			26	23	28
+Bear				30	27	34
+Crebain			35	34	38
+Ennerlings			39	40	41
+Fell Beast			40	41	42
+Milk-white Trumpet	45	48	46
+Orc patrol			49	55	48
+Snow Lion			50	56	49
+Large spider		53	58	53
+Black Squirrel		63	70	63
+Troll				64	72	64
+Wargs				67	77	67
+Wild Cat			69	78	69
+Wolf				76	78	69
+Din Fuinen			81	90	80
+Rose-trees			85	93	84
+Elves				87	94	87
+Woodmen			92	96	92
+Rain				93	97	93
+Mists				97	100	97
+Arlan				98	0	98
+Lichen Gloriosa		99	0	99
+Rewk				100	0	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

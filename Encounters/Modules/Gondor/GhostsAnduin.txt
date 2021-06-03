@@ -1,0 +1,99 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Bar-en-Tinnen (Ghosts of the Southern Anduin)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Town	Rural
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				60	30
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.2	1
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				0.25	2
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Trap		0	1
+Natural Hazards		0	4
+Domesticated dog		5	6
+Bittern			7	8
+Coots				8	11
+Kingfishers			10	13
+Gorcrows			11	14
+Grass Grouses		14	20
+Ravens			0	21
+Red Eagles			0	22
+Kirinkiri			20	24
+Leeches			21	25
+Gnats/Mosquitos		28	30
+Morgai Flies		0	31
+Marsh Adders		29	0
+Nethraich			30	0
+Aurych (cattle)		34	36
+Caru				0	38
+Cunara (gopher)		39	43
+Wild goats			0	44
+Domestic goats		44	45
+Ponies			46	47
+Wild Horses			47	49
+Black Bears			0	50
+Domesticated cats		51	51
+Highland Lynxes		52	52
+Grey Wolves			0	54
+Undead (N)			0	55
+Bandits/Brigands		53	58
+Mill workers		56	0
+Fishermen			61	59
+Hunters			62	62
+Levy patrol			65	65
+Merchants			68	67
+Town elder			69	0
+Travellers			73	75
+NPCs				74	76
+Corsair			76	77
+Dunlendings			77	78
+Northmen			79	79
+Haradrim			82	82
+Balchoth			0	83
+Sagath			0	84
+Noldor Elves		84	86
+Sindar Elves		86	87
+Dwarves			89	88
+Orcs (N)			0	91
+Trolls (N)			0	92
+Dolphins (W)		90	93
+Sharks (W)			91	94
+Other beings		100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

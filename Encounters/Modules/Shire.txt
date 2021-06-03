@@ -1,0 +1,110 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+The Shire
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Siragale													Towns and Villages											Cardolanian Bounds											Northern Bounds												The Old Forest
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	65	20	5	50	
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				5	0.5	7	5	0.5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	0.5	3	4	0.5
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Traps		0	0	1	1	2
+Natural Hazards		3	2	3	5	5
+Sites and Ruins		8	3	10	10	9
+Wolves			10	0	18	13	12
+Wargs				11	0	20	14	13
+Lions				12	0	21	0	15
+Black Bears		13	0	22	15	19
+Glutani			0	0	23	0	22
+Rare Grazing Animals	14	0	24	17	26
+Boar				16	4	26	18	29
+Grazing Animals		20	0	30	21	34
+Sheep, Sheep Hounds	22	10	34	26	0
+Poisonous Snakes	23	11	36	27	37
+Birds				28	17	40	30	44
+Small Animals		33	20	44	34	46
+Wights			0	0	45	0	0
+Other Undead		34	0	37	0	51
+Smugglers/Thieves	36	24	48	35	54
+Mercenaries/Brigands	39	28	49	36	57
+Dunnish Tribesmen	42	31	56	0	60
+Common Folk		45	50	61	43	64
+Rivermen			48	54	64	49	67
+Merchants			50	62	65	55	68
+Nobles or Leaders	53	66	67	59	69
+Military Unit		55	67	68	61	70
+Large Patrol		57	68	70	64	72
+Small Patrol		60	72	72	67	76
+Spies/Scouts		63	73	73	71	77
+Other Individuals	64	75	74	74	79
+Northmen			67	77	76	77	81
+Easterlings		68	78	77	78	0
+Dunlendings		70	82	80	69	82
+Southerners		71	87	81	81	83
+Other Foreigners	72	88	84	82	84
+General Folk, Non-mannish races											74	91	85	87	85
+Wandering Company	76	0	86	88	87
+Other Elves		84	92	88	92	89
+Dwarves			87	94	91	95	90
+Orcs (N)			88	0	95	96	94
+Trolls (N)			93	0	97	97	97
+Wild Hobbits		96	98	98	99	98
+Faerie			100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Birds	All	50	1-10 crows, songbirds, hawks, owls	100	10-100 geese, ducks, blue pigeons, 100-2000 on large bodies of water
+Dunnish Tribesmen	All	100	 Dunnish folk in clans, not tied to local society
+Grazing Animals	All	40	Dappled Deer	80	Red Deer	100	Goral
+Northmen	All	100	Either Freeholders from the Red Hills or Mercenaries
+Orcs (N)	The Old Forest	30	Native Wood Goblins	100	Standard
+Trolls (N)	The Old Forest	30	Native Wood Trolls	100	Standard
+Other Undead	All	100	GM's choice: ghosts, ghouls, skeletons etc, indicating a local haunting
+Poisonous Snakes	All	70	Common Viper	100	Rock Viper
+Rare Grazing Animals	Cardolanian Bounds	80	White Hind (Nimfiara)	100	Wild Bull (Auroch)	The Old Forest	80	White Hind (Nimfiara)	100	Wild Bull (Auroch)	Siragale	30	White Hind (Nimfiara)	70	Mearas	100	 Wild Bull (Auroch)	Towns and Villages	30	White Hind (Nimfiara)	 70	Mearas	100	Wild Bull (Auroch)	Northern Bounds	30	White Hind (Nimfiara)	 70	Mearas	 100	Wild Bull (Auroch)
+Wolves	All	90	Grey Woves	100	War-wolves or Dire Wolves
+Wild Hobbits	All	100	Clanless, generally refugees or adventurers
+Smugglers/Thieves	Siragale	50	Hobbits	100	Men	Towns and Villages	50	Hobbits	100	Men
+Mercenaries/Brigands	Siragale	50	Hobbits	100	Men	Towns and Villages	50	Hobbits	100	Men
+Common Folk	Siragale	50	Hobbits	100	Men	Towns and Villages	50	Hobbits	100	Men
+Merchants	Siragale	50	Hobbits	100	Men	Towns and Villages	50	Hobbits	100	Men
+Nobles or Leaders	Siragale	50	Hobbits	100	Men Towns and Villages	50	Hobbits	100	Men
+Military Unit	Siragale	50	Hobbits	100	Men Towns and Villages	50	Hobbits	100	Men
+Large Patrol	Siragale	50	Hobbits	100	Men Towns and Villages	50	Hobbits	100	Men
+Small Patrol	Siragale	50	Hobbits	100	Men Towns and Villages	50	Hobbits	100	Men
+Spies/Scouts	Siragale	50	Hobbits	100	Men Towns and Villages	50	Hobbits	100	Men
+Other Individuals	Siragale	50	Hobbits	100	Men Towns and Villages	50	Hobbits	100	Men
+### End

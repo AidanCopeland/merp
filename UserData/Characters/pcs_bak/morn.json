@@ -1,0 +1,114 @@
+{
+  "name": "Morn",
+  "basic-stats": {
+    "level": 15,
+    "melee-obs": [
+      {
+        "ob": 145,
+        "ob-type": "sc"
+      },
+      {
+        "ob": 150,
+        "ob-type": "sc"
+      },
+      {
+        "ob": 145,
+        "ob-type": "wh"
+      }
+    ],
+    "missile-ob": 80,
+    "missile-ob-type": "cb",
+    "body-development": 215,
+    "armour-type": 20,
+    "defensive-bonus": 70,
+    "shield-bonus": 35,
+    "movement-speed": 5,
+    "essence-rr": 50,
+    "channeling-rr": 15,
+    "mentalism-rr": 45,
+    "poison-rr": 35,
+    "disease-rr": 35
+  },
+  "stats": {
+    "ST": {
+      "value": 95,
+      "bonus": 20
+    },
+    "AG": {
+      "value": 86,
+      "bonus": 0
+    },
+    "CO": {
+      "value": 47,
+      "bonus": 15
+    },
+    "IG": {
+      "value": 45,
+      "bonus": 0
+    },
+    "IT": {
+      "value": 90,
+      "bonus": 5
+    },
+    "PR": {
+      "value": 41,
+      "bonus": -5
+    }
+  },
+  "abilities": {
+    "movement-skills": {
+      "no-armour": 5,
+      "soft-leather": -15,
+      "rigid-leather": -25,
+      "chain": -10,
+      "plate": 5
+    },
+    "weapon-skills": {
+      "1h-edged": 145,
+      "1h-concussion": 145,
+      "2-handed": 45,
+      "thrown": 5,
+      "missile": 80,
+      "pole-arms": 75,
+      "adrenal-strength": 120,
+      "shield-mastery": 106,
+      "stunned-maneuver": 70,
+      "adrenal-quickdraw":50,
+      "rapid-fire": 50
+    },
+    "general-skills": {
+      "climb": 69,
+      "ride": 25,
+      "swim": -60,
+      "track": 65
+    },
+    "subterfuge-skills": {
+      "ambush": -25,
+      "stalk-hide": 0,
+      "pick-lock": 30,
+      "disarm-trap": 40
+    },
+    "magical-skills": {
+      "read-runes": -25,
+      "use-items": -20,
+      "directed-spells": -20
+    },
+    "influence-skills": {
+    },
+    "miscellaneous-bonuses": {
+      "perception": 78,
+      "base-spells": 30,
+      "leadership": -5
+    },
+    "secondary-skills": {
+      "adrenal-defence": 35,
+      "transcend-armour": 63,
+      "dragon-lore": 25,
+      "discern-wounds": 25,
+      "drug-tolerance": 50,
+      "siege-engineering": 15,
+      "smithing": 40,
+      "undead-lore": 20
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "name": "Anwarewen",
+  "basic-stats": {
+    "level": 15,
+    "melee-obs": [
+      {
+        "ob": 72,
+        "ob-type": "th"
+      }
+    ],
+    "missile-ob": 70,
+    "missile-ob-type": "sb",
+    "body-development": 86,
+    "armour-type": 5,
+    "defensive-bonus": 85,
+    "shield-bonus": 15,
+    "movement-speed": 20,
+    "essence-rr": 0,
+    "channeling-rr": 15,
+    "mentalism-rr": 10,
+    "poison-rr": 10,
+    "disease-rr": 100
+  },
+  "stats": {
+    "ST": {
+      "value": 51,
+      "bonus": 0
+    },
+    "AG": {
+      "value": 90,
+      "bonus": 20
+    },
+    "CO": {
+      "value": 63,
+      "bonus": 0
+    },
+    "IG": {
+      "value": 60,
+      "bonus": 0
+    },
+    "IT": {
+      "value": 90,
+      "bonus": 15
+    },
+    "PR": {
+      "value": 90,
+      "bonus": 10
+    }
+  },
+  "abilities": {
+    "movement-skills": {
+      "no-armour": 30,
+      "soft-leather": 20,
+      "rigid-leather": -35,
+      "chain": -70,
+      "plate": -85
+    },
+    "weapon-skills": {
+      "1h-edged": 5,
+      "1h-concussion": -25,
+      "2-handed": 72,
+      "thrown": -5,
+      "missile": 70,
+      "pole-arms": -25
+    },
+    "general-skills": {
+      "climb": 130,
+      "ride": 105,
+      "swim": 110,
+      "track": 112,
+      "foraging": 125,
+      "herblore": 110,
+      "survival": 115,
+      "navigation": 110
+    },
+    "subterfuge-skills": {
+      "ambush": -25,
+      "stalk-hide": 70,
+      "pick-lock": -25,
+      "disarm-trap": -10,
+      "poison-lore": 40
+    },
+    "magical-skills": {
+      "read-runes": 30,
+      "use-items": 55,
+      "directed-spells": 10,
+      "split-focus": 55,
+      "spell-concentration": 60
+    },
+    "influence-skills": {
+    },
+    "miscellaneous-bonuses": {
+      "perception": 90,
+      "base-spells": 40,
+      "leadership": 10
+    },
+    "secondary-skills": {
+      "discern-wounds": 50,
+      "animal-handling": 65,
+      "music": 20,
+      "dancing": 25,
+      "orienteering": 20,
+      "cooking": 25
+    }
+  }
+}

@@ -1,0 +1,66 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Ny Chennacatt (Nazgûl's citadel)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Second Abyss												First Abyss													Upper Tiers													Dragon's Head												Mines	Outside
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				85	60	55	60	10	20
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0	0	0	0	0	0
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	4	4	4	4	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Trap				1	5	10	0	5	1
+Natural feature		3	7	12	2	50	40
+Cave animals		0	0	0	0	55	0
+Other animals		0	0	0	0	0	50
+Bats				0	0	0	0	65	55
+Cave Worm/Fell Beast	0	0	0	15	75	61
+Ghosts			4	0	0	16	76	62
+Ghouls			0	0	0	0	77	63
+Skeletons			0	0	0	0	78	0
+Spectres			5	0	0	17	79	64
+Lesser Wight		0	0	0	0	0	65
+Wargs				10	10	0	0	0	75
+Orcs (normal patrol)	75	15	13	0	95	80
+Orcs (large patrol)	80	20	14	0	96	82
+Human guards		82	75	80	85	98	97
+Human servants		84	97	97	90	0	0
+Trolls			99	98	98	91	99	98
+Special			100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

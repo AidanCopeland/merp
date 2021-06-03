@@ -1,0 +1,68 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Gates of Mordor
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Cirith Helkond												Imlad	Lechil													Durthang caverns												Durthang tower
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				23	31	60	30	48
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	4	4	0	0
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	4	4	1	1
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Scara-hai			22	6	0	0	0
+Fell Beast			0	0	3	0	0
+Mordor Flies		0	0	6	0	0
+Wild Goat			48	13	0	0	0
+Giant Spider		61	36	23	0	0
+Flames			0	39	48	0	0
+Fog				74	65	51	0	0
+Smoke				83	78	64	0	0
+Fall				100	94	69	0	0
+Lost				0	100	86	0	0
+Spikes			0	0	100	0	0
+Guards			0	0	0	14	0
+Messengers			0	0	0	21	4
+Servants			0	0	0	42	0
+Disorientation		0	0	0	49	17
+Fall				0	0	0	63	42
+Ghost				0	0	0	0	67
+Heat				0	0	0	70	96
+Load				0	0	0	94	0
+Special			0	0	0	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

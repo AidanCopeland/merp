@@ -1,0 +1,56 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Strayhold (Brigands of Mirkwood)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Lower City													Upper City													Rogues' Clan												Castle													Loose Jack's												Flagon Lane
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				30	40	32	50	40	40
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.5	0.5	0.5	0.5	0.5	0.5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				0.5	0.5	0.5	0.5	0.5	0.5
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Mugger(s)			7	18	29	0	13	13
+Thieves/Rogues		17	35	58	0	25	25
+Drunk(s)			24	48	0	0	40	50
+Doxy				31	53	0	0	50	60
+Assassin/Slayman		38	65	62	2	60	70
+Warrior			65	75	66	78	75	80
+Mage				92	88	70	80	88	88
+Special/NPC			100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

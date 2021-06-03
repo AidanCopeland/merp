@@ -1,0 +1,80 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Minas Ithil
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Belethrind													Celebrind													Eithelrind													Gwathrind													Morgul Value
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				40	60	50	55	25
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.25	0.25	0.25	0.25	1
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				0.5	0.25	0.25	0.25	0.5
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Inanimate Dangers/Traps	3	5	5	6	9
+Animals			6	9	8	9	24
+Local common folk working/playing/lounging	24	27	25	27	29
+Local common folk in transit	32	35	32	34	38
+Rowdies			33	37	35	38	40
+Tax collectors/Steward's Men	38	40	37	39	42
+Black Marketeer		39	45	39	43	0
+Merchants/Vendors		42	53	44	47	44
+Guildmembers		45	62	46	49	0
+Actors/buskers		47	63	50	50	0
+Beggars/derelicts		48	65	52	55	0
+Messengers			51	67	53	56	48
+Scholars/Students		57	69	56	57	49
+Artists			59	70	67	58	50
+Nobles			65	71	69	59	52
+Preachers/Religious	69	72	71	62	53
+Adventurers			70	74	73	65	56
+Mercenaries			0	76	74	68	60
+Soldiers			71	77	75	69	63
+Spies				72	78	76	70	64
+Ruffians/Bravoes		73	80	78	73	66
+Trackers/Searchers	74	81	79	75	69
+Vigilantes/Fanatics	75	82	81	77	71
+Criminal			76	84	83	81	72
+Cutpurses/Pickpockets	78	87	85	85	73
+Muggers/Brigands		79	89	87	88	76
+Lone guard watchman	82	90	88	0	77
+Guard patrol (2-11)	87	95	93	94	84
+Military unit (12-50)	90	96	94	96	95
+Personality/NPC		95	98	97	98	97
+Unusual/special		100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Inanimate Dangers/Traps	All	100	actual traps or natural hazards outside of city walls; inside, heavy traffic, ruined infrastructure, runaway wagon, or other inanimate hazard
+Animals	All	100	dogs, rats, cats, horses, other domesticated beasts
+
+### End

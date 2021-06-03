@@ -1,0 +1,120 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Palantir Quest: Wilderness, East of the Misty Mountains
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Anorien																Druadan Forest															Westfold/Eastfold															Westmarch																East Emnet																The Wold																Emyn Muil																Dead Marshes															Ithilien																Dagorlad																Rhovanion Grasslands														Greenwood
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				10	25	20	15	5	5	5	10	20	5	10	20
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				8	2	10	10	10	10	10	10	10	10	10	10
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	2	4	4	4	5	5	8	4	4	4	8
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Trap		1	7	1	1	1	1	1	1	1	1	1	1
+Avalanche			2	0	0	0	0	0	0	0	0	0	0	0
+Flash Flood			3	0	0	2	3	0	0	0	2	0	0	0
+Forest Fire			0	8	0	0	0	0	0	0	3	0	0	2
+Grass Fire			0	0	2	4	6	2	0	0	0	2	3	0
+Cave/Cavern/Lair		6	10	3	5	7	10	3	0	4	3	4	3
+Mine/Quarry			8	0	4	6	0	13	0	0	5	4	5	0
+Burial Sites		9	15	5	7	8	14	4	2	6	8	6	4
+Ruins				11	18	8	8	10	15	5	3	9	11	8	6
+Settlement/Camp		13	19	15	10	12	16	8	4	13	12	12	7
+Bat				14	20	16	11	13	17	9	11	14	13	13	9
+Cave Bear			0	22	0	0	14	18	10	0	15	0	0	10
+Black Bear			15	24	17	12	15	19	11	0	18	0	0	12
+Bees/Hornets		16	26	18	14	17	22	13	20	20	16	16	15
+Wild Boar			17	29	0	15	19	23	14	21	26	17	18	18
+Large Cat			18	32	19	17	22	26	17	22	29	25	27	19
+Great Bird			19	33	20	19	24	29	20	24	32	28	31	20
+Fell Beast			20	0	0	20	0	30	22	25	33	29	32	21
+Neekerbreekers		0	0	0	0	0	0	0	50	34	0	0	0
+Kine/Elk/Deer		22	35	23	23	29	32	24	51	48	34	37	25
+Giant Marten		0	36	24	24	30	34	27	52	49	35	38	0
+King Spider			0	37	25	25	31	38	29	55	50	38	39	26
+Poisonous Snake		23	38	26	26	32	43	33	60	52	43	41	27
+Egil's Viper		0	0	0	27	35	47	35	0	0	0	43	0
+Wolves			24	41	27	29	38	49	38	65	54	44	45	30
+Wild Dogs/Jackals		25	42	0	30	40	50	40	66	58	48	48	31
+Other Animals		39	52	38	38	57	56	45	67	70	55	55	35
+Minor Wight			40	53	0	39	58	57	46	69	0	57	56	37
+Lesser Wight		0	54	0	40	0	58	47	70	0	58	57	38
+Major Wight			0	0	0	0	0	0	0	71	0	59	0	39
+Wargs				41	55	0	41	0	59	49	72	71	60	58	45
+Ghost				0	56	39	42	0	0	50	73	72	64	0	46
+Orcs: Scouts		44	57	40	43	59	64	54	74	73	66	60	50
+Orcs: Patrol (S) (2-6)	46	58	0	44	60	68	60	76	75	68	61	55
+Orcs: Patrol (6-10)	48	0	0	45	0	69	62	77	0	70	62	57
+Orcs: Warband/Caravan (12-30)	0	0	0	0	0	70	0	0	0	71	0	59
+Rohirrim: Individuals	55	60	62	56	63	72	63	78	75	0	63	0
+Rohirrim: Patrol (S) (6-12)	59	61	67	60	66	74	65	80	0	0	64	0
+Rohirrim: Patrol (24-60)	61	0	70	62	69	76	67	0	0	0	0	0
+Rohirrim: Eored (120)	0	0	71	63	70	77	0	0	0	0	0	0
+Smugglers/Thieves		62	0	73	64	71	79	69	81	76	72	67	61
+Mercenaries/Brigands	64	62	75	68	74	81	75	82	77	76	72	66
+Tribesmen			65	0	0	72	0	0	0	0	0	77	73	0
+Common Folk			68	63	78	75	83	83	76	83	78	80	78	67
+Rivermen			69	0	79	76	84	0	78	85	79	0	79	0
+Merchants			73	0	83	78	86	84	80	86	80	83	84	68
+Nobles			74	0	84	79	87	0	0	0	81	84	85	0
+Military: Small Patrol	79	64	85	80	88	85	81	0	82	87	86	70
+Military: Large Patrol	82	0	0	0	0	86	82	0	83	88	87	71
+Spies				83	0	86	81	89	87	83	87	0	89	88	72
+Other Individuals		84	0	87	83	90	88	84	88	84	90	89	73
+Northmen			86	65	88	83	91	89	85	89	85	91	91	78
+Easterlings			88	66	89	84	0	0	86	90	86	93	93	0
+Dunlendings			89	0	90	85	0	0	0	0	0	0	0	0
+Southerners			90	67	91	86	0	0	87	91	87	95	94	0
+Other Foreigners		91	68	92	87	92	0	88	0	88	96	95	0
+General Folk		92	0	93	88	93	90	90	92	89	97	96	79
+Elves				93	69	94	89	94	91	91	93	94	0	0	86
+Dwarves			94	70	95	94	95	92	92	0	0	98	97	87
+Cave Trolls			95	0	0	0	96	94	93	94	0	0	0	0
+Forest Trolls		96	71	0	0	0	0	0	0	95	0	0	90
+Hill Trolls			0	0	0	95	0	96	94	0	0	99	98	0
+Hobbits			97	0	96	96	97	0	95	0	0	0	0	0
+Stoor Hobbits		0	0	0	0	0	97	96	0	0	0	0	0
+Drake/Dragon		98	72	0	0	0	0	0	0	0	0	99	91
+Ents				0	73	0	0	0	0	0	0	96	0	0	92
+Giants			0	74	0	0	0	98	97	0	0	0	0	93
+Great Eagles		0	75	97	97	98	99	98	95	97	0	0	94
+Giant Spiders		0	76	0	0	0	0	0	0	0	0	0	98
+Huorns			0	77	0	0	0	0	0	0	98	0	0	99
+Drúedain (Woses)		0	97	98	98	0	0	0	0	99	0	0	0
+Other Beings		100	100	100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+### End
+

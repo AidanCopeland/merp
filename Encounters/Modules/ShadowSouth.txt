@@ -1,0 +1,92 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Shadow in the South
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Waters													Plains													Hills	Forests													Swamp	Civilized													Mountains
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				5	15	10	10	15	10	15
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				10	10	8	4	2	2	3
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				5	4	4	4	4	4	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Trap		1	1	2	1	1	1	2
+Natural Disaster		2	3	3	2	2	2	3
+Cave Lair			0	0	6	5	4	0	5
+Tomb				0	5	8	6	6	0	7
+Ruins				0	7	10	7	8	0	9
+Grey Apes			0	0	0	9	0	0	0
+Bats				0	8	12	10	11	0	11
+Boars				0	9	13	11	0	0	12
+Brown Bears			0	0	15	12	0	0	15
+Crocodiles			5	0	0	0	18	0	0
+Deer/Elk			0	11	18	15	0	0	18
+Eagles			7	13	19	16	0	0	20
+Goats				0	0	21	17	0	0	24
+Hawks				8	15	22	18	0	0	25
+Horses (wild)		0	18	24	19	0	0	26
+Cliff Lions			0	0	26	20	0	0	28
+Mumak				0	21	27	21	0	0	0
+Slow-fang			0	0	0	23	20	0	0
+Trusa				0	0	0	24	23	0	0
+Sea-turtles			11	0	0	0	25	0	0
+Fell-turtles		12	0	0	0	0	0	0
+Wolves			0	24	30	25	26	0	31
+Other Animals		35	43	46	49	71	22	40
+Haradrim			38	46	48	52	72	23	42
+Orcs				0	47	52	54	73	0	47
+Fuinar			40	48	53	62	0	25	49
+Mablud			0	49	54	0	0	26	56
+Sederi			44	57	57	0	0	27	57
+Chaialla			45	59	59	65	0	29	58
+Drel/Pel			65	65	61	67	76	52	62
+Adena				73	70	65	69	77	60	64
+Thieves/Brigands		77	73	67	71	78	63	67
+Merchants			80	76	68	72	0	70	69
+Travellers			88	88	78	80	83	90	74
+Dragons			90	0	89	0	85	0	75
+Giants			0	90	81	82	86	0	78
+Cave Trolls			0	0	83	0	88	0	81
+Forest Trolls		0	0	0	86	0	0	0
+Hill Trolls			0	0	87	88	0	0	87
+Stone Trolls		0	0	90	90	90	0	90
+Special			100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+Dragons	All	80	Rain drakes	100	Others
+Travellers	All	100	Other Mannish races, Dwarves, Elves, ships etc.
+
+### End

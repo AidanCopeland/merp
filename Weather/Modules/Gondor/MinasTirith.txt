@@ -1,0 +1,39 @@
+# This is a standard template for a MERP random weather table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Southern Gondor
+
+### Regions
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+	Coastlands	Inland	Mountains
+
+### Weather
+# Weather is displayed as a semi-colon separated set of  information.  The first entry is the standard minimum temperature for the month; the second entry is the standard maximum temperature for the month; the third entry is the percentage chance of rain on a given day that month.
+# Months are given from 1 (Narwain) to 12 (Girithron).
+1	35;50;15	25;45;15	20;40;15
+2	40;55;15	30;50;15	25;45;15
+3	45;55;25	30;50;25	25;45;25
+4	55;70;25	45;65;25	40;60;25
+5	60;75;25	55;75;25	50;70;25
+6	65;80;15	60;80;15	55;75;15
+7	70;85;15	65;85;15	60;80;15
+8	70;85;15	65;85;15	60;80;15
+9	60;75;25	55;75;25	50;70;25
+10	55;70;40	45;65;40	40;60;40
+11	45;60;25	35;55;25	30;50;25
+12	40;55;12	30;50;15	25;45;15	
+		
+### Extras
+# This section consists of additional information that may be given for particular months.
+# Special wind modifications apply. 
+### End

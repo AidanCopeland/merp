@@ -1,0 +1,76 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Suza Sumar (Forest of Tears)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Open Forest (Day)												Open Forest (Night)											Honnin Shrine												Honnin Dwelling												Pred	Waterhole													Ruin
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				10	20	20	20	20	20	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	4	0	0	0.2	0	0
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				3	3	0.25	0.25	0.5	1	1
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Trap				3	3	1	0	0	3	1
+Natural Danger		9	9	7	6	6	9	7
+Lair				14	14	0	0	0	0	0
+Waterhole			20	20	0	0	0	0	0
+Dwelling			25	25	0	0	0	0	0
+Shrine			27	27	0	0	0	0	0
+Ruin				30	30	0	0	0	0	0
+Gnats' nest			33	0	0	0	0	0	0
+Great Woodhawk		35	31	0	0	7	10	8
+Hawk				37	32	0	0	9	12	10
+Iu-Tori			40	34	12	14	18	18	19
+Lizard			41	35	14	16	19	21	28
+Petla				43	38	15	17	20	27	32
+Rat				44	41	26	27	25	32	38
+Stetan			47	45	33	33	28	41	40
+Trusa				48	47	35	35	30	44	44
+Unca				50	50	0	0	0	0	0
+Honnin hunters (1-5)	61	68	44	40	46	62	63
+Honnin shamans (1-10)	67	76	65	55	61	74	75
+Honnin non-combattants (1-20)	69	78	80	85	76	80	77
+Honnin foragers (1-5)	79	85	89	92	91	92	88
+Haradan foragers (1-10)	86	88	0	0	0	0	0
+Pûshel Nîn			87	89	95	93	92	93	91
+Sand Drakes			88	90	0	0	0	0	92
+Undead			90	94	0	94	93	95	95
+Special			100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+Natural Danger	All	100	Storm, mud-slide, etc.
+
+### End

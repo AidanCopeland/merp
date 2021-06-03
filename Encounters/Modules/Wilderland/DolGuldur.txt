@@ -1,0 +1,103 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Dol Guldur
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+					Southern Mirkwood																Emyn Guldur																	Men Uruk																	Nan Lanc																	Rad Angáladh																The Precipices																1st - 6th levels																Mines																		7th Level																	The Web																	1st - 3rd Strata																4th Stratum
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				20	20	25	45	20	60	70	20	90	15	25	25
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	5	4	3	4	2	2	2	2	2	2	2
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4.5	5	3.5	1	4.5	2	2	2	2	2	2	2
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Trap				1	0	1	1	0	5	2	2	0	5	1	1
+Lair				2	2	0	0	0	0	0	0	0	0	0	0
+Natural Disaster		3	3	2	2	1	0	0	0	0	0	0	0
+Ruins				4	4	3	0	2	0	0	0	0	0	0	0
+Settlement/Camp		5	5	6	0	4	0	0	0	0	0	0	0
+Stream/Creek		9	9	10	0	8	0	0	0	0	0	0	0
+Men: Caravan		0	0	0	0	10	0	0	0	0	0	0	0
+Men: Hunting Party	12	0	0	0	13	0	0	0	0	0	0	0
+Men: Raiding Party	14	10	14	0	0	0	0	0	0	0	0	0
+Men: Travellers		0	0	0	0	17	0	0	0	0	0	0	0
+Men: Woodmen Patrol	17	11	15	0	22	0	0	0	0	0	0	0
+Orcs/Trolls: Large Patrol	20	12	18	12	23	0	0	0	0	0	0	0
+Orcs/Trolls: Normal Patrol	25	17	28	32	28	0	0	0	0	0	0	0
+Orcs/Trolls: Raiding Party	27	18	31	36	31	0	0	0	0	0	0	0
+Orcs/Trolls: Tribute Caravan	0	0	33	0	33	0	0	0	0	0	0	0
+Uruk-hai patrol		30	19	34	46	34	0	0	0	0	0	0	0
+Olog-hai patrol		32	20	37	50	35	0	0	0	0	0	0	0
+Elves: Scouts		33	21	0	0	37	0	0	0	0	0	0	0
+Elves: Small Patrol	34	22	0	0	38	0	0	0	0	0	0	0
+Elves: Travellers		0	0	0	0	39	0	0	0	0	0	0	0
+Dwarves: Trading Party	0	0	0	0	40	0	0	0	0	0	0	0
+Dwarves: Travellers	0	0	0	0	41	0	0	0	0	0	0	0
+Bats (N)			40	28	42	60	44	14	7	20	0	25	0	0
+Black Bears (N)		44	30	44	0	47	0	0	0	0	0	0	0
+Boars				49	32	47	0	51	0	0	0	0	0	0	0
+Cave Worms			0	0	0	0	0	0	0	25	0	28	0	0
+Coireals			50	0	48	0	52	0	0	0	0	0	0	0
+Crebain			60	37	60	70	57	0	0	0	0	0	0	0
+Eagle				61	38	61	0	58	0	0	0	0	0	0	0
+Fell Beasts			62	43	63	77	59	0	0	0	0	0	0	0
+Forest Trolls (N)		64	45	65	0	62	0	0	0	0	0	0	0
+Giant Spiders		69	50	69	0	67	0	10	35	0	38	0	0
+Great Bats (N)		0	55	70	82	0	19	13	45	0	48	0	0
+Great Eagles		70	56	71	0	68	0	0	0	0	0	0	0
+Great Falcons		0	59	0	0	0	0	0	0	0	0	0	0
+Hill Trolls (N)		72	64	72	0	71	0	0	0	0	0	0	0
+Huorn, lesser		77	67	76	0	74	0	0	0	0	0	0	0
+Huorn, greater		80	70	78	0	77	0	0	0	0	0	0	0
+Nimfiar			83	72	81	0	81	0	0	0	0	0	0	0
+Short Eared Owls (N)	85	73	83	0	83	0	0	0	0	0	0	0
+Spider			90	79	86	85	88	24	16	65	0	58	4	4
+Wargs (N)			94	90	93	90	83	31	21	80	4	76	9	0
+Wolves			100	100	100	100	100	0	0	0	0	0	0	0
+Guards			0	0	0	0	0	82	63	0	54	91	63	72
+Large Patrol		0	0	0	0	0	0	68	0	64	96	0	0
+Messenger			0	0	0	0	0	87	78	0	74	99	79	87
+Servants			0	0	0	0	0	0	89	0	84	0	89	92
+Thralls			0	0	0	0	0	97	98	100	95	0	94	0
+Special			0	0	0	0	0	100	100	0	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Crebain	Nan Lanc	100	On watch, reporting the presence of intruders rather than attacking
+Fell Beasts	Nan Lanc	100	On watch, reporting the presence of intruders rather than attacking
+Great Bats	Nan Lanc	100	On watch, reporting the presence of intruders rather than attacking
+Wolves	Nan Lanc	100	War wolves led by 1-3 Wargs
+Guards	Precipices	100	Normal patrol of 2-5 guards, Uruks	1st - 6th levels	100	Normal patrol of 2-5 guards: Uruks (levels 1, 6, 7), Mannish (levels 2, 4), Ologs (level 4), Uruks and Mannish (level 5)	7th Level 	100	Normal patrol of 2-5 guards, Uruks	The Web	100	Normal patrol of 2-5 guards, Common Orcs	1st - 3rd Strata	100	Normal patrol of 2-5 guards: Uruks (1st - 2nd strata), all types except Common Orcs (3rd Strata)	4th Stratum	100	Normal patrol of 2-5 guards, Ologs
+Large Patrol	All	100	On their way out of the fortress
+Messenger	All	100	Uruk-hai or Hildo messenger relaying orders between officers
+Servants	All	65	Common Orcs	100	Hildo
+### End

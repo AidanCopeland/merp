@@ -1,0 +1,110 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+River Running
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Western Frontier															Northern Border															Shore of Rhûn															Eorstan Mountains															Interior Dorwinion														On the Rivers															Rhovanion Plains															Northern Wastelands														Shrel-Kain																Riavod
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				30	25	20	35	25	15	35	20	35	30
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				10	12	10	6	12	20	10	15	1	1
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				3	3	3	2	4	3	2	4	1	1
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Natural Hazards		2	2	7	4	2	6	3	5	1	1
+Ruins/Traps			5	5	10	12	4	8	5	7	3	3
+Asdriags			9	8	13	15	5	9	12	0	6	10
+Dorwinrim			20	19	34	25	50	50	14	8	50	25
+Dúnedain			21	21	36	27	51	51	15	11	52	26
+Éothraim			26	0	0	28	0	0	22	0	0	0
+Logath			30	23	39	31	54	54	29	0	54	56
+Lossoth			0	28	41	0	0	0	0	30	55	57
+Rural Men			35	32	44	34	59	58	30	33	56	58
+Sagath			39	36	47	36	0	59	35	0	58	62
+Urban Men			0	37	50	0	64	0	0	0	69	70
+Variags			42	39	55	38	65	60	40	0	71	73
+Elves				44	41	58	39	66	62	41	35	73	74
+Dwarves			47	43	59	48	67	0	42	37	75	75
+Bandits			50	45	65	50	70	65	45	40	80	80
+Auroch			51	46	0	0	71	0	47	43	0	0
+Caru				52	47	66	52	72	0	50	47	0	0
+Culcarnix			53	48	67	53	73	0	51	48	0	0
+Fintonarka			54	49	68	56	75	0	52	50	0	0
+Kine of Araw		55	50	0	0	76	0	53	52	0	0
+Losrandir			56	53	69	58	77	0	55	55	0	0
+Nimfiara			57	54	0	0	78	0	57	58	0	0
+Wild Horse			60	55	70	60	80	0	60	60	0	0
+Craban			62	57	71	62	0	66	63	61	81	81
+Gorcrow			63	60	72	63	81	67	64	0	0	82
+Great Bats			0	61	73	67	82	0	0	62	83	83
+Raven				64	62	74	68	83	68	0	63	84	84
+Short-eared Owl		0	63	0	69	84	69	0	64	0	0
+Thrush			65	65	75	70	85	70	65	65	85	85
+Black Bear			66	66	76	72	0	71	67	68	0	0
+Black Mink			0	67	77	73	86	72	0	0	0	0
+Dire Wolf			71	70	0	76	87	0	70	72	0	0
+Giant Marten		72	71	78	77	0	73	0	0	0	0
+Gich				73	72	0	79	88	74	0	0	0	0
+Glutan			74	0	79	81	89	75	0	0	0	0
+Grey Wolf			79	76	0	83	90	0	74	75	0	0
+Highland Lynxes		0	77	0	87	0	0	0	76	0	0
+Hounds			81	79	0	88	92	0	75	0	88	88
+Merisc Tyke			82	81	0	89	93	0	76	0	89	89
+Undarlif			84	83	0	90	94	0	78	77	90	90
+War Wolf			86	85	0	91	0	0	80	79	0	0
+Wargs				88	87	0	92	0	0	82	81	0	0
+White Wolf			89	89	0	94	0	0	84	85	0	0
+Wild Boar			90	90	80	95	95	0	85	0	0	0
+Bitterns			0	0	82	0	0	79	0	0	0	0
+Blue Otters			0	0	84	0	0	83	0	0	0	0
+Fell Turtle			0	0	85	0	0	84	0	0	0	0
+Fishing Cat			0	0	87	0	0	89	0	0	0	0
+Pike				0	0	88	0	0	90	0	0	0	0
+Marsh Crocodiles		0	0	0	0	0	93	0	0	0	0
+Sea Crocodiles		0	0	89	0	0	94	0	0	0	0
+Stetanavi			0	0	90	0	0	95	0	0	0	0
+Green Asp (D)		91	0	0	0	0	0	86	0	0	0
+Common Orcs (N)		95	93	92	96	96	96	93	90	92	92
+Uruk-hai			96	95	94	97	97	97	95	93	95	94
+Forest Troll (N)		97	97	95	0	98	98	97	95	96	96
+Hill Troll (N)		98	98	97	98	0	0	98	98	97	97
+Undead (N)			99	99	99	99	99	99	99	99	99	99
+Other Beings		100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+Natural Hazards	All	100	storms and dangerous terrain {sliding shale, crags disguised by underbrush, pits, sheer cliffs, quicksand, etc.}
+Ruins/Traps	All	100	sites that bear investigation, but may contain traps or other hazards; bandits often place ingenious traps in ruins in the hope of disabling a curious individual, who can be robbed with impunity
+
+### End

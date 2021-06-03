@@ -1,0 +1,121 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Gorgoroth (Ostigurth)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+					Mannish Sectors												Orcish Sector												The Caves													Before the Gates (day)											Before the Gates (night)
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+					45	65	25	5	20
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+					0.2	0.5	1	1	1
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+					0.25	0.17	0.5	1	1
+
+### Categories
+# The different categories of encounters that can be made.  If this keyword is set, each entry in the Encounters table is preceded by the category code.  An initial roll is made for the category, followed by a roll for an encounter within the category.
+Event					35	45	30	40	40
+Anim					42	50	45	50	50
+Monst					45	52	50	65	65
+Peop					100	100	100	100	100
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Event	Fire				5	10	1	2	2
+Event	Sewer Explosion		6	12	3	0	0
+Event	General Trap		7	15	28	3	3
+Event	Catapult Execution	20	0	0	0	0
+Event	Execution			22	25	0	0	0
+Event	Flogging			32	35	0	0	0
+Event	Brawl				36	45	30	12	12
+Event	Murder			38	50	31	13	13
+Event	Assault			45	65	40	20	20
+Event	Theft				47	67	0	21	21
+Event	Patrol			54	76	88	57	57
+Event	Wagon train			57	0	0	69	69
+Event	Dead Body			62	82	100	75	75
+Event	Duel				65	0	0	76	76
+Event	Gambling			87	85	0	80	80
+Event	Ethnic Dispute		95	93	0	100	100
+Event	Public Torture		100	99	0	0	0
+Event	Cannibalism			0	100	0	0	0
+Anim	Bats				10	10	10	10	10
+Anim	Cliff Buzzards		0	0	0	30	30
+Anim	Morgai Flies		50	60	15	80	80
+Anim	Snake				0	62	30	84	84
+Anim	Death Shrew			0	0	32	0	0
+Anim	Grey Wolf			0	0	37	86	86
+Anim	War Wolf			56	68	58	90	90
+Anim	Mordor Horses		60	0	0	91	91
+Anim	Mordor Cattle		77	0	0	92	92
+Anim	Rats				100	100	100	100	100
+Monst	Fell Beast			85	25	0	20	20
+Monst	Ghost				90	26	10	0	30
+Monst	Ghoul				99	35	31	0	90
+Monst	Skeleton			0	0	46	0	93
+Monst	Spectre			100	0	0	0	94
+Monst	Wargs				0	100	100	100	100
+Peop	Merchant			5	0	0	5	5
+Peop	Vendor			7	0	0	6	6
+Peop	Priest/Cleric		10	5	1	7	7
+Peop	Drunkard			13	6	0	10	10
+Peop	Harlot			19	0	0	0	0
+Peop	Mercenaries			24	7	0	0	0
+Peop	Minstrel			25	0	0	0	0
+Peop	Beggars/Cripples		26	0	0	11	11
+Peop	Travellers			30	0	0	20	20
+Peop	Messenger			32	8	2	22	22
+Peop	Military Group		39	11	0	27	27
+Peop	Dignitary			41	0	0	28	28
+Peop	Slaves			44	15	6	29	29
+Peop	Soldiers			56	20	0	50	50
+Peop	Off Duty Guards		68	0	0	53	53
+Peop	Spies				69	21	7	54	54
+Peop	Swindlers			70	0	0	58	58
+Peop	Street Peddlers		73	0	0	64	64
+Peop	Trackers			74	22	0	0	0
+Peop	Fanatic			77	24	8	66	66
+Peop	Mugger			83	0	0	67	67
+Peop	Pickpockets			90	0	0	80	80
+Peop	Muggers (Orcs)		0	35	10	81	81
+Peop	Pickpockets (Orcs)	0	40	11	82	82
+Peop	Murderers (Orcs)		91	51	15	0	0
+Peop	Military Group (Orcs)	94	70	67	83	83
+Peop	Off Duty Guards (Orcs)	0	80	80	0	0
+Peop	Drunkards (Orcs)		0	85	81	0	0
+Peop	Soldiers (Orcs)		0	92	90	90	90
+Peop	Inebriated Serenade (Orcs)	0	93	0	0	0
+Peop	Stone Troll			0	94	99	0	0
+Peop	Olog-hai			95	100	100	91	91
+Peop	Special			100	0	0	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

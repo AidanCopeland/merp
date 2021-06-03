@@ -1,0 +1,14 @@
+{
+  "categories": [
+    {
+      "name": "Player Characters",
+      "directory": "pcs",
+      "sub-directory-present": false
+    },
+    {
+      "name": "NPCs",
+      "directory": "npcs",
+      "sub-directory-present": false
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Greater Harad: Bar Falin
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				First Hall													Second Hall													Third and Fifth Hall											Fourth Hall													Sixth and Seventh Hall											Mines														Surrounding Lands
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	20	25	60	80	10	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	4	4	4	4	4	4
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				8	8	8	8	8	8	8
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Trap				30	30	20	35	10	5	1
+Natural Disaster		35	35	35	31	31	50	40
+Cave Animals		40	36	36	32	35	55	50
+Bats				50	40	40	35	36	65	55
+Cave Worm			0	0	41	0	0	75	60
+Spiders			60	60	60	36	37	85	61
+Ghosts			62	62	62	37	0	86	62
+Ghouls			65	63	64	38	0	87	63
+Skeletons			66	65	65	39	0	88	0
+Spectres			67	67	66	40	0	0	64
+Lesser Wight		68	68	67	41	0	0	0
+Greater Wight		69	69	68	42	0	0	0
+Wargs				75	70	69	0	40	0	75
+Orc Patrol			90	90	80	70	75	95	85
+Large Orc Patrol		97	96	90	85	95	0	95
+Trolls			99	99	96	90	99	98	96
+Magurgoth			0	0	97	99	0	99	0
+Special			100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

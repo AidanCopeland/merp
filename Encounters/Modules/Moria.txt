@@ -1,0 +1,80 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Moria
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				The City: L5 - L7												The City: L3 - L4												The City: D2 – L2												The City: D3 - D4 											The City: D5 – D7												The Mines: L3 - L7											The Mines: D2 – L2											The Mines: D3 – D4												The Mines: D5 - D7
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	10	20	12	40	10	8	6	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.5	1	0.2	0.5	0.4	8	4	6	8
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	8	2	8	4	8	4	6	8
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Chute Trap			5	7	7	10	10	3	5	7	5
+Dart Trap			20	22	15	15	15	10	15	12	8
+Plate Trap			25	30	20	25	25	13	19	19	14
+Pit Trap			35	42	30	35	35	23	29	29	24
+Spike Trap			38	47	36	40	38	24	32	30	25
+Steam Trap			39	49	38	49	49	25	34	40	40
+Wheel Trap			40	50	40	50	50	0	35	0	0
+Bats				50	60	48	58	56	46	47	50	53
+Chamber Birds		53	62	49	59	57	52	49	52	54
+Cave Bear			0	63	51	60	0	0	50	0	0
+Cave trolls			59	69	53	66	60	60	57	61	59
+Cave worm			0	0	0	67	63	0	58	64	65
+Cavern Wings		61	71	54	69	64	66	60	67	68
+Death Shrews		63	73	55	71	66	68	61	70	72
+Dire Wolves			0	0	58	0	0	0	62	0	0
+Echo Hawks			65	75	59	72	67	74	64	72	73
+Ghosts, Lesser		67	77	60	74	68	76	65	73	74
+Ghosts, Greater		68	78	61	76	71	77	66	75	76
+Ghouls			70	80	61	78	73	78	67	76	77
+Red Jaws			72	82	63	79	74	81	69	78	79
+Skeletons, Lesser		74	84	64	81	75	83	70	79	80
+Skeletons, Greater	75	85	67	83	78	84	71	81	82
+Spectres			76	86	68	85	81	85	72	84	85
+Vault Shrikes		78	88	69	87	82	91	74	86	87
+Wargs				79	89	72	0	0	92	76	0	0
+Water-drake			0	0	0	88	85	0	77	89	92
+Wight, Minor		81	91	73	90	86	93	78	91	93
+Wight, Lesser		83	93	74	92	88	94	79	93	94
+Wight, Major		84	94	75	94	90	95	80	94	95
+Normal Orc Patrol		94	97	90	96	0	98	92	96	0
+Larger Orc Group		99	99	98	97	91	99	99	97	96
+Balrog Orc Patrol		100	100	100	100	97	100	100	100	98
+Elite Trolls		0	0	0	0	99	0	0	0	99
+The Balrog			0	0	0	0	100	0	0	0	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+### End

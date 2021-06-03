@@ -1,0 +1,95 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Numeriador (Rogues of the Borderlands)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				North	South
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				30	30
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	3
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	2
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Traps		3	3
+Natural Hazards		6	6
+Astabenheli			8	8
+Caru				12	10
+Atenla			13	14
+Goral				14	15
+Losrandir			20	17
+Nimfiara			22	20
+Mountain Goats		26	25
+Barrow Owls			27	27
+Hummingbirds		0	28
+Great Eagles		29	30
+Gorcrows			33	34
+Vereut Eagles		35	37
+Nethairn Erdyr		37	38
+Rock Vipers			38	39
+Black Bears			43	42
+Cave Bears			46	44
+Chetmíg			47	46
+Dire Wolves			50	49
+Glutani			52	52
+Grey Wolves			55	55
+Eredacath			57	57
+Highland Lynxes		59	58
+Madratines			62	61
+White Foxes			63	0
+Neekerbreekers		65	64
+Horse flies			66	66
+Hornets/Wasps		68	68
+Mosquitos			71	71
+Cattle			73	75
+Hounds			75	77
+Bandits/Brigands		78	78
+Hunters			81	80
+Fishermen			83	82
+Traders			86	86
+Dúnedain			88	89
+Rivermen			90	90
+Noldor Elves		91	91
+Sindar Elves		92	92
+Silvan Elves		93	93
+Dwarves			95	94
+Orcs (N)			96	0
+Trolls (N)			97	95
+Fell Beasts			98	96
+Evil Huorns			99	97
+Other Beings		100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

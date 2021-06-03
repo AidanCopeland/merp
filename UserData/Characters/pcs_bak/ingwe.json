@@ -1,0 +1,106 @@
+{
+  "name": "Ingwë",
+  "basic-stats": {
+    "level": 15,
+    "melee-obs": [
+      {
+        "ob": 55,
+        "ob-type": "sc"
+      }
+    ],
+    "missile-ob": 20,
+    "missile-ob-type": "cb",
+    "body-development": 83,
+    "armour-type": 1,
+    "defensive-bonus": 70,
+    "shield-bonus": 35,
+    "movement-speed": 20,
+    "essence-rr": 35,
+    "channeling-rr": 5,
+    "mentalism-rr": 25,
+    "poison-rr": 20,
+    "disease-rr": 110
+  },
+  "stats": {
+    "ST": {
+      "value": 63,
+      "bonus": 0
+    },
+    "AG": {
+      "value": 57,
+      "bonus": 15
+    },
+    "CO": {
+      "value": 68,
+      "bonus": 10
+    },
+    "IG": {
+      "value": 101,
+      "bonus": 35
+    },
+    "IT": {
+      "value": 54,
+      "bonus": 5
+    },
+    "PR": {
+      "value": 90,
+      "bonus": 25
+    }
+  },
+  "abilities": {
+    "movement-skills": {
+      "no-armour": 20,
+      "soft-leather": -25,
+      "rigid-leather": -40,
+      "chain": -70,
+      "plate": -85
+    },
+    "combat-skills": {
+      "1h-edged": 55,
+      "1h-concussion": -25,
+      "2-handed": -25,
+      "thrown": -25,
+      "missile": 20,
+      "pole-arms": -25
+    },
+    "general-skills": {
+      "climb": 35,
+      "ride": 45,
+      "swim": 50,
+      "track": 90
+    },
+    "subterfuge-skills": {
+      "ambush": 35,
+      "ambush-ranks": 7,
+      "stalk-hide": 107,
+      "pick-lock": 110,
+      "disarm-trap": 80,
+      "contacting": 60
+    },
+    "magical-skills": {
+      "read-runes": 110,
+      "use-items": 80,
+      "directed-spells": 70,
+      "spell-mastery": 95,
+      "spell-trickery": 75,
+      "divination": 50
+    },
+    "influence-skills": {
+      "diplomacy": 50
+    },
+    "miscellaneous-bonuses": {
+      "perception": 55,
+      "base-spells": 40,
+      "leadership": 40
+    },
+    "secondary-skills": {
+      "adrenal-defence": 50,
+      "discern-wounds": 40,
+      "surgery": 70,
+      "beast-mastery": 40,
+      "divination": 40,
+      "animal-handling": 65,
+      "numenorean-culture": 10
+    }
+  }
+}

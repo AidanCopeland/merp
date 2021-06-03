@@ -1,0 +1,76 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Eryn Vorn (Raiders of Cardolan)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Eryn Vorn													Paths	Nansret													Haunted Fens												Bar-en-Ibun
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				75	50	75	66	75
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.25	0.5	0.25	0.33	0.25
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				0.25	0.5	0.25	0.33	0.25
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Traps		1	3	5	3	4
+Natural Hazards		5	7	7	8	9
+Lions				7	8	8	9	10
+Bears				9	11	9	10	11
+Cave Bears			10	12	10	0	13
+Glutan			17	17	14	12	16
+Nimfiara/Wild Aurochs	20	18	15	0	17
+Bats/Flying Frogs		28	27	28	13	20
+Hummmerhorns		29	28	29	26	22
+Dumbledoors			34	34	34	27	27
+Dangerous snakes		42	43	38	29	33
+Birds				56	62	46	36	41
+Other Animals		75	77	59	49	53
+Mercenaries/Brigands	76	80	68	71	55
+Beffraen			79	81	79	72	62
+Mebden			84	83	80	73	64
+Clansmen			86	84	0	74	0
+Dunlendings			88	85	0	75	0
+Rivermen			89	0	0	78	0
+Large Patrol		90	86	84	83	69
+Small Patrol		91	88	91	87	76
+Spies				92	89	95	90	79
+Elves				93	90	0	91	80
+Forest Trolls		94	92	96	92	81
+Huorns			98	96	98	93	83
+Petty-dwarves		99	97	99	0	99
+Mewlips			0	98	0	99	0
+Other Beings		100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

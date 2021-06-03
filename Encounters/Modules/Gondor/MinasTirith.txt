@@ -1,0 +1,111 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Minas Tirith
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Level 1													Level 2													Level 3													Level 4													Level 5													Level 6													Level 7													Wooden Town													Pelennor													Harlond												
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				70	65	60	50	40	30	20	70	25	65
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	1	0.5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				0.25	0.5	0.5	0.5	0.5	0.5	1	0.25	0.5	0.5
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Inanimate Dangers/Traps	5	5	5	5	4	4	3	7	10	6
+Animals			8	8	8	8	6	6	5	11	25	10
+Local common folk Working/Playing/Lounging	25	28	30	33	37	35	35	28	48	21
+Local common folk in transit	30	33	36	39	43	42	40	32	63	25
+Local common folk (rowdies)	35	37	40	42	45	44	41	41	65	27
+Assayers/tax collectors	36	38	41	43	46	45	42	42	66	28
+Blackmarketeer		41	42	44	45	47	46	0	47	67	34
+Merchants			43	44	46	47	49	48	45	48	68	39
+Vendor			53	53	54	54	55	53	48	56	0	49
+Actors/minstrels		55	55	56	56	56	54	0	57	69	50
+Beggars/cripples		58	57	58	57	57	0	0	59	70	51
+General travellers	61	60	60	59	58	55	49	62	74	55
+Messengers			62	61	61	60	60	57	52	63	75	56
+Nobles			63	62	62	62	63	61	56	0	76	57
+Pilgrims/refugees		64	63	63	63	64	62	57	65	77	58
+Priests/clerics		65	64	64	64	65	63	58	66	78	59
+Adventurers			66	65	65	65	66	64	59	67	79	60
+Mercenaries			68	67	67	66	67	65	60	69	80	62
+Refugees/Pilgrims		71	69	69	68	69	66	61	73	81	65
+Sailors			72	70	70	69	70	67	61	74	82	69
+Soldiers			74	73	72	71	71	68	63	75	83	71
+Spies				75	74	73	72	72	69	64	76	84	72
+Trackers/searchers	76	75	74	73	73	70	65	77	85	73
+Vigilantes/fanatics	77	76	75	74	74	71	66	78	86	74
+Criminal			80	78	77	76	76	72	67	83	87	79
+Cutpurses			83	81	80	78	78	73	68	87	88	83
+Muggers/brigands		86	84	82	80	79	74	69	92	90	87
+Pickpockets			89	87	85	83	81	76	70	93	91	89
+Watchman			91	90	89	88	87	83	78	0	0	90
+Guardsman patrol		95	95	95	95	95	92	88	97	0	95
+Militia unit		97	97	97	97	97	96	92	98	96	97
+Military unit		98	98	98	98	98	98	98	0	98	98
+Unusual/special		100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Inanimate Dangers/Traps	All	100	Defence mechanisms in the walls and lower levels; standard street hazards in the lower levels, e.g. heavy traffic, a runaway wagon, garbage thrown from a window, an open sewer hole, a falling roof tile, etc.
+Animals	Level 1	100	Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Level 2	100	Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Level 3	100	Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Level 4	100 Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Level 5	100	Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Level 6	100 Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Level 7	100	Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Wooden Town	100 Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.	Harlond	100	Dogs, cats, pigeons, other birds, bats, horses (runaway), snakes, fleas, spiders, rats, mice etc.
+Local common folk Working/Playing/Lounging	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Local common folk in transit	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Local common folk (rowdies)	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Assayers/tax collectors	All	80	Dúnadan/Lesser Dúnadan	87	Northman	95	Rural Man	97	Dunlending	99	Southron	100	Elf, Dwarf etc
+Blackmarketeer	All	80	Dúnadan/Lesser Dúnadan	87	Northman	95	Rural Man	97	Dunlending	99	Southron	100	Elf, Dwarf etc
+Merchants	All	80	Dúnadan/Lesser Dúnadan	87	Northman	95	Rural Man	97	Dunlending	99	Southron	100	Elf, Dwarf etc
+Vendor	All	80	Dúnadan/Lesser Dúnadan	87	Northman	95	Rural Man	97	Dunlending	99	Southron	100	Elf, Dwarf etc
+Actors/Minstrels	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Beggars/Cripples	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+General Travellers	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Messengers	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Nobles	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Pilgrims/refugees	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Priests/clerics	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Adventurers	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Mercenaries	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Refugees/Pilgrims	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Sailors	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Soldiers	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Spies	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Trackers/searchers	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Vigilantes/fanatics	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Criminal	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Cutpurses	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Muggers/Brigands	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons 100	Elves, Dwarves etc
+Pickpockets	All	60	Dúnadan/Lesser Dúnadan	75	Northmen	90	Rural Men	95	Dunlendings	98	Southrons	100	Elves, Dwarves etc
+Watchman	All	100	Dúnadan or Lesser Dúnadan
+Guardsman Patrol	All	100	Dúnadan or Lesser Dúnadan
+Militia Unit	All	100	Dúnadan or Lesser Dúnadan
+Military Unit	All	100	Dúnadan or Lesser Dúnadan
+### End

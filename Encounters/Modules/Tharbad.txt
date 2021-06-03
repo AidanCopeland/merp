@@ -1,0 +1,74 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Tharbad (Thieves of Tharbad)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Countryside (Day)												Docks/Southern Quarter (Day)										Thieves' Quarter (Day)											Other City (Day)												Countryside (Night)											Docks/Southern Quarter (Night)									Thieves' Quarter (Night)										Other City (Night)
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				10	50	60	40	6	20	30	15
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				1	0	0	0	1	0	0	0
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	1	1	1	4	1	1	1
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Wolves			10	0	0	0	15	0	0	0
+Madratine			13	0	0	0	21	0	0	0
+Glutan			19	0	0	0	22	0	0	0
+Nathair			25	0	0	0	28	0	0	0
+Nathrach			31	2	0	0	33	3	0	0
+Coireal			35	0	0	0	37	0	0	0
+Pronghorn			36	0	0	0	38	0	0	0
+Goral (sheep)		50	0	0	0	45	0	0	0
+Urchins			57	24	30	22	49	20	30	20
+Thieves			65	30	45	30	65	30	60	32
+Swindlers			67	37	56	37	67	38	70	40
+Merchants			80	58	67	58	75	40	72	42
+Military Group		85	66	73	64	80	45	75	69
+Street Peddlers		86	77	88	78	82	46	76	70
+Street Harlot		87	79	90	81	83	57	83	80
+City Watch			0	90	93	92	0	67	90	91
+Off-duty guard		0	91	0	93	0	70	0	0
+Cult Evangelist		88	92	0	94	84	0	0	0
+Dignitary			88	92	0	94	85	0	0	0
+Drunk				90	93	0	95	86	0	0	0
+Elves				93	96	95	97	89	78	0	94
+Dwarves			95	97	96	98	90	79	0	0
+General Folk		99	99	99	99	97	98	99	98
+Other Beings		100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+General Folk	All	100	travelling merchants, unemployed soldiers, other adventurers, etc.
+
+### End

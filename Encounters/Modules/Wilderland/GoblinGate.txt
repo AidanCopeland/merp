@@ -1,0 +1,104 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Goblin Gate, Misty Mountains, Anduin Vale
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Western Foothills															Eastern Foothills															Misty Mountains															High Pass (Upper)															High Pass (Lower)															Maethelburg																Front Porch, Wolf Gate, Back Door												Goblin-town																Ice Caves																Fungi Caves																Mines
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	10	15	20	35	7	40	30	10	15	6
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				5	8	3	2	4	0.2	0.2	0.2	2	1	2
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	4	6	2	2	1	1	1	8	6	8
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Closing pit trap		0	0	0	0	0	0	2	1	1	2	1
+Murder pit trap		0	0	0	0	1	0	4	2	2	4	2
+Shifting walls trap	0	0	0	0	0	0	6	3	3	6	3
+General trap		2	3	1	5	6	1	9	5	5	9	8
+Falling rocks		3	4	6	11	10	0	10	0	11	13	23
+Avalanche			0	0	7	14	12	0	0	0	0	0	0
+Cave/Cavern			6	6	13	20	15	0	0	0	0	0	0
+Mine/Quarry			8	7	14	21	16	0	0	0	0	0	0
+Ruins				10	9	15	22	17	2	11	0	12	16	28
+Settlement/Camp		13	13	16	23	18	0	0	0	0	0	0
+Bat (N)			16	15	19	26	20	3	14	7	20	21	32
+Giant Vampire Bat (N)	17	16	20	27	21	0	15	8	23	23	35
+Brown Bear			18	18	21	28	22	0	0	0	0	0	0
+Black Bear			20	20	22	29	23	0	0	0	0	0	0
+Cave Bear			21	21	23	30	24	0	0	0	0	0	0
+Great Bear			22	22	24	31	25	0	0	0	0	0	0
+Chamber Bird (N)		0	0	0	0	0	0	16	9	28	24	38
+Wild Boar			23	24	25	32	26	0	0	0	0	0	0
+Cliff Buzzard		25	26	27	34	27	0	0	0	0	0	0
+Crow/Birds			30	30	31	38	31	8	0	0	0	0	0
+Deer				34	34	32	39	0	0	0	0	0	0	0
+Golden Eagle		36	35	35	43	32	0	0	0	0	0	0
+Great Elk			37	37	36	44	33	0	0	0	0	0	0
+Goat/Mountain sheep	40	40	42	50	34	11	0	0	0	0	0
+Hornets			41	43	44	41	35	12	17	0	0	0	0
+Vault Shrike (N)		0	0	0	0	0	0	19	10	34	26	42
+Pit Viper			44	47	46	53	37	13	20	11	35	27	43
+Warg				46	48	49	58	42	0	28	16	37	29	45
+Wolf				48	50	51	60	46	18	29	17	39	32	46
+Other Animal		62	63	65	64	46	18	29	17	39	32	46
+Undead (N)			63	64	66	65	47	19	30	18	49	37	54
+Men (locals)		74	73	71	66	48	55	0	0	0	0	0
+Men (foreigners)		77	76	72	67	49	70	0	0	0	0	0
+Men (brigands)		80	78	73	68	50	72	0	0	0	0	0
+Men (merchants)		81	79	74	69	51	80	0	0	0	0	0
+General folk		82	80	75	70	52	85	0	0	50	38	55
+Orcs: small patrol (2-6)	86	85	82	79	70	0	50	38	75	55	70
+Orcs: normal patrol (6-10)	87	86	85	85	83	0	80	58	88	68	76
+Orcs: warband (12-30)	89	88	87	89	91	0	90	63	91	71	77
+Orcs: females and imps (1-10)	0	0	0	0	0	0	91	78	0	74	78
+Orcs: slaves and guards	0	0	0	0	0	0	92	88	0	94	93
+Orcs: elite trackers	0	0	0	0	0	86	95	93	93	96	95
+Orcs: special		0	0	0	90	92	87	96	98	94	97	96
+Cave trolls (N)		90	89	89	92	93	0	97	99	99	99	99
+Hill trolls (N)		91	90	90	0	94	0	98	0	0	0	0
+Forest trolls (N)		92	92	0	0	0	0	0	0	0	0	0
+Stone trolls (N)		93	93	91	93	95	0	99	0	0	0	0
+Young trolls (N)		96	94	94	95	96	0	0	0	0	0	0
+Stone Giants		97	96	97	97	97	0	0	0	0	0	0
+Elves				98	98	98	98	98	92	0	0	0	0	0
+Dwarves			99	99	99	99	99	97	0	0	0	0	0
+Other Beings		100	100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+Other Animal	All	100	alpine marmots, roe deer, lynx, rabbits, red squirrels, badgers, stoats, pine martens, red foxes, dogs, wildcats, etc.
+General folk	All	100	travelling merchants, unemployed soldiers, messengers, other adventurers etc.
+Orcs: special	All	100	includes Orc parties led by the Great Goblin, or any other NPC
+
+### End

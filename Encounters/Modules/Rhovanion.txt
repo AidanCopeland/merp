@@ -1,0 +1,88 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Rhovanion (Riders of Rohan)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Easterling Frontiers											Other
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				20	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				10	10
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Trap		1	1
+Grass Fire			2	3
+Burial Sites		3	4
+Ruins				5	6
+Settlement/Camp		8	12
+Bat (N)			9	13
+Bees/Hornets etc		11	15
+Wild Boar			12	16
+Large Cat			14	17
+Great Bird			15	18
+Fell Beast			16	19
+Kine/Elk/Deer etc		21	24
+Poisonous Snake		23	26
+Ëgil's Viper		26	28
+Wild Dogs/Jackals etc	29	31
+Wolves/Wargs etc		32	33
+Other Animals		47	45
+Undead (N)			48	46
+Orc scouts (N)		49	48
+Orc small patrol (2-6)	50	49
+Orc warband/caravan (12-30)	53	50
+Eothraim individuals	62	65
+Eothraim small patrol (6-12)	65	79
+Eothraim large patrol (24-60)	67	75
+Eothraim Éored (120)	68	76
+Eothraim Special		69	77
+Other men (locals)	79	87
+Foreigners			88	92
+Brigands			91	93
+Merchants/Caravan		93	94
+General Folk		95	95
+Dwarves			96	96
+Elves				97	97
+Great Eagles		98	98
+Other Beings		100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Other Animals	All	100	Roe Deer, Lynx, Rabbits, Red Squirrels, Badgers, Stoats, Red Foxes, Dogs, Wildcats etc
+Other men (locals)	All	100	Sagath, Asdriags, Gondorians
+Foreigners	All	100	Dorwinrim, Logath, Gondorians
+General Folk	All	100	Travelling merchants, unemployed soldiers, messengers, other adventurers, etc.
+Other Beings	All	100	Alone, powerful, often evil; wizards, lords, monsters, etc.
+
+### End

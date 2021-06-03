@@ -1,0 +1,104 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Arnor: Arthedain and Rhudaur
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Arthadan Frontier												Eastern Eriador												Rural Eredoriath												Forochel													Numeriador													Northern Arthedain											Rhudaur													The Trollshaws												The Shire													Siragalë
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	10	25	7	5	5	29	15	25	15
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	10	10	15	8	5	8	10	4	5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	8	4	8	8	4	4	8	2	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Traps		3	1	2	1	0	1	2	2	0	0
+Natural Hazards		7	8	5	12	9	5	11	9	1	3
+Sites & Ruins		22	11	8	14	12	10	23	14	4	8
+Wolves			27	16	15	21	17	13	27	19	5	10
+Wargs				30	19	19	25	19	14	29	21	6	11
+Chatmoig			0	22	0	0	0	0	30	23	0	12
+Bears				32	24	20	31	23	15	32	26	8	13
+Rare Grazing Animals	33	26	21	32	25	17	37	30	9	14
+Sheep, Sheep Hounds	41	0	28	0	33	26	44	38	21	22
+Bats				0	32	29	0	0	0	45	39	0	0
+Poisonous Snakes		0	33	30	0	34	27	46	40	23	23
+Giant Catfish		0	0	0	0	0	0	0	0	24	0
+Birds				43	35	32	36	36	30	49	43	28	28
+Small Animals		45	37	33	38	38	34	51	47	35	34
+Wights			46	38	34	0	39	0	52	48	0	0
+Undead (non wight)	47	39	35	40	0	0	54	49	0	0
+Smugglers/thieves		49	41	37	0	40	35	55	50	37	36
+Mercenaries/brigands	52	44	41	41	41	36	57	52	39	39
+Hillmen			53	47	49	0	0	0	62	57	0	0
+Dunnish Tribesmen		0	51	50	0	0	0	64	59	0	42
+Common Folk			57	52	51	51	45	43	67	0	50	45
+Rivermen			59	0	0	57	51	49	0	0	54	48
+Sailors			0	0	0	0	52	50	0	0	0	49
+Merchants			60	54	53	0	54	55	69	60	60	50
+Nobles, Leaders		62	55	54	0	55	59	70	61	62	53
+Military Unit		66	56	57	0	57	61	71	63	63	55
+Large Patrol		69	58	60	0	59	64	73	65	64	57
+Small Patrol		75	59	63	64	62	67	75	67	66	60
+Spies/Scouts		77	60	67	69	63	71	77	69	70	63
+Other Individuals (local men)	78	61	68	71	64	74	78	70	72	64
+Pirates			0	0	0	0	65	0	0	0	0	0
+Northmen			79	63	70	74	66	77	80	72	73	67
+Easterlings			81	64	72	0	0	78	81	74	0	68
+Dunlendings			82	67	74	0	0	79	82	76	0	70
+Hillmen			83	69	76	0	0	0	83	80	0	0
+Southerners			0	70	77	0	0	81	84	81	76	71
+Other Foreigners		84	72	78	0	67	82	85	82	0	72
+General Folk		86	74	80	80	71	87	86	83	80	74
+Elves, Wandering Company	0	77	0	0	73	88	0	84	83	76
+Other Elves			87	81	81	81	80	92	87	85	86	84
+Dwarves			89	85	82	82	89	95	90	88	93	87
+Orcs				94	89	92	88	93	96	94	92	94	88
+Trolls			96	94	96	94	96	97	97	97	95	0
+Hobbits			97	95	97	0	97	98	98	98	99	93
+Stoor Hobbits		98	97	98	0	98	99	99	99	0	97
+Other Beings		100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Bears	Numeriador	80	Black bears	100	Cave bears	Eastern Eriador	80	Black bears	100	Cave bears	Arthadan Frontier	100	Black bears	Rural Eredoriath	100	Black bears	Forochel	100	Black bears	Northern Arthedain	100	Black bears	Rhudaur	80	Brown bears	100	Cave bears	The Trollshaws	80	Brown bears	100	Cave bears	The Shire	100	Black bears	Siragalë	100	Black bears
+Birds	All	50	1-10 crows, songbirds, hawks, owls	100	10-100 geese, ducks or blue pigeons, 100-2000 on large bodies of water
+Dunnish Tribesmen	All	100	In clans, not tied to local society
+Common Folk	All	100	Local settled folk
+Grazing Animals	Rhudaur	30	Dappled deer	100	Losrandir	Arthadan Frontier	40	Dappled deer	80	Red deer	100	Goral	Northern Arthedain	 40	Dappled deer	80	Red deer	100	Goral	The Trollshaws	30	Dappled deer	100	Losrandir
+Other Beings	All	100	GM's choice: a Demon Whale, Dragon or Eloeklo in Forochel; Dragons, Faerie creatures or Great Eagles in the east; Maia or Faerie beings in the west.
+Poisonous snakes	Eastern Eriador	100	Shaking asp	Rhudaur	100	Shaking asp	The Trollshaws	100	Shaking asp	Northern Arthedain	70	Nethairin Erdyr 100	Rock Viper	Numeriador	70	Nethairin Erdyr	100	Rock Viper	The Shire	70	Nethairin Erdyr	100	Rock Viper	Siragalë	70	Nethairin Erdyr 100	Rock Viper
+Rare Grazing Animals	Forochel	100	Caru, number encountered is 10x number on Master Beast Table	Siragalë	70	Mearas	100	Aurych	Arthadan Frontier	20	Aurych	100 Caru	Eastern Eriador	20	Aurych	100	Caru	Rural Eredoriath	20	Aurych	100	Caru	Northern Arthedain	20	Aurych	100 Caru	Numeriador	20	Aurych	100	Caru	Rhudaur	20	Aurych	100	Caru	The Trollshaws	20	Aurych	100	Caru
+Small Animals	All	100	GM's choice
+Wolves	Arthadan Frontier	90	Grey wolves	100	War wolves	Eastern Eriador	90	Grey wolves	100	War wolves	Rural Eredoriath	90	Grey wolves	100	War wolves	Northern Arthedain	90	Grey wolves	100	War wolves	Rhudaur	90	Grey wolves	100 War wolves	The Trollshaws	90	Grey wolves	100	War wolves	The Shire	90	Grey wolves	100	War wolves	Siragalë	90	Grey wolves	100	War wolves	Forochel	50	Grey wolves	100	White wolves	Numeriador	80	Grey wolves	90	Dire wolves	100	War wolves
+### None
+

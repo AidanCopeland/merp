@@ -1,0 +1,120 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Grey Mountains
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				West Ered Mithrin												North Ered Mithrin											South Ered Mithrin											Withered Heath												Northern Foothills											The Narrows													Forodwaith
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	10	15	10	20	25	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	6	3	3	5	4	7
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				5	5	4	1	4	1	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Trap		1	1	0	0	1	1	0
+Avalanche/Cave-in		2	2	1	0	0	0	0
+Chasm				3	3	2	4	2	0	1
+Loose Scree			4	5	0	0	0	0	0
+Cave/Cavern			7	6	3	6	4	2	0
+Lair				8	7	4	11	5	3	2
+Mine/Quarry			9	8	5	0	6	0	0
+Ruins				11	11	6	0	7	4	3
+Settlement/Camp		0	0	7	0	0	5	4
+Burial Sites		12	12	8	12	8	6	0
+Water/Spring		13	13	9	13	9	8	5
+Glacier			14	14	0	14	10	0	7
+Herb				15	16	10	22	11	10	8
+Bats (N)			17	17	12	28	13	12	9
+Giant Vampire Bats (N)	18	18	13	31	14	13	10
+Black Bears			19	0	14	0	0	16	0
+Cave Bears			21	20	17	32	15	20	0
+North Bears			22	21	19	33	16	0	11
+Cliff Buzzards		23	0	20	34	19	22	0
+Crows				24	23	22	36	0	24	0
+Deer				26	24	24	37	20	28	17
+Elk				28	27	27	39	23	31	20
+Golden Eagles		29	28	29	0	24	34	0
+Hornets			30	0	31	40	0	38	0
+Mountain Goats		32	29	35	42	26	40	21
+Wild Goats			33	30	37	43	27	44	0
+Great Lizards		0	0	0	47	0	45	0
+Losrandir			36	35	39	49	33	0	31
+Moose				37	37	41	50	37	46	35
+Grey Wolves			44	40	44	51	39	51	37
+White Wolves		0	46	0	53	46	0	42
+Snow Lions			45	47	45	0	47	0	0
+Barrow-wight		46	48	46	54	48	52	43
+Cave Drake			49	52	48	59	51	53	47
+Cave Worm			51	0	0	62	0	0	0
+Fell Beasts			53	0	0	63	0	55	0
+Ghost				54	53	49	64	52	56	48
+Giant Spiders		0	0	50	65	0	57	0
+Skeleton			56	54	51	67	53	0	49
+Wights			57	55	52	68	54	0	50
+Wargs				62	59	56	71	57	59	52
+Were-wolves			63	0	0	0	0	0	0
+Lesser Dragon		68	64	59	77	59	62	54
+Greater Dragon		70	69	62	84	63	66	58
+Orcs: normal patrol	72	0	63	85	0	0	0
+Orcs: raiding party	75	70	66	86	64	68	0
+Orcs: tribute caravan	76	0	67	0	0	69	0
+Cave Trolls			77	0	68	87	66	70	60
+Hill Trolls			79	71	70	88	68	72	61
+Snow Trolls			0	72	0	0	69	0	64
+Stone Trolls		82	74	73	89	71	75	68
+Ice-orcs: trackers	83	76	0	90	73	0	72
+Ice-orcs: patrol		84	82	0	91	81	0	78
+Ice-orcs: large patrol	0	83	0	0	82	0	79
+Ice-orcs: raid party	85	86	0	92	85	0	82
+Ice-orcs: caravan		0	88	0	0	87	0	83
+Angmarrim soldiers	86	0	74	0	88	78	0
+Bandits			87	89	76	93	89	0	84
+Beornings			89	0	80	94	0	81	0
+Easterlings			0	0	81	95	0	84	85
+Estarave Northmen		90	90	0	0	90	86	86
+Mannish wagon train	91	91	83	96	0	93	0
+Lossoth/Lotan		0	96	84	97	96	0	97
+Dwarves: normal patrol	94	0	88	98	0	0	0
+Dwarves: large patrol	0	0	89	0	0	0	0
+Dwarves: ore shipment	95	0	94	0	0	94	0
+Dwarves: caravan		96	0	95	0	0	96	0
+Elves				97	97	97	0	97	98	0
+Giants			98	98	98	0	98	0	98
+Others			99	99	99	99	99	99	99
+Special			100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+Herb	Withered Heath	100	Dragon Grass
+Chasm	All	35	Hidden
+
+### End

@@ -1,0 +1,92 @@
+# -*- coding: utf-8 -*-
+import sys
+sys.path.append('../')
+
+from Maneuvers.AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
+from Maneuvers.StaticManeuverTable import \
+    maneuver_difficulty_bonuses, MEDIUM, HARD, VERY_HARD, EXTREMELY_HARD, SHEER_FOLLY, ABSURD
+
+import FrameUtils
+import trace_log as trace
+
+from Tkinter import StringVar
+
+TARGET_BONUS_PROMPT = "Desired bonus to blow"
+TARGET_BONUS_10_TEXT = "+10 (Medium)"
+TARGET_BONUS_20_TEXT = "+20 (Hard)"
+TARGET_BONUS_30_TEXT = "+30 (Very Hard)"
+TARGET_BONUS_40_TEXT = "+40 (Extremely Hard)"
+TARGET_BONUS_50_TEXT = "+50 (Sheer Folly)"
+TARGET_BONUS_60_TEXT = "+60 (Absurd)"
+TARGET_BONUS_OPTIONS = (
+    TARGET_BONUS_10_TEXT, 
+    TARGET_BONUS_20_TEXT, 
+    TARGET_BONUS_30_TEXT, 
+    TARGET_BONUS_40_TEXT, 
+    TARGET_BONUS_50_TEXT, 
+    TARGET_BONUS_60_TEXT)
+
+
+class PowerStrikingManeuverTable(AthleticBrawnManeuverTable):
+
+    def setup_difficulty_frame(self, parent_frame):
+        trace.entry()
+        FrameUtils.destroy_frame_objects(parent_frame)
+
+        trace.exit()
+
+    def setup_maneuver_skill_frames(self, parent_frame):
+        """
+        Set up the frames specific to the skill.
+        """
+
+        def setup_target_bonus_frame():
+            """
+            Create a frame with an OptionMenu specifying the desired bonus
+            """
+            trace.entry()
+            FrameUtils.setup_optionmenu_frame(
+                parent_frame, TARGET_BONUS_PROMPT, TARGET_BONUS_10_TEXT, self.target_bonus, *TARGET_BONUS_OPTIONS)
+            trace.exit()
+
+        trace.entry()
+
+        FrameUtils.destroy_frame_objects(parent_frame)
+        self.target_bonus = StringVar()
+        setup_target_bonus_frame()
+
+        trace.exit()
+
+    def skill_type_bonus(self):
+        """
+        Determine any additional bonuses to apply to a maneuver based on factors
+        specific to this skill type.
+        :return: The additional maneuver bonus
+        """
+        trace.entry()
+
+        bonus = 0
+        target_bonus = self.target_bonus.get()
+        if target_bonus == TARGET_BONUS_10_TEXT:
+            trace.flow("Medium: +0")
+            bonus += maneuver_difficulty_bonuses[MEDIUM]
+        elif target_bonus == TARGET_BONUS_20_TEXT:
+            trace.flow("Hard: -10")
+            bonus += maneuver_difficulty_bonuses[HARD]
+        elif target_bonus == TARGET_BONUS_30_TEXT:
+            trace.flow("Very Hard: -20")
+            bonus += maneuver_difficulty_bonuses[VERY_HARD]
+        elif target_bonus == TARGET_BONUS_40_TEXT:
+            trace.flow("Extremely Hard: -30")
+            bonus += maneuver_difficulty_bonuses[EXTREMELY_HARD]
+        elif target_bonus == TARGET_BONUS_50_TEXT:
+            trace.flow("Sheer Folly: -50")
+            bonus += maneuver_difficulty_bonuses[SHEER_FOLLY]
+        elif target_bonus == TARGET_BONUS_60_TEXT:
+            trace.flow("Absurd: -70")
+            bonus += maneuver_difficulty_bonuses[ABSURD]
+
+        trace.detail("Bonus %d" % bonus)
+
+        trace.exit()
+        return bonus

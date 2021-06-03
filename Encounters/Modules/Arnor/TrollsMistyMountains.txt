@@ -1,0 +1,73 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Rhudaur (Trolls of the Misty Mountains)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				East-Wood													Rural Arthedain												Towns
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				25	10	5
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				4	5	0
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	4	1
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Outdoor Trap		3	1	0
+Bats				5	2	1
+Black Bear			10	5	0
+Cave Trolls			15	6	0
+Deer				19	10	0
+Elk				24	12	0
+Ferret			26	13	0
+Forest Trolls		31	14	0
+Gorcrows			33	17	0
+Hill Trolls			35	20	0
+Losrandir			37	24	0
+Mewlips			40	25	0
+Moose				44	28	0
+North Bear			46	30	0
+Wargs				51	32	0
+Wights			55	37	0
+Wolves			70	42	0
+Bandits			75	47	10
+Orc patrol 			88	49	11
+General folk		94	80	81
+Normal patrol		95	84	85
+Elves				96	85	86
+Scouts			98	97	91
+Elite units			99	99	98
+Other beings		100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

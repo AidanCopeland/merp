@@ -1,0 +1,139 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Gorgoroth: general
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+					Ephel Dúath																Morgai Ridge															Eregwath																Ered Lithui																Ered Angurath															Udûn Vale																Den Nûrn																Gaer Dûrlith															Perth Ulmyn																Grip of Sauron															Devastation of Orodruin
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+					15	10	20	15	40	10	33	5	15	15	30
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+					3	3	2	5	2	5	1	1	3	4	0.5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+					4	2	2	6	2	5	0.33	4	4	4	0.33
+
+### Categories
+# The different categories of encounters that can be made.  If this keyword is set, each entry in the Encounters table is preceded by the category code.  An initial roll is made for the category, followed by a roll for an encounter within the category.
+Inan					20	25	15	45	30	40	10	50	20	10	75
+Anim					45	37	50	60	50	65	25	55	55	50	0
+Mons					50	50	60	80	70	75	40	95	70	85	90
+Peop					100	100	100	100	100	100	100	100	100	100	100
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Inan	General Trap		1	2	8	2	8	0	0	0	3	5	0
+Inan	Avalance/Cave-in		12	14	15	9	16	3	0	0	0	0	4
+Inan	Hidden Chasm		13	18	16	10	17	4	0	0	0	0	7
+Inan	Sinkholes			0	0	0	11	18	0	1	50	11	6	14
+Inan	Eruption			0	0	17	12	19	0	0	0	12	0	25
+Inan	Steam Vents			14	0	19	14	21	6	2	0	20	9	37
+Inan	Poisonous Fumes		0	19	20	15	24	10	0	51	27	10	45
+Inan	Chasm				25	35	27	25	28	11	0	0	31	11	53
+Inan	Lava Pools/Mud Pots	27	0	28	27	29	12	0	0	41	0	73
+Inan	Flames			28	0	30	34	35	20	0	0	47	0	84
+Inan	Ooze				0	0	0	0	36	32	20	0	58	15	94
+Inan	Sand/glass storm		0	0	0	38	37	0	24	99	60	0	0
+Inan	Cliff				34	50	34	0	0	0	0	0	0	0	0
+Inan	Earthquake			0	51	35	39	38	35	25	0	62	16	100
+Inan	Cave/Cavern			38	54	40	45	50	50	26	0	64	25	0
+Inan	Lair				40	55	45	54	63	52	28	0	69	30	0
+Inan	Mine/Quarry			45	0	47	57	70	60	39	0	72	41	0
+Inan	Ruins				50	58	48	65	75	62	41	100	74	45	0
+Inan	Settlement/Camp		56	66	58	67	85	70	80	0	78	95	0
+Inan	Burial Sites		65	69	59	80	90	79	92	0	81	96	0
+Inan	Beacon			70	75	64	90	93	82	0	0	0	97	0
+Inan	Water/Spring		81	78	70	92	98	86	94	0	83	0	0
+Inan	Herb				84	79	74	0	100	87	0	0	84	0	0
+Inan	Bramble			100	100	100	100	0	100	100	0	100	100	0
+Anim	Bats				10	15	16	15	30	10	20	0	9	25	0
+Anim	Black Swans			0	0	17	0	0	0	22	0	0	0	0
+Anim	Cliff Buzzards		14	24	20	0	34	13	27	10	11	32	0
+Anim	Echo Hawks			15	0	21	16	35	0	0	0	0	0	0
+Anim	Ants				20	30	27	25	37	20	34	0	17	36	0
+Anim	Ground Bees			21	0	29	0	0	0	36	0	22	0	0
+Anim	Hornets			30	42	33	40	38	25	43	0	30	38	0
+Anim	Locusts			0	0	34	0	0	0	50	0	38	39	0
+Anim	Morgai Flies		50	68	50	50	45	40	57	24	50	50	0
+Anim	Scorpions			0	0	0	51	47	0	0	27	51	51	0
+Anim	Spiders			58	69	53	55	55	45	0	29	55	52	0
+Anim	Morungol			0	70	54	0	0	0	0	0	59	0	0
+Anim	Anugsawéli			59	75	57	56	0	47	60	35	66	0	0
+Anim	Beaded Lizards		60	80	63	57	0	48	62	0	70	0	0
+Anim	Black Lizards		68	86	69	58	0	51	65	80	77	53	0
+Anim	Toads				0	0	0	0	0	0	67	0	83	0	0
+Anim	Rock Vipers			69	87	70	60	60	0	0	0	0	0	0
+Anim	Snakes			80	90	80	63	70	56	76	100	90	55	0
+Anim	Cave Bears			86	0	87	65	71	0	0	0	0	0	0
+Anim	Death Shrews		87	0	88	0	75	0	0	0	0	0	0
+Anim	Grey Wolves			95	91	93	85	80	75	80	0	92	57	0
+Anim	War Wolves			97	92	94	93	84	90	90	0	93	62	0
+Anim	Mordor Horses		0	0	0	0	0	0	91	0	0	0	0
+Anim	Mordor Cattle		0	0	0	0	87	0	96	0	94	0	0
+Anim	Rats				100	100	100	100	100	100	100	0	100	100	0
+Mons	Ash Drake			0	0	0	0	0	0	0	40	0	0	0
+Mons	Cave Drake			1	0	0	3	5	0	0	0	0	0	0
+Mons	Cave Worm			3	0	1	14	10	0	0	0	0	0	0
+Mons	Fell Beast			40	50	45	55	15	45	35	50	35	80	0
+Mons	Giant Spiders		65	0	47	0	0	46	0	0	0	0	0
+Mons	Barrow-wight		67	53	50	65	35	53	37	0	40	0	0
+Mons	Ghost				69	55	52	66	40	64	50	65	60	90	98
+Mons	Ghoul				75	56	55	67	55	69	85	0	65	0	0
+Mons	Zuzarhî			0	0	0	68	56	0	86	90	0	0	0
+Mons	Skeleton			77	58	57	69	75	87	87	99	77	95	0
+Mons	Wargs				99	100	96	98	98	100	100	0	99	100	0
+Mons	Werewolves			100	0	99	100	99	0	0	0	100	0	0
+Mons	Gûlscaru			0	0	100	0	100	0	0	0	0	0	100
+Peop	Trackers (Men)		5	3	2	0	0	1	3	0	2	1	0
+Peop	Small Patrol (Men)	8	6	4	0	0	12	30	0	5	2	0
+Peop	Normal Patrol (Men)	10	8	8	2	1	25	45	0	12	3	0
+Peop	Mounted Patrol (Men)	0	0	0	0	0	30	55	0	27	5	0
+Peop	Rangers (Men)		0	0	9	0	0	0	0	0	0	0	0
+Peop	Wagon Train (Men)		11	9	0	5	5	35	65	2	30	15	0
+Peop	Trackers (Orcs)		13	12	13	8	12	37	66	0	32	1	0
+Peop	Small Patrol (Orcs)	30	42	40	30	40	50	70	0	45	50	20
+Peop	Normal Patrol (Orcs)	39	56	50	45	60	60	76	5	58	70	70
+Peop	Wolfriders			49	64	53	63	63	74	78	0	70	77	0
+Peop	Wargriders			53	65	55	70	65	75	79	0	73	80	73
+Peop	Orc Females & Imps	54	66	56	71	67	0	0	0	0	0	0
+Peop	Orc Slaves & Guards	64	69	59	72	77	0	85	0	74	82	88
+Peop	Elite Trackers (Orcs)	69	74	67	73	78	76	86	0	75	85	0
+Peop	Elite Guards (Orcs)	73	79	73	79	79	79	87	0	76	86	0
+Peop	Orc Caravan			80	85	75	80	80	85	90	90	90	90	91
+Peop	Stone Troll			85	88	80	84	83	92	91	0	94	96	92
+Peop	Cave Troll			87	89	90	96	87	94	0	0	0	0	0
+Peop	Olog-hai			0	0	92	98	90	95	93	0	0	0	95
+Peop	Escaped Slaves		90	93	95	0	94	0	94	99	0	0	0
+Peop	Dwarves			0	0	0	0	95	0	0	0	0	0	0
+Peop	Others			96	98	97	0	0	0	0	0	0	0	0
+Peop	Person of Note		100	100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

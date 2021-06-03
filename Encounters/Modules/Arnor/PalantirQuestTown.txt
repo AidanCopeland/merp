@@ -1,0 +1,83 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Palantir Quest: Town and City
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Minas Tirith: Lvl 1												Minas Tirith: Lvl 2												Minas Tirith: Lvl 3												Minas Tirith: Lvl 4												Minas Tirith: Lvl 5												Minas Tirith: Lvl 6												Minas Tirith: Lvl 7												Larach Duhnnan													Tharbad														Bree															Lake-town
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				70	65	60	50	40	30	20	70	50	40	70
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.25	0.5	0.25
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				0.25	0.5	0.5	0.5	0.5	0.5	0.1	0.25	0.25	0.25	0.25
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Inanimate Dangers/Traps	5	5	5	5	4	4	3	5	8	4	5
+Animals			8	8	8	8	6	6	5	9	14	10	8
+Common Folk Working/Playing/Idling	20	23	28	28	33	30	35	21	20	30	20
+Common Folk In Transit	24	72	33	32	40	37	40	25	25	34	24
+Common Folk Rowdies	27	31	37	35	42	39	0	30	27	40	30
+Foreigners Labouring	29	33	38	36	43	40	0	0	40	0	31
+Foreigners Trading/Visiting	35	37	40	42	45	44	41	32	42	41	40
+Assayers/Tax Collectors	36	38	41	43	46	45	42	33	43	42	44
+Blackmarketeers		41	42	44	45	47	46	0	37	44	43	48
+Merchants			43	44	46	48	49	48	45	39	50	50	55
+Vendor			53	53	54	54	55	53	0	50	52	55	63
+Actors/Minstrels		55	55	56	56	56	54	0	53	53	56	67
+Beggars/Cripples		58	57	58	57	57	0	0	55	54	57	68
+General Travellers	61	60	60	59	58	55	46	57	55	60	69
+Messengers			62	61	61	60	60	57	49	58	57	61	70
+Nobles			63	62	62	62	63	61	56	59	58	62	71
+Pilgrims/Refugees		64	63	63	63	64	62	57	60	59	63	72
+Priests/Clerics		65	64	64	64	65	63	58	61	60	64	73
+Adventurers			66	65	65	65	66	64	59	62	61	65	74
+Mercenaries			68	67	67	66	67	65	60	67	62	68	76
+Refugees/Pilgrims		71	69	69	68	69	66	61	67	63	69	77
+Sailors			72	70	70	69	70	67	62	69	70	70	78
+Soldiers			74	73	72	71	71	68	63	70	75	71	80
+Spies				75	74	73	72	72	69	64	71	77	73	82
+Trackers/Searchers	76	75	74	73	73	70	65	72	78	79	83
+Vigilantes/Fanatics	77	76	75	74	74	71	66	75	79	80	84
+Criminal			80	78	77	76	76	72	0	80	80	84	88
+Cutpurses			83	81	80	78	78	73	67	85	81	85	91
+Muggers/Brigands		86	84	82	80	79	74	0	89	82	86	94
+Pickpockets			89	87	85	83	81	76	68	92	87	90	96
+Watchmen			91	90	89	88	87	83	76	94	88	92	97
+Guardsman Patrol		95	95	95	95	95	92	88	96	93	94	98
+Militia Unit		97	97	97	97	97	95	92	98	0	98	99
+Military Unit		98	98	98	98	98	98	98	0	98	0	0
+Unusual/Special		100	100	100	100	100	100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+### End
+

@@ -1,0 +1,84 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Suza Sumar (Hazards of the Harad Wood)
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Suza Sumar													Scrublands
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				40	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				3	8
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				3	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Trap				4	1
+Natural Disaster		5	2
+Cave Lair			7	6
+Tomb				8	8
+Ruins				11	11
+Petla				13	12
+Mamjun			14	13
+Camel (wild)		0	15
+Otravati			15	16
+Orao				16	17
+Goats				18	18
+Hawks				19	19
+Horses (wild)		20	22
+Unca				22	23
+Lisica			23	24
+Zamka				24	0
+Stetan			27	25
+Vuk				28	26
+Jungle Cavy			29	0
+Other Animals		57	52
+Black Númenóreans		58	54
+Variags			0	55
+Northern Haradrim		60	57
+Southern Haradrim		62	60
+Honnin (Suzamatu)		63	0
+Warriors			64	63
+Herders			66	66
+Thieves/Brigands		67	68
+Merchants			69	70
+Travellers			73	76
+Sand Devil (N)		0	77
+Lesinavi			74	78
+Special			97	96
+Other Being			100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+Special	All	100	Add some flavour or tension: something that turns out to be nothing harmful or dangerous, but gives the PCs a bit of a scare – e.g. was it only the wind?
+
+### End

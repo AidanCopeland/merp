@@ -1,0 +1,85 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Palantir Quest: Ocean
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Eriador south coast											Eriador west coast											Eriador north coast											Ice Bay
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	15	5	10
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				20	20	20	5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	4	4	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Rocks				3	4	8	10
+Squall			4	6	13	14
+Sudden Gust			7	9	18	18
+Whirlpool			8	11	22	20
+Ice-sheet			0	0	24	28
+Ice-berg			0	12	30	35
+Islet				11	15	32	39
+Abandoned Boat		13	17	33	40
+Flotsam			18	20	34	41
+Underwater Wreck		22	23	36	42
+Kraken			24	24	37	0
+Ray				25	26	38	0
+Sea-turtle			27	27	0	0
+Shark				30	28	0	0
+Whale				33	33	44	0
+Demon-whale			34	34	49	44
+Dolphins			36	35	50	0
+Porpoises			37	36	51	0
+Eels				39	38	52	46
+Fell Turtle			0	0	0	47
+Fish				49	46	61	58
+Octopuses			51	48	62	0
+Jellyfish			54	50	63	59
+Seals				56	54	70	70
+Walrus			0	55	73	75
+Icedrake			0	0	0	77
+Seabird			68	66	84	88
+Other Animals		70	70	92	94
+Fishermen			78	78	93	97
+Merchants			84	82	0	0
+Military Unit		88	85	94	0
+Nobles			90	86	0	0
+Privateers			92	88	0	0
+Smugglers			93	89	0	0
+Priates			96	91	95	0
+Elves				98	98	97	0
+Special			100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+### End
+

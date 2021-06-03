@@ -1,0 +1,113 @@
+{
+  "name": "Dolwin",
+  "basic-stats": {
+    "level": 20,
+    "melee-obs": [
+      {
+        "ob": 175,
+        "ob-type": "ra"
+      },
+      {
+        "ob": 175,
+        "ob-type": "bs"
+      },
+      {
+        "ob": 134,
+        "ob-type": "sp"
+      }
+    ],
+    "missile-ob": 146,
+    "missile-ob-type": "lb",
+    "body-development": 172,
+    "armour-type": 1,
+    "defensive-bonus": 85,
+    "shield-bonus": 35,
+    "movement-speed": 35,
+    "essence-rr": 15,
+    "channeling-rr": 50,
+    "mentalism-rr": 20,
+    "poison-rr": 40,
+    "disease-rr": 85
+  },
+  "stats": {
+    "ST": {
+      "value": 91,
+      "bonus": 15
+    },
+    "AG": {
+      "value": 89,
+      "bonus": 10
+    },
+    "CO": {
+      "value": 96,
+      "bonus": 20
+    },
+    "IG": {
+      "value": 61,
+      "bonus": 0
+    },
+    "IT": {
+      "value": 102,
+      "bonus": 35
+    },
+    "PR": {
+      "value": 64,
+      "bonus": 5
+    }
+  },
+  "abilities": {
+    "movement-skills": {
+      "no-armour": 35,
+      "soft-leather": -30,
+      "rigid-leather": 5,
+      "chain": -25,
+      "plate": -70
+    },
+    "combat-skills": {
+      "1h-edged": 175,
+      "1h-concussion": 89,
+      "2-handed": 109,
+      "thrown": 84,
+      "missile": 146,
+      "pole-arms": 134,
+      "ambidex": 164
+    },
+    "general-skills": {
+      "climb": 75,
+      "ride": 140,
+      "swim": 70,
+      "track": 45,
+      "acrobatics": 35,
+      "foraging": 65
+    },
+    "subterfuge-skills": {
+      "ambush": 63,
+      "ambush-ranks": 18,
+      "stalk-hide": 76,
+      "pick-lock": -16,
+      "disarm-trap": 19,
+      "interrogate": 70
+    },
+    "magical-skills": {
+      "read-runes": 5,
+      "use-items": 40,
+      "directed-spells": 20
+    },
+    "influence-skills": {
+    },
+    "miscellaneous-bonuses": {
+      "perception": 104,
+      "base-spells": 31,
+      "leadership": 21
+    },
+    "secondary-skills": {
+      "adrenal-defence": 50,
+      "discern-wounds": 40,
+      "surgery": 70,
+      "beast-mastery": 40,
+      "divination": 40,
+      "animal-handling": 65,
+      "numenorean-culture": 10
+    }
+  }
+}

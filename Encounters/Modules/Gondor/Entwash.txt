@@ -1,0 +1,100 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Mouths of the Entwash
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				Entwash Vale												Fens & Bogs													The Midden													The Slough													Lower Delta													East Emnet
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				20	20	15	25	10	20
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				2	2	0.5	0.5	1	5
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				2	4	1	1	2	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+Ruins				1	2	1	0	1	2
+Hut/shieling		2	3	0	0	2	4
+House/Farmstead		4	0	0	0	0	5
+Trail				8	4	2	0	3	7
+Farming folk		10	5	0	0	0	9
+Herders			13	6	0	0	0	13
+Country folk		16	7	0	0	5	16
+Fur trappers		0	8	5	2	0	0
+Hawker/Falconer		17	10	0	0	6	0
+Fishermen			21	0	11	0	7	0
+Shrimper/Shell fisherman	22	0	13	0	8	0
+Smugglers/Rogues		23	12	16	4	10	17
+Hunters			24	16	21	5	15	20
+Marshmen			0	17	22	7	17	0
+Croppers/gatherers	25	18	0	0	0	21
+Reed/Peat-cutters		27	23	27	0	0	0
+Patrol			28	24	28	0	18	22
+Customs men			29	0	0	0	19	0
+Travellers			32	25	29	0	21	23
+Traders			34	26	30	0	23	24
+Wool/Grain-carrier	36	0	0	0	25	26
+Insects/swarm		38	28	34	12	26	27
+Hummerhorns			0	29	35	14	0	0
+Wading birds		40	33	39	20	28	0
+Swimming/Fishing birds	45	35	46	27	29	0
+Birds of prey		46	36	48	29	32	29
+Bats				47	37	50	31	33	30
+Other flying creatures	48	38	52	33	34	31
+Small reptiles		49	41	54	36	36	33
+Poisonous snakes		50	44	56	40	37	34
+Leeches/Flukes		51	0	58	44	38	0
+Turtles			52	45	59	45	39	0
+Amphibians			54	49	62	49	40	0
+Vodyanoi			0	0	62	51	0	0
+Otters/Minks/Rodents	55	52	65	53	43	36
+Boars/Bears/Deer		56	53	67	55	47	43
+Wild Dogs/Tykes		57	55	69	56	50	46
+Eels				58	0	72	59	51	0
+Lampreys			0	0	73	61	52	0
+Medium fish			60	0	77	62	54	0
+Large fish			61	0	79	69	55	0
+Huge fish			0	0	0	71	0	0
+Mewlips			0	0	80	73	0	0
+Orc units			62	56	81	75	57	49
+Other beings		64	58	83	77	60	50
+Artificial hazards	72	68	91	87	68	64
+Terrain hazards		75	73	96	95	73	70
+Natural events		100	100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+Artificial hazards	All	100	Traps, surface ruins & debris, etc.
+Terrain hazards	All	100	Bog, quicksand, streams, rapids, undergrowth, etc.
+Natural events	All	100	Flood, storm, unusual noises, strange discoveries (herbs, corpses, lost items, etc.), found food, etc.
+
+### End
