@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import division
+from future import standard_library
+from builtins import object
+from past.utils import old_div
 import sys
 
-sys.path.append('../')
-
-from Tkinter import LEFT, RIGHT, BOTH, RAISED, StringVar, IntVar
-from ttk import Frame, Label, OptionMenu
+from tkinter import LEFT, RIGHT, BOTH, RAISED, StringVar, IntVar
+from tkinter.ttk import Frame, Label, OptionMenu
 from collections import namedtuple
 
 import dice
@@ -12,6 +15,10 @@ import trace_log as trace
 import FrameUtils
 
 from Tables.MovingManeuverFumbleTable import MovingManeuverFumbleTable
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 MANEUVER_DIFFICULTY_LABEL_TEXT = "Maneuver difficulty: "
 LIMB_OUT_TEXT = "Character has one limb out"
@@ -128,6 +135,11 @@ class MovingManeuverTable(object):
                 MEDIUM,
                 *self.maneuver_difficulty_options)
         self.maneuver_type = kwargs.get('maneuver_type', None)
+        self.limb_out = IntVar()
+        self.down = IntVar()
+        self.partial_completion = IntVar()
+        self.fumble_roll = StringVar()
+
         trace.exit()
 
     def get_result_row(self, dice_result):
@@ -151,7 +163,7 @@ class MovingManeuverTable(object):
 
         # Subtract 1 then divide the result by 5 (using integer division) to reduce the number of results to handle.
         # This is Python 2, so any fractions are discarded (rounding down).
-        stage_2_dice_result = (stage_1_dice_result - 1) / 5
+        stage_2_dice_result = old_div((stage_1_dice_result - 1), 5)
         trace.detail("Stage 2 result %d" % stage_2_dice_result)
 
         # Update the result so that zero represents the lowest possible result.
@@ -225,10 +237,7 @@ class MovingManeuverTable(object):
             trace.exit()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.limb_out = IntVar()
-        self.down = IntVar()
-        self.partial_completion = IntVar()
-        self.fumble_roll = StringVar()
+
         self.partial_completion.set(True)
         setup_limb_out_frame()
         setup_down_frame()
@@ -312,7 +321,7 @@ class MovingManeuverTable(object):
         :return: A ManeuverResult containing the text output of the resolution and
         statistics about the effectiveness of the maneuver.
         """
-        from ManeuverTable import ManeuverResult
+        from .ManeuverTable import ManeuverResult
 
         result_row = self.get_result_row(roll)
 
@@ -354,14 +363,3 @@ class MovingManeuverTable(object):
         """
         fumble_table = MovingManeuverFumbleTable()
         return fumble_table.resolve_fumble(roll, self.maneuver_difficulty.get())
-
-    def table_bonus(self):
-        """
-        Determine any additional bonuses to apply to a maneuver based on factors
-        specific to this maneuver type.
-        :return: The additional maneuver bonus
-        """
-        trace.entry()
-
-        trace.exit()
-        return 0

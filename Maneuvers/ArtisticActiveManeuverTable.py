@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -19,6 +20,7 @@ PRACTISED_BONUS = 5
 IMPROVISATION_PENALTY = 20
 PARTNER_PENALTY = 10
 LORE_BONUS = 10
+
 
 class ArtisticActiveManeuverTable(StaticManeuverTable):
     MANEUVER_ACTING = "Acting"
@@ -67,6 +69,16 @@ class ArtisticActiveManeuverTable(StaticManeuverTable):
         SUCCESS: (100, 1, 20),
         ABSOLUTE_SUCCESS: (120, 1, 30)
     }
+
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.practised_bonus = IntVar()
+        self.is_improvised = IntVar()
+        self.with_partner = IntVar()
+        self.lore_skill = IntVar()
+
+        trace.exit()
 
     @staticmethod
     def select_artistic_active_table(maneuver_type):
@@ -168,11 +180,7 @@ class ArtisticActiveManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.practised_bonus = IntVar()
         self.practised_bonus.set(0)
-        self.is_improvised = IntVar()
-        self.with_partner = IntVar()
-        self.lore_skill = IntVar()
         setup_practised_frame()
         setup_improvised_frame()
         setup_partner_frame()

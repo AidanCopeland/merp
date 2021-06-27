@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from future import standard_library
+from builtins import object
 import sys
 
-sys.path.append('../')
-
-from Tkinter import LEFT, RIGHT, BOTH, RAISED, StringVar
-from ttk import Frame, Label, OptionMenu
+from tkinter import LEFT, RIGHT, BOTH, RAISED, StringVar
+from tkinter.ttk import Frame, Label, OptionMenu
 
 import dice
 import trace_log as trace
 import FrameUtils
-import Maneuvers.ManeuverTable
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 MANEUVER_DIFFICULTY_LABEL_TEXT = "Maneuver difficulty: "
 
@@ -193,7 +196,7 @@ class StaticManeuverTable(object):
         :return: A ManeuverResult containing the text output of the resolution and
         statistics about the effectiveness of the maneuver.
         """
-        from ManeuverTable import ManeuverResult
+        from .ManeuverTable import ManeuverResult
 
         if roll >= ABSOLUTE_SUCCESS_RESULT:
             trace.flow("Absolute success")

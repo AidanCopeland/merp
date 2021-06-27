@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from future import standard_library
 import sys
 import dice
 import trace_log as trace
@@ -7,42 +9,44 @@ import FrameUtils
 from VerifyUtils import verify_int_value
 from collections import namedtuple
 
-from StaticManeuverTable import StaticManeuverTable
-from MovingManeuverTable import MovingManeuverTable
-from InteractionManeuverTable import InteractionManeuverTable
-from TrapLockManeuverTable import TrapLockManeuverTable
-from RuneItemManeuverTable import RuneItemManeuverTable
-from PerceptionManeuverTable import PerceptionManeuverTable
-from ArtisticActiveManeuverTable import ArtisticActiveManeuverTable
-from ArtisticPassiveManeuverTable import ArtisticPassiveManeuverTable
-from AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
-from AthleticEnduranceManeuverTable import AthleticEnduranceManeuverTable
-from AthleticGymnasticsManeuverTable import AthleticGymnasticsManeuverTable
-from AwarenessPerceptionsManeuverTable import AwarenessPerceptionsManeuverTable
-from AwarenessSearchingManeuverTable import AwarenessSearchingManeuverTable
-from AwarenessSensesManeuverTable import AwarenessSensesManeuverTable
-from CombatManeuversManeuverTable import CombatManeuversManeuverTable
-from CommunicationManeuverTable import CommunicationManeuverTable
-from CraftsManeuverTable import CraftsManeuverTable
-from InfluenceManeuverTable import InfluenceManeuverTable
-from LoreManeuverTable import LoreManeuverTable
-from OutdoorAnimalManeuverTable import OutdoorAnimalManeuverTable
-from OutdoorEnvironmentalManeuverTable import OutdoorEnvironmentalManeuverTable
-from PowerAwarenessManeuverTable import PowerAwarenessManeuverTable
-from PowerManipulationManeuverTable import PowerManipulationManeuverTable
-from ScienceAnalyticManeuverTable import ScienceAnalyticManeuverTable
-from SelfControlManeuverTable import SelfControlManeuverTable
-from SpecialAttacksManeuverTable import SpecialAttacksManeuverTable
-from SpecialDefencesManeuverTable import SpecialDefencesManeuverTable
-from SubterfugeAttackManeuverTable import SubterfugeAttackManeuverTable
-from SubterfugeMechanicsManeuverTable import SubterfugeMechanicsManeuverTable
-from SubterfugeStealthManeuverTable import SubterfugeStealthManeuverTable
-from TechnicalTradeGeneralManeuverTable import TechnicalTradeGeneralManeuverTable
-from TechnicalTradeVocationalManeuverTable import TechnicalTradeVocationalManeuverTable
-from UrbanManeuverTable import UrbanManeuverTable
+from Maneuvers.StaticManeuverTable import StaticManeuverTable
+from Maneuvers.MovingManeuverTable import MovingManeuverTable
+from Maneuvers.InteractionManeuverTable import InteractionManeuverTable
+from Maneuvers.TrapLockManeuverTable import TrapLockManeuverTable
+from Maneuvers.RuneItemManeuverTable import RuneItemManeuverTable
+from Maneuvers.PerceptionManeuverTable import PerceptionManeuverTable
+from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable
+from Maneuvers.ArtisticPassiveManeuverTable import ArtisticPassiveManeuverTable
+from Maneuvers.AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
+from Maneuvers.AthleticEnduranceManeuverTable import AthleticEnduranceManeuverTable
+from Maneuvers.AthleticGymnasticsManeuverTable import AthleticGymnasticsManeuverTable
+from Maneuvers.AwarenessPerceptionsManeuverTable import AwarenessPerceptionsManeuverTable
+from Maneuvers.AwarenessSearchingManeuverTable import AwarenessSearchingManeuverTable
+from Maneuvers.AwarenessSensesManeuverTable import AwarenessSensesManeuverTable
+from Maneuvers.CombatManeuversManeuverTable import CombatManeuversManeuverTable
+from Maneuvers.CommunicationManeuverTable import CommunicationManeuverTable
+from Maneuvers.CraftsManeuverTable import CraftsManeuverTable
+from Maneuvers.InfluenceManeuverTable import InfluenceManeuverTable
+from Maneuvers.LoreManeuverTable import LoreManeuverTable
+from Maneuvers.OutdoorAnimalManeuverTable import OutdoorAnimalManeuverTable
+from Maneuvers.OutdoorEnvironmentalManeuverTable import OutdoorEnvironmentalManeuverTable
+from Maneuvers.PowerAwarenessManeuverTable import PowerAwarenessManeuverTable
+from Maneuvers.PowerManipulationManeuverTable import PowerManipulationManeuverTable
+from Maneuvers.ScienceAnalyticManeuverTable import ScienceAnalyticManeuverTable
+from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
+from Maneuvers.SpecialAttacksManeuverTable import SpecialAttacksManeuverTable
+from Maneuvers.SpecialDefencesManeuverTable import SpecialDefencesManeuverTable
+from Maneuvers.SubterfugeAttackManeuverTable import SubterfugeAttackManeuverTable
+from Maneuvers.SubterfugeMechanicsManeuverTable import SubterfugeMechanicsManeuverTable
+from Maneuvers.SubterfugeStealthManeuverTable import SubterfugeStealthManeuverTable
+from Maneuvers.TechnicalTradeGeneralManeuverTable import TechnicalTradeGeneralManeuverTable
+from Maneuvers.TechnicalTradeVocationalManeuverTable import TechnicalTradeVocationalManeuverTable
+from Maneuvers.UrbanManeuverTable import UrbanManeuverTable
 
-from Tkinter import Tk, LEFT, RIGHT, END, BOTH, FLAT, RAISED, WORD, StringVar, IntVar, Text, Menu, Menubutton
-from ttk import Frame, Style, Label, Button, OptionMenu
+
+from tkinter import Tk, LEFT, RIGHT, END, BOTH, FLAT, RAISED, WORD, StringVar, IntVar, Text, Menu, Menubutton
+from tkinter.ttk import Frame, Style, Label, Button, OptionMenu
+standard_library.install_aliases()
 
 sys.path.append('../')  #
 
@@ -100,6 +104,7 @@ class ManeuverTable(Frame, object):
         self.maneuver_skill_frame = Frame()
         self.maneuver_fumble_frame = Frame()
         self.maneuver_difficulty_frame = Frame()
+        self.maneuver_character_frame = Frame()
         self.maneuver_type = StringVar()
         self.old_maneuver_type = StringVar()
         self.skill_bonus = StringVar()
@@ -110,12 +115,13 @@ class ManeuverTable(Frame, object):
         self.result_text = Text(wrap=WORD)
         self.maneuver_table = None
         self.maneuver_character = StringVar()
+        self.maneuver_character_selector = None
 
         self.maneuver_type_options = maneuver_type_options
 
         trace.entry()
 
-        def initialize_variables(self):
+        def initialize_variables():
             """
             Initializes the global variables for this instance of ManeuverTable.
             """
@@ -131,7 +137,7 @@ class ManeuverTable(Frame, object):
 
             trace.exit()
 
-        def setup_title_frame(self):
+        def setup_title_frame():
             """
             Creates a frame to display the title of this window in a Label widget.
             :return:
@@ -143,7 +149,7 @@ class ManeuverTable(Frame, object):
             title_label.pack()
             trace.exit()
 
-        def setup_maneuver_type_menu(self):
+        def setup_maneuver_type_menu():
             """
             Creates a frame to allow selection of the maneuver type using a cascaded Menubutton widget.
             :return:
@@ -224,7 +230,7 @@ class ManeuverTable(Frame, object):
 
             trace.exit()
 
-        def setup_maneuver_character_frame(self):
+        def setup_maneuver_character_frame():
             """
             Creates a frame allowing the current maneuver table to fill in a character selector.
             """
@@ -235,7 +241,7 @@ class ManeuverTable(Frame, object):
 
             self.populate_maneuver_character_frame(self.maneuver_character_frame)
 
-        def setup_maneuver_table_frames(self):
+        def setup_maneuver_table_frames():
             """
             Creates any frames as required by the current maneuver type.
             """
@@ -252,7 +258,7 @@ class ManeuverTable(Frame, object):
 
             trace.exit()
 
-        def setup_maneuver_fumble_frame(self):
+        def setup_maneuver_fumble_frame():
             """
             Creates the frame required for a fumble.
             """
@@ -263,7 +269,7 @@ class ManeuverTable(Frame, object):
 
             trace.exit()
 
-        def setup_skill_bonus_entry(self):
+        def setup_skill_bonus_entry():
             """
             Creates a frame allowing the input of the relevant skill bonus entry using an Entry widget.
             """
@@ -271,7 +277,7 @@ class ManeuverTable(Frame, object):
             FrameUtils.setup_entry_frame(self, SKILL_BONUS_LABEL_TEXT, self.skill_bonus)
             trace.exit()
 
-        def setup_stunned_checkbox(self):
+        def setup_stunned_checkbox():
             """
             Creates a frame with a Checkbox indicating whether the character is stunned.
             """
@@ -279,7 +285,7 @@ class ManeuverTable(Frame, object):
             FrameUtils.setup_checkbox_frame(self, IS_STUNNED_TEXT, self.is_stunned)
             trace.exit()
 
-        def setup_character_penalty_frame(self):
+        def setup_character_penalty_frame():
             """
             Creates a frame allowing the input of any penalty applying to the character using an Entry widget.
             """
@@ -287,7 +293,7 @@ class ManeuverTable(Frame, object):
             FrameUtils.setup_entry_frame(self, CHARACTER_PENALTY_LABEL_TEXT, self.character_penalty)
             trace.exit()
 
-        def setup_additional_bonus_frame(self):
+        def setup_additional_bonus_frame():
             """
             Creates a frame allowing the input of any additional bonus using an Entry widget.
             """
@@ -295,7 +301,7 @@ class ManeuverTable(Frame, object):
             FrameUtils.setup_entry_frame(self, ADDITIONAL_BONUS_LABEL_TEXT, self.additional_bonus)
             trace.exit()
 
-        def setup_dice_roll_frame(self):
+        def setup_dice_roll_frame():
             """
             Creates a frame allowing the input of a dice roll using an Entry widget.
             """
@@ -303,7 +309,7 @@ class ManeuverTable(Frame, object):
             FrameUtils.setup_entry_frame(self, DICE_ROLL_LABEL_TEXT, self.dice_roll)
             trace.exit()
 
-        def setup_trigger_button(self):
+        def setup_trigger_button():
             """
             Creates a frame with a button to trigger resolution of the maneuver.
             """
@@ -314,7 +320,7 @@ class ManeuverTable(Frame, object):
             trigger_button.pack()
             trace.exit()
 
-        def setup_result_display(self):
+        def setup_result_display():
             """
             Creates a frame with a Text widget to display the results of the current maneuver.
             :return:
@@ -326,7 +332,7 @@ class ManeuverTable(Frame, object):
             self.result_text.pack(fill=BOTH)
             trace.exit()
 
-        def display_frames(self):
+        def display_frames():
             """
             Displays all frames that have been set up.
             :return:
@@ -341,24 +347,24 @@ class ManeuverTable(Frame, object):
 
         self.parent_console = parent_console
 
-        initialize_variables(self)
+        initialize_variables()
         dice.randomize()
 
-        setup_title_frame(self)
-        setup_maneuver_type_menu(self)
+        setup_title_frame()
+        setup_maneuver_type_menu()
         setup_maneuver_difficulty_frame(self)
-        setup_maneuver_character_frame(self)
-        setup_maneuver_table_frames(self)
-        setup_skill_bonus_entry(self)
-        setup_stunned_checkbox(self)
-        setup_character_penalty_frame(self)
-        setup_additional_bonus_frame(self)
-        setup_dice_roll_frame(self)
-        setup_trigger_button(self)
-        setup_maneuver_fumble_frame(self)
-        setup_result_display(self)
+        setup_maneuver_character_frame()
+        setup_maneuver_table_frames()
+        setup_skill_bonus_entry()
+        setup_stunned_checkbox()
+        setup_character_penalty_frame()
+        setup_additional_bonus_frame()
+        setup_dice_roll_frame()
+        setup_trigger_button()
+        setup_maneuver_fumble_frame()
+        setup_result_display()
 
-        display_frames(self)
+        display_frames()
 
         trace.exit()
 
@@ -407,15 +413,14 @@ class ManeuverTable(Frame, object):
                 *names_with_indices)
         self.maneuver_character_selector.pack(side=RIGHT)
 
-    def maneuver_type_change_callback(self, *args):
+    def maneuver_type_change_callback(self, *_args):
         """
         Callback made when the type of selected maneuver changes
         """
 
-        def select_maneuver_table(maneuver_type):
+        def select_maneuver_table():
             """
             Set the current maneuver table to use.
-            :param maneuver_type: The type of maneuver selected.
             :return: The maneuver table.
             """
             trace.entry()
@@ -558,7 +563,7 @@ class ManeuverTable(Frame, object):
         maneuver_type = self.maneuver_type.get()
         if maneuver_type != self.old_maneuver_type.get():
             trace.flow("Set up new maneuver table")
-            self.maneuver_table = select_maneuver_table(maneuver_type)
+            self.maneuver_table = select_maneuver_table()
 
             """Redraw the frames specific to the new maneuver table type"""
             self.maneuver_table.setup_difficulty_frame(self.maneuver_difficulty_frame)
@@ -616,13 +621,14 @@ class ManeuverTable(Frame, object):
         additional_bonus = int(self.additional_bonus.get())
         trace.detail("Additional bonus: %d" % additional_bonus)
 
-        total_bonus = skill_bonus + \
-                      difficulty_bonus + \
-                      stun_bonus - \
-                      character_penalty + \
-                      table_bonus + \
-                      skill_type_bonus + \
-                      additional_bonus
+        total_bonus = \
+            skill_bonus + \
+            difficulty_bonus + \
+            stun_bonus - \
+            character_penalty + \
+            table_bonus + \
+            skill_type_bonus + \
+            additional_bonus
         trace.detail("Total bonus: %d" % total_bonus)
         trace.exit()
         return total_bonus
@@ -644,7 +650,7 @@ class ManeuverTable(Frame, object):
         maneuver_resolution = self.maneuver_table.maneuver_resolution(dice_roll + modifiers)
         self.result_text.insert(END, maneuver_resolution.ResultText + "\n\n\n")
 
-        if maneuver_resolution.Fumble == True:
+        if maneuver_resolution.Fumble:
             self.result_text.insert(
                 END,
                 "The attempt was fumbled.  Roll again to resolve the fumble.\n"
@@ -655,7 +661,7 @@ class ManeuverTable(Frame, object):
             self.result_text.insert(
                 END,
                 "If partial success was possible, the maneuver was %d%% successful.\n" %
-                                                                                      maneuver_resolution.PercentSuccessful)
+                maneuver_resolution.PercentSuccessful)
         if maneuver_resolution.TimeTaken != 1:
             self.result_text.insert(
                 END,
@@ -664,7 +670,7 @@ class ManeuverTable(Frame, object):
             self.result_text.insert(
                 END,
                 "There is a %+d modifier to any subsequent related action by this character.\n"
-                                                                                   % maneuver_resolution.SubsequentModifier)
+                % maneuver_resolution.SubsequentModifier)
         self.result_text.insert(END, "")
 
         trace.exit()
@@ -745,7 +751,7 @@ class ManeuverTable(Frame, object):
 def main(master=None, parent_console=None):
     trace.init("ManeuverTable")
     root = Tk()
-    app = ManeuverTable(master, parent_console)
+    ManeuverTable(master, parent_console)
     root.mainloop()
 
 

@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.PowerManipulationManeuverTable import PowerManipulationManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 CASTER_TO_TARGET_TEXT = "Range increase: caster/self to target/touch"
 CASTER_TO_TARGET_BONUS = -30
@@ -52,8 +56,25 @@ INCREASED_POWER_OPTIONS = (
 
 
 class SpellMasteryManeuverTable(PowerManipulationManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(PowerManipulationManeuverTable, self).__init__(**kwargs)
+        self.caster_to_target = IntVar()
+        self.touch_to_10_foot = IntVar()
+        self.range_multiplier = IntVar()
+        self.additional_targets = IntVar()
+        self.target_to_10_foot = IntVar()
+        self.area_of_effect_multiplier = IntVar()
+        self.no_duration_to_1_rnd = IntVar()
+        self.concentration_to_rnd_per_lvl = IntVar()
+        self.concentration_to_min_per_lvl = IntVar()
+        self.duration_multiplier = IntVar()
+        self.increased_power = StringVar()
 
-    def setup_difficulty_frame(self, parent_frame):
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -168,17 +189,7 @@ class SpellMasteryManeuverTable(PowerManipulationManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.caster_to_target = IntVar()
-        self.touch_to_10_foot = IntVar()
-        self.range_multiplier = IntVar()
-        self.additional_targets = IntVar()
-        self.target_to_10_foot = IntVar()
-        self.area_of_effect_multiplier = IntVar()
-        self.no_duration_to_1_rnd = IntVar()
-        self.concentration_to_rnd_per_lvl = IntVar()
-        self.concentration_to_min_per_lvl = IntVar()
-        self.duration_multiplier = IntVar()
-        self.increased_power = StringVar()
+
         setup_caster_touch_frame()
         setup_touch_10_foot_frame()
         setup_range_multiplier_frame()

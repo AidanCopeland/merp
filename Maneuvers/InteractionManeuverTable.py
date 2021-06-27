@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append('../')
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 IS_LOYAL_TEXT = "Is audience personally loyal or devoted to the character?"
 IS_HIRED_TEXT = "Is audience under hire to the character?"
@@ -33,11 +36,19 @@ class InteractionManeuverTable(StaticManeuverTable):
                           " them until you do something to cause them to lose confidence in you."
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.is_loyal = IntVar()
+        self.is_hired = IntVar()
+
+        trace.exit()
+
     def setup_maneuver_table_frames(self, parent_frame):
         """
         Set up the frames specific to the maneuver table.
         """
-        def setup_loyal_audience_frame(parent_frame):
+        def setup_loyal_audience_frame():
             """
             Create a frame with a Checkbox indicating whether the audience is loyal to the character
             """
@@ -47,7 +58,7 @@ class InteractionManeuverTable(StaticManeuverTable):
 
             trace.exit()
 
-        def setup_hired_audience_frame(parent_frame):
+        def setup_hired_audience_frame():
             """
             Create a frame with a Checkbox indicating whether the audience is hired to the character
             """
@@ -60,10 +71,9 @@ class InteractionManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.is_loyal = IntVar()
-        self.is_hired = IntVar()
-        setup_loyal_audience_frame(parent_frame)
-        setup_hired_audience_frame(parent_frame)
+
+        setup_loyal_audience_frame()
+        setup_hired_audience_frame()
 
         trace.exit()
 

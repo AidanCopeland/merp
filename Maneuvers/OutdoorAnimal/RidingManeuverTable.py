@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
-from Maneuvers.OutdoorAnimalManeuverTable import OutdoorAnimalManeuverTable
 from Maneuvers.MovingManeuverTable import MovingManeuverTable
 from Maneuvers.OutdoorAnimalManeuverTable import intelligence_bonus, creature_type_bonus, domestication_bonus
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import StringVar
+from tkinter import StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 ACTIVITY_PROMPT = "Activity used for riding"
 INTELLIGENCE_PROMPT = "Creature's intelligence level"
@@ -112,6 +114,15 @@ URSINE_BONUS = 0
 
 
 class RidingManeuverTable(MovingManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(MovingManeuverTable, self).__init__(**kwargs)
+        self.activity_amount = StringVar()
+        self.intelligence = StringVar()
+        self.domestication = StringVar()
+        self.creature_type = StringVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -157,10 +168,6 @@ class RidingManeuverTable(MovingManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.activity_amount = StringVar()
-        self.intelligence = StringVar()
-        self.domestication = StringVar()
-        self.creature_type = StringVar()
         setup_activity_frame()
         setup_intelligence_frame()
         setup_domestication_frame()

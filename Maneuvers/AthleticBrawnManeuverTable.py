@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
-from Tkinter import IntVar
+from Maneuvers.StaticManeuverTable import *
+from tkinter import IntVar
 
 import trace_log as trace
+standard_library.install_aliases()
 
 sys.path.append('../')
 
 EQUIPMENT_TEXT = "Set bonus of -10 to -50 if without proper equipment"
 
 
+# noinspection SpellCheckingInspection
 class AthleticBrawnManeuverTable(StaticManeuverTable):
     MANEUVER_ATHLETIC_GAMES_BRAWN = "Athletic Games (Brawn)"
     MANEUVER_JUMPING = "Jumping"
@@ -19,7 +21,8 @@ class AthleticBrawnManeuverTable(StaticManeuverTable):
     MANEUVER_WEIGHT_LIFTING = "Weight-lifting"
 
     maneuver_type_options = (
-        MANEUVER_ATHLETIC_GAMES_BRAWN, MANEUVER_JUMPING, MANEUVER_POWER_STRIKING, MANEUVER_POWER_THROWING, MANEUVER_WEIGHT_LIFTING
+        MANEUVER_ATHLETIC_GAMES_BRAWN, MANEUVER_JUMPING, MANEUVER_POWER_STRIKING, MANEUVER_POWER_THROWING,
+        MANEUVER_WEIGHT_LIFTING
     )
 
     maneuver_result_text = {
@@ -48,6 +51,13 @@ class AthleticBrawnManeuverTable(StaticManeuverTable):
         SUCCESS: (100, 1, 20),
         ABSOLUTE_SUCCESS: (120, 0.8, 30)
     }
+
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.equipment_bonus = IntVar()
+
+        trace.exit()
 
     @staticmethod
     def select_athletic_brawn_table(maneuver_type):
@@ -102,7 +112,6 @@ class AthleticBrawnManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.equipment_bonus = IntVar()
         self.equipment_bonus.set(0)
         setup_equipment_frame()
 

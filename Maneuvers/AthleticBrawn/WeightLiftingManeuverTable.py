@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
@@ -6,7 +7,8 @@ from Maneuvers.AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -22,6 +24,15 @@ EXTRA_PREP_BONUS = 10
 
 
 class WeightLiftingManeuverTable(AthleticBrawnManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AthleticBrawnManeuverTable, self).__init__(**kwargs)
+        self.flat_surface = IntVar()
+        self.uneven = IntVar()
+        self.hand_holds = IntVar()
+        self.extra_prep = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -63,10 +74,6 @@ class WeightLiftingManeuverTable(AthleticBrawnManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.flat_surface = IntVar()
-        self.uneven = IntVar()
-        self.hand_holds = IntVar()
-        self.extra_prep = IntVar()
         setup_flat_surface_frame()
         setup_uneven_frame()
         setup_hand_holds_frame()

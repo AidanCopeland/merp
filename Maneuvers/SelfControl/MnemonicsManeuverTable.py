@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
 
 from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 WEEKS_PAST_TEXT = "Number of weeks in past when information was learned"
 WEEKS_PAST_BONUS = 5
@@ -20,6 +23,14 @@ PC_IMPACT_TEXT = "Bonus for impact to PC (-10 to +30)"
 
 
 class MnemonicsManeuverTable(SelfControlManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.weeks_past = IntVar()
+        self.carefully_learned = IntVar()
+        self.pc_impact = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -57,9 +68,7 @@ class MnemonicsManeuverTable(SelfControlManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.weeks_past = IntVar()
-        self.carefully_learned = IntVar()
-        self.pc_impact = IntVar()
+
         setup_carefully_learned_frame()
         setup_weeks_past_frame()
         setup_pc_impact_frame()
@@ -89,6 +98,3 @@ class MnemonicsManeuverTable(SelfControlManeuverTable):
 
         trace.detail("Impact on PC: %d" % self.pc_impact.get())
         bonus += self.pc_impact.get()
-
-
-

@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.AwarenessSensesManeuverTable import AwarenessSensesManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 BLIND_TEXT = "Is character effectively blind?"
 
@@ -15,6 +19,12 @@ BLIND_BONUS = -100
 
 
 class SLAManeuverTable(AwarenessSensesManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AwarenessSensesManeuverTable, self).__init__(**kwargs)
+        self.blind = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -33,7 +43,6 @@ class SLAManeuverTable(AwarenessSensesManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.blind = IntVar()
         setup_blind_frame()
 
         trace.exit()

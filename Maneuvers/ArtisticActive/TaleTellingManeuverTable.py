@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable, PARTNER_PENALTY, LORE_BONUS
@@ -6,7 +7,8 @@ from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable, P
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -23,7 +25,14 @@ HOBBIT_BONUS = 15
 LANGUAGE_BONUS = 10
 IMPROVISATION_PENALTY = 30
 
+
 class TaleTellingManeuverTable(ArtisticActiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticActiveManeuverTable, self).__init__(**kwargs)
+        self.proficient_language = IntVar()
+        self.race = StringVar()
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -49,8 +58,6 @@ class TaleTellingManeuverTable(ArtisticActiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.proficient_language = IntVar()
-        self.race = StringVar()
         setup_proficient_language_frame()
         setup_race_frame()
 

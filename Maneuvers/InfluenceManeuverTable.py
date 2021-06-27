@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
@@ -81,5 +81,3 @@ class InfluenceManeuverTable(StaticManeuverTable):
             return InterrogationManeuverTable()
         else:
             return InfluenceManeuverTable()
-
-

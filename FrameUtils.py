@@ -1,12 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')#
-
 import trace_log as trace
 
-from Tkinter import LEFT, RIGHT, BOTH, RAISED, StringVar
-from ttk import Frame, Label, Entry, Checkbutton, OptionMenu
+from tkinter import LEFT, RIGHT, BOTH, RAISED
+from tkinter.ttk import Frame, Label, Entry, Checkbutton, OptionMenu
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 
 def destroy_frame_objects(parent_frame):
@@ -23,6 +25,7 @@ def destroy_frame_objects(parent_frame):
     tmp.pack()
 
     trace.exit()
+
 
 def setup_checkbox_frame(parent_frame, checkbox_text, checkbox_variable):
     """
@@ -77,6 +80,7 @@ def setup_optionmenu_frame(parent_frame, prompt_text, default, variable, *option
     Sets up a frame containing an OptionMenu.
     :param parent_frame: The parent frame.
     :param prompt_text: The prompt text to associate with the OptionMenu.
+    :param default: The default value to report.
     :param options: The options to apply to the OptionMenu
     :param variable: The variable that tracks the OptionMenu
     """

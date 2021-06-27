@@ -1,13 +1,23 @@
 # -*- coding: utf-8 -*-
+from __future__ import division
+from future import standard_library
+from builtins import str
+from past.utils import old_div
 import sys
 
-sys.path.append('../')
+from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
+from Maneuvers.StaticManeuverTable import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
+    PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
 
-from Maneuvers.SelfControlManeuverTable import *
-from Tkinter import IntVar
+from tkinter import IntVar
 
 import FrameUtils
 import trace_log as trace
+
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 DESIRED_BONUS_TEXT = "Desired bonus to OB (minimum 10)"
 
@@ -48,6 +58,14 @@ class AdrenalStrengthManeuverTable(SelfControlManeuverTable):
         ABSOLUTE_SUCCESS: (100, 1, 30)
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.desired_bonus = IntVar()
+
+        trace.exit()
+
+    @staticmethod
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
@@ -70,7 +88,6 @@ class AdrenalStrengthManeuverTable(SelfControlManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.desired_bonus = IntVar()
         self.desired_bonus.set(10)
         setup_desired_bonus_frame()
 
@@ -116,7 +133,7 @@ class AdrenalStrengthManeuverTable(SelfControlManeuverTable):
         :param result: The type of result achieved.
         :param desired_bonus: The desired bonus for the attack.
         """
-        desired_hits_multiplier = 1 + (desired_bonus / 10)
+        desired_hits_multiplier = 1 + (old_div(desired_bonus, 10))
 
         if result == PARTIAL_SUCCESS:
             trace.flow("Partial success")
@@ -157,7 +174,7 @@ class AdrenalStrengthManeuverTable(SelfControlManeuverTable):
         Return additional text to report the additional fumble range applied to the weapon.
         :param desired_bonus: The desired bonus for the attack.
         """
-        fumble_increase = desired_bonus / 10
+        fumble_increase = old_div(desired_bonus, 10)
 
         return str("Fumble range is increased by %d.\n" % fumble_increase)
 
@@ -167,7 +184,7 @@ class AdrenalStrengthManeuverTable(SelfControlManeuverTable):
         Return additional text to report any additional cooldown required after the attack.
         :param desired_bonus: The desired bonus for the attack.
         """
-        cooldown_period = (desired_bonus - 1) / 10
+        cooldown_period = old_div((desired_bonus - 1), 10)
         if cooldown_period != 0:
             return str("This requires an additional %d rounds cooldown before the maneuver can be attempted "
                        "again" % cooldown_period)

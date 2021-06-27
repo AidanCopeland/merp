@@ -1,0 +1,98 @@
+# This is a standard template for a MERP random encounters table
+# It contains tab-separated data, following a standard pattern
+# Comments are denoted by a hash (#) at the start of a line
+# Key words are denoted by three hashes (###) at the start of a line. 
+# Key words identify and split the different sections
+# Use of tabs to align columns is allowed
+#
+### Module
+# The name of the module that will be displayed in the program
+
+Ents of Fangorn
+
+### Areas
+# The list of areas identifies the different regions within an encounter 
+# setting.  All other rows in the Change, Distance, Time and Encounters sections
+# must have the same number of columns.
+
+				The Misty Mountains											Fangorn Forest												Northern Plains												The Downs & Wold												Southern Plains
+
+### Chance
+# The chance that an encounter takes place in a given encounter period.
+				15	10	10	5	15
+
+### Distance
+# The maximum distance that the party may travel, in miles, in a given
+# encounter period.
+				3	2	10	8	10
+
+### Time
+# The maximum time that may take place, in hours, in a given encounter period.
+				4	2	4	4	4
+
+### Encounters
+# The different encounters that may take place.  If an encounter takes place
+# in a given encounter period, a roll of 1-100 is made.  If the result is lower
+# than the number given for that area for the specified encounter type, and
+# higher than the previous non-zero number for that area, the specified 
+# encounter takes place.
+General Trap		2	1	1	2	1
+Avalanche			6	4	0	4	0
+Flash Flood			8	6	3	6	4
+Grass Fire			0	7	6	9	6
+Cave/Cavern/Lair		12	10	8	12	8
+Dunedain Site		13	11	9	13	10
+Calenardhon Site		14	13	13	17	16
+Dunlending Site		16	0	14	18	17
+Druedain Site		0	0	0	0	18
+Grave Site/Tomb		18	14	15	20	20
+Dunlendings: Common Folk	21	0	0	0	0
+Dunlendings: Warriors	24	15	16	0	21
+Dunlendings: Healers	25	16	0	0	0
+Dunlendings: Bards	27	0	0	0	0
+Dunlendings: Priests	28	0	0	0	22
+Calenardhons: Common Folk	29	19	23	26	30
+Calenardhons: Soldiers	30	22	27	28	35
+Northmen			31	23	29	30	37
+Easterlings			32	0	30	32	39
+Travelling Merchants	34	25	35	37	45
+Bandits			37	26	37	40	47
+Orc Scouts			43	29	43	46	50
+Orc Small Patrol (2-6)	47	31	47	50	51
+Orc Patrol (6-10)		50	32	49	52	0
+Orc Warband/Caravan (12-30)	52	0	50	53	0
+Dragons			54	0	0	0	0
+Druedain			0	33	0	0	52
+Dwarves			56	0	51	54	53
+Elves				57	35	53	55	54
+Ents				58	50	56	57	57
+Giants			60	0	0	0	0
+Great Eagles		61	0	57	58	58
+Huorns			62	75	63	61	62
+Cave Troll			65	0	0	63	0
+Forest Troll		66	76	64	64	63
+Hill Troll			68	77	66	67	65
+Stone Troll			70	0	68	70	66
+Bat				73	79	69	73	67
+Bear				76	81	70	74	69
+Bees/Hornets		77	83	72	76	72
+Eagle				80	86	75	78	75
+Boar				82	87	77	79	77
+Grass Cat			0	89	81	82	80
+Green Asp			0	90	83	84	83
+Lynx				85	91	84	0	84
+Herd Animals		87	94	90	88	90
+Poisonous Snake		88	96	91	90	92
+Snow Leopard		91	0	0	0	0
+Wolf/Warg			94	97	94	94	94
+Other Animals		100	100	100	100	100
+
+### Extras
+# This section consists of additional information that may be given for
+# specified encounter types.
+# If an encounter specified below is given, roll 1-100 and give the extra 
+# information for the first number that is higher than the value rolled.
+# If an encounter has one or more areas specified, take the entry that matches 
+# the area in which the encounter was made.
+
+### End

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.ArtisticPassiveManeuverTable import ArtisticPassiveManeuverTable
@@ -6,7 +7,8 @@ from Maneuvers.ArtisticPassiveManeuverTable import ArtisticPassiveManeuverTable
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -21,6 +23,15 @@ MEMORY_BASE_PENALTY = 30
 
 
 class PaintingManeuverTable(ArtisticPassiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticPassiveManeuverTable, self).__init__(**kwargs)
+        self.unfamiliar = IntVar()
+        self.posed = IntVar()
+        self.from_memory = IntVar()
+        self.ig_bonus = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -62,10 +73,6 @@ class PaintingManeuverTable(ArtisticPassiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.unfamiliar = IntVar()
-        self.posed = IntVar()
-        self.from_memory = IntVar()
-        self.ig_bonus = IntVar()
         self.ig_bonus.set(0)
         setup_unfamiliar_frame()
         setup_posed_frame()

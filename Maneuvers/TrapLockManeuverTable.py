@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
+from Maneuvers.StaticManeuverTable import *
+
 sys.path.append('../')
 
-from StaticManeuverTable import *
 
 class TrapLockManeuverTable(StaticManeuverTable):
     maneuver_result_text = {

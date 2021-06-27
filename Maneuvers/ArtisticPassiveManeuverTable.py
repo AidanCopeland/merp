@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
@@ -18,6 +18,7 @@ class ArtisticPassiveManeuverTable(StaticManeuverTable):
         MANEUVER_MUSIC, MANEUVER_PAINTING, MANEUVER_POETRY, MANEUVER_SCULPTING
     )
 
+    # noinspection SpellCheckingInspection
     maneuver_result_text = {
         BLUNDER: "You artist types!  In a fit of pique, there is a chance (50% - PR bonus) that you will destroy "
                  "your artistic materials, including any previous works you may have on hand (roll for each item). "

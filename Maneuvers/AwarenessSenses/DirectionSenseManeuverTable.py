@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.AwarenessSensesManeuverTable import AwarenessSensesManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 MAGNETIC_FIELD_PROMPT = "Local magnetic field"
 NORMAL_FIELD_TEXT = "Normal"
@@ -27,6 +31,13 @@ NEVER_BEEN_BONUS = -50
 
 
 class DirectionSenseManeuverTable(AwarenessSensesManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AwarenessSensesManeuverTable, self).__init__(**kwargs)
+        self.magnetic_field = StringVar()
+        self.never_been = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -42,7 +53,6 @@ class DirectionSenseManeuverTable(AwarenessSensesManeuverTable):
                 parent_frame, MAGNETIC_FIELD_PROMPT, NORMAL_FIELD_TEXT, self.magnetic_field, *MAGNETIC_FIELD_OPTIONS)
             trace.exit()
 
-
         def setup_never_been_frame():
             """
             Create a frame with a Checkbox indicating whether the character has never been
@@ -52,12 +62,9 @@ class DirectionSenseManeuverTable(AwarenessSensesManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, NEVER_BEEN_TEXT, self.never_been)
             trace.exit()
 
-
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.magnetic_field = StringVar()
-        self.never_been = IntVar()
         setup_magnetic_field_frame()
         setup_never_been_frame()
 

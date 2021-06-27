@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from builtins import object
 import sys
+from .TablesUtils import find_merp_table_row_entry
+import dice
+import trace_log as trace
 
 sys.path.append('../')
-
-from TablesUtils import find_merp_table_row_entry
-import trace_log as trace
-import dice
 
 ROUTINE = "Routine"
 EASY = "Easy"
@@ -30,7 +31,7 @@ maneuver_fumble_bonuses = {
 }
 
 
-class FumbleResult:
+class FumbleResult(object):
     def __init__(self,
                  result1="",
                  result2="",
@@ -40,14 +41,14 @@ class FumbleResult:
                  modifier=0,
                  out_of_combat=False,
                  unconscious=False):
-        self.result1=result1
-        self.result2=result2
-        self.chance_worse=chance_worse
-        self.hits=hits
-        self.stun=stun
-        self.modifier=modifier
-        self.out_of_combat=out_of_combat
-        self.unconscious=unconscious
+        self.result1 = result1
+        self.result2 = result2
+        self.chance_worse = chance_worse
+        self.hits = hits
+        self.stun = stun
+        self.modifier = modifier
+        self.out_of_combat = out_of_combat
+        self.unconscious = unconscious
 
 
 fumble_table = [
@@ -116,7 +117,7 @@ fumble_table = [
 
 class MovingManeuverFumbleTable(object):
 
-    def __init__(self, **kwargs):
+    def __init__(self, **_kwargs):
         trace.entry()
         dice.randomize()
         trace.exit()
@@ -152,4 +153,3 @@ class MovingManeuverFumbleTable(object):
             result_text += "\n%d to activity." % result.modifier
 
         return roll_text + result_text
-

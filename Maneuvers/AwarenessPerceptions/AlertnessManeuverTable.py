@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.AwarenessPerceptionsManeuverTable import AwarenessPerceptionsManeuverTable
@@ -8,7 +9,8 @@ from Maneuvers.SubterfugeStealth.StalkManeuverTable import StalkManeuverTable
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import StringVar, IntVar
+from tkinter import StringVar, IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -26,6 +28,16 @@ OPPONENT_BONUS_TEXT = "Opponent's Stalk/Hide bonus:"
 
 
 class AlertnessManeuverTable(AwarenessPerceptionsManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AwarenessPerceptionsManeuverTable, self).__init__(**kwargs)
+        self.skill_frames_parent_frame = None
+        self.alertness_type = StringVar()
+        self.opponent_bonus = IntVar()
+        self.opponent_hide_maneuver = HideManeuverTable()
+        self.opponent_stalk_maneuver = StalkManeuverTable()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -35,15 +47,12 @@ class AlertnessManeuverTable(AwarenessPerceptionsManeuverTable):
         trace.entry()
 
         self.skill_frames_parent_frame = parent_frame
-        self.alertness_type = StringVar()
+
         self.alertness_type.set(ALERTNESS_NONE_TEXT)
-        self.opponent_bonus = IntVar()
         self.opponent_bonus.set(0)
 
-        self.opponent_hide_maneuver = HideManeuverTable()
         self.opponent_hide_maneuver.init_hiding_modifiers()
 
-        self.opponent_stalk_maneuver = StalkManeuverTable()
         self.opponent_stalk_maneuver.init_stalking_modifiers()
 
         self.redraw_maneuver_skill_frames(self.alertness_type.get())
@@ -51,7 +60,7 @@ class AlertnessManeuverTable(AwarenessPerceptionsManeuverTable):
 
         trace.exit()
 
-    def alertness_type_update_callback(self, *args):
+    def alertness_type_update_callback(self, *_args):
         """
         Callback when the type of alertness has changed.
         """

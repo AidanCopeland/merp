@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -58,6 +59,13 @@ class AthleticEnduranceManeuverTable(StaticManeuverTable):
         ABSOLUTE_SUCCESS: (120, 0.8, 30)
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.equipment_bonus = IntVar()
+
+        trace.exit()
+
     @staticmethod
     def select_athletic_endurance_table(maneuver_type):
         """
@@ -66,7 +74,8 @@ class AthleticEnduranceManeuverTable(StaticManeuverTable):
         :return: The maneuver table.
         """
         from Maneuvers.AthleticEndurance.SwimmingManeuverTable import SwimmingManeuverTable
-        from Maneuvers.AthleticEndurance.AthleticEnduranceMovingManeuverTable import AthleticEnduranceMovingManeuverTable
+        from Maneuvers.AthleticEndurance.AthleticEnduranceMovingManeuverTable import \
+            AthleticEnduranceMovingManeuverTable
 
         if maneuver_type == AthleticEnduranceManeuverTable.MANEUVER_ATHLETIC_GAMES_ENDURANCE:
             trace.flow("Athletic Games maneuver")
@@ -114,7 +123,6 @@ class AthleticEnduranceManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.equipment_bonus = IntVar()
         self.equipment_bonus.set(0)
         setup_equipment_frame()
 

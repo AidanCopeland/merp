@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.InfluenceManeuverTable import InfluenceManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 DISCOMFORT_PROMPT = "Causing ""discomfort"" to target?"
 
@@ -19,7 +23,14 @@ DISCOMFORT_OPTIONS = (NO_DISCOMFORT_TEXT, MILD_DISCOMFORT_TEXT, SEVERE_DISCOMFOR
 MILD_DISCOMFORT_BONUS = 10
 SEVERE_DISCOMFORT_BONUS = 25
 
+
 class InterrogationManeuverTable(InfluenceManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(InfluenceManeuverTable, self).__init__(**kwargs)
+        self.discomfort_level = StringVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -38,7 +49,6 @@ class InterrogationManeuverTable(InfluenceManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.discomfort_level = StringVar()
         setup_discomfort_frame()
 
         trace.exit()

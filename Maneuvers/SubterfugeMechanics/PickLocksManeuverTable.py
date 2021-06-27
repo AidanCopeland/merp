@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
-
-
 from Maneuvers.SubterfugeMechanicsManeuverTable import SubterfugeMechanicsManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 INFORMATION_PROMPT = "Information or prior experience relevant to lock"
 PICKED_BEFORE_TEXT = "Have picked lock before"
@@ -80,6 +80,14 @@ def determine_failed_attempts_bonus(num_prior_attempts):
 
 
 class PickLocksManeuverTable(SubterfugeMechanicsManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SubterfugeMechanicsManeuverTable, self).__init__(**kwargs)
+        self.lock_lore = IntVar()
+        self.failed_attempts = IntVar()
+        self.information = StringVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -116,9 +124,7 @@ class PickLocksManeuverTable(SubterfugeMechanicsManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.lock_lore = IntVar()
-        self.failed_attempts = IntVar()
-        self.information = StringVar()
+
         setup_lock_lore_frame()
         setup_failed_attempts_frame()
         setup_information_frame()

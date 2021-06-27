@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
+from __future__ import division
 
-from StaticManeuverTable import *
-from Tkinter import IntVar
+from past.utils import old_div
+from Maneuvers.StaticManeuverTable import *
+from tkinter import IntVar
 
 import trace_log as trace
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -13,6 +16,7 @@ CONSECUTIVE_ROUNDS_NEEDED = 3
 CONSECUTIVE_ROUNDS_BONUS = 10
 MAX_PREPARATION_BONUS = 50
 
+
 class SelfControlManeuverTable(StaticManeuverTable):
     MANEUVER_ADRENAL_BALANCE = "Adrenal Balance"
     MANEUVER_ADRENAL_CONCENTRATION = "Adrenal Concentration"
@@ -20,7 +24,7 @@ class SelfControlManeuverTable(StaticManeuverTable):
     MANEUVER_ADRENAL_LEAPING = "Adrenal Leaping"
     MANEUVER_ADRENAL_QUICKDRAW = "Adrenal Quickdraw"
     MANEUVER_ADRENAL_SPEED = "Adrenal Speed"
-    MANEUVER_ADRENAL_STABILIZATION = "Adrenal Stablization"
+    MANEUVER_ADRENAL_STABILIZATION = "Adrenal Stabilization"
     MANEUVER_ADRENAL_STRENGTH = "Adrenal Strength"
     MANEUVER_CLEANSING_TRANCE = "Cleansing Trance"
     MANEUVER_CONTROL_LYCANTHROPY = "Control Lycanthropy"
@@ -80,6 +84,13 @@ class SelfControlManeuverTable(StaticManeuverTable):
         ABSOLUTE_SUCCESS: (120, 0.1, 30)
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.rounds_prepared = IntVar()
+
+        trace.exit()
+
     @staticmethod
     def select_self_control_table(maneuver_type):
         """
@@ -90,9 +101,9 @@ class SelfControlManeuverTable(StaticManeuverTable):
         trace.entry()
 
         from Maneuvers.CombatManeuvers.QuickdrawManeuverTable import QuickdrawManeuverTable
-        from Maneuvers.SelfControl.AdrenalStablizationManeuverTable import AdrenalStablizationManueverTable
+        from Maneuvers.SelfControl.AdrenalStablizationManeuverTable import AdrenalStabilizationManeuverTable
         from Maneuvers.SelfControl.AdrenalStrengthManeuverTable import AdrenalStrengthManeuverTable
-        from Maneuvers.SelfControl.ControlLycanthropyManeuverTable import ControlLycanthrophyManeuverTable
+        from Maneuvers.SelfControl.ControlLycanthropyManeuverTable import ControlLycanthropyManeuverTable
         from Maneuvers.SelfControl.MeditationManeuverTable import MeditationManeuverTable
         from Maneuvers.SelfControl.MnemonicsManeuverTable import MnemonicsManeuverTable
         from Maneuvers.SelfControl.SpellConcentrationManeuverTable import SpellConcentrationManeuverTable
@@ -103,19 +114,19 @@ class SelfControlManeuverTable(StaticManeuverTable):
             trace.exit()
             return QuickdrawManeuverTable()
         if maneuver_type == SelfControlManeuverTable.MANEUVER_ADRENAL_STABILIZATION:
-            trace.flow("Adrenal Stablization maneuver")
+            trace.flow("Adrenal Stabilization maneuver")
             trace.exit()
-            return AdrenalStablizationManueverTable()
+            return AdrenalStabilizationManeuverTable()
         elif maneuver_type == SelfControlManeuverTable.MANEUVER_ADRENAL_STRENGTH:
             trace.flow("Adrenal Strength maneuver")
             trace.exit()
             return AdrenalStrengthManeuverTable()
         elif maneuver_type == SelfControlManeuverTable.MANEUVER_CONTROL_LYCANTHROPY:
-            trace.flow("Control Lycanthrophy maneuver")
+            trace.flow("Control Lycanthropy maneuver")
             trace.exit()
-            return ControlLycanthrophyManeuverTable()
+            return ControlLycanthropyManeuverTable()
         elif maneuver_type == SelfControlManeuverTable.MANEUVER_MEDITATION:
-            trace.flow("Meditaton maneuver")
+            trace.flow("Meditation maneuver")
             trace.exit()
             return MeditationManeuverTable()
         elif maneuver_type == SelfControlManeuverTable.MANEUVER_MNEMONICS:
@@ -150,7 +161,6 @@ class SelfControlManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.rounds_prepared = IntVar()
         self.rounds_prepared.set(0)
         setup_rounds_prepared_frame()
 
@@ -167,7 +177,7 @@ class SelfControlManeuverTable(StaticManeuverTable):
         rounds_prepared = self.rounds_prepared.get()
         trace.detail("Rounds of full prep: %d" % rounds_prepared)
 
-        full_periods = (rounds_prepared + 1) / CONSECUTIVE_ROUNDS_NEEDED
+        full_periods = old_div((rounds_prepared + 1), CONSECUTIVE_ROUNDS_NEEDED)
         bonus = \
             min(MAX_PREPARATION_BONUS, full_periods * CONSECUTIVE_ROUNDS_BONUS)
         trace.detail("Preparation bonus: %d" % bonus)

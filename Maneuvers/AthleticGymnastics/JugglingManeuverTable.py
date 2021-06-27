@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.AthleticGymnasticsManeuverTable import AthleticGymnasticsManeuverTable
@@ -9,7 +10,8 @@ import FrameUtils
 from VerifyUtils import verify_int_value
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -26,8 +28,19 @@ WEIGHT_PENALTY = 5
 
 
 class JugglingManeuverTable(AthleticGymnasticsManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AthleticGymnasticsManeuverTable, self).__init__(**kwargs)
+        self.num_objects = IntVar()
+        self.is_irregular = IntVar()
+        self.is_sharp = IntVar()
+        self.is_different = IntVar()
+        self.weight = IntVar()
 
-    def setup_difficulty_frame(self, parent_frame):
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -81,11 +94,6 @@ class JugglingManeuverTable(AthleticGymnasticsManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.num_objects = IntVar()
-        self.is_irregular = IntVar()
-        self.is_sharp = IntVar()
-        self.is_different = IntVar()
-        self.weight = IntVar()
         self.num_objects.set(2)
         setup_num_objects_frame()
         setup_irregular_frame()
@@ -107,7 +115,7 @@ class JugglingManeuverTable(AthleticGymnasticsManeuverTable):
 
         bonus = 0
 
-        def num_objects_bonus(self):
+        def num_objects_bonus():
             """
             Determine the bonus to apply based on the number of objects.
             :return: The bonus to apply.
@@ -133,7 +141,7 @@ class JugglingManeuverTable(AthleticGymnasticsManeuverTable):
             else:
                 return maneuver_difficulty_bonuses[ABSURD]
 
-        bonus += num_objects_bonus(self)
+        bonus += num_objects_bonus()
         if self.is_irregular.get() == 1:
             trace.flow("Irregular objects")
             bonus -= IRREGULAR_PENALTY

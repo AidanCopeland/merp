@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
-
 from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable
-
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 UNFAMILIAR_TEXT = "Is character unfamiliar with the nature of the subject?"
 LANGUAGE_TEXT = "Does character have 4+ ranks in the language?"
@@ -18,12 +19,20 @@ LANGUAGE_BONUS = 10
 
 class ActingManeuverTable(ArtisticActiveManeuverTable):
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticActiveManeuverTable, self).__init__(**kwargs)
+        self.unfamiliar = IntVar()
+        self.proficient_language = IntVar()
+
+        trace.exit()
+
     def setup_maneuver_skill_frames(self, parent_frame):
         """
         Set up the frames specific to the skill.
         """
 
-        def setup_unfamiliar_frame(parent_frame):
+        def setup_unfamiliar_frame():
             """
             Create a frame with a Checkbox indicating whether the character is unfamiliar with the subject
             """
@@ -31,7 +40,7 @@ class ActingManeuverTable(ArtisticActiveManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, UNFAMILIAR_TEXT, self.unfamiliar)
             trace.exit()
 
-        def setup_proficient_language_frame(parent_frame):
+        def setup_proficient_language_frame():
             """
             Create a frame with a Checkbox indicating whether the character is proficient in the language
             """
@@ -42,10 +51,8 @@ class ActingManeuverTable(ArtisticActiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.unfamiliar = IntVar()
-        self.proficient_language = IntVar()
-        setup_unfamiliar_frame(parent_frame)
-        setup_proficient_language_frame(parent_frame)
+        setup_unfamiliar_frame()
+        setup_proficient_language_frame()
 
         trace.exit()
 

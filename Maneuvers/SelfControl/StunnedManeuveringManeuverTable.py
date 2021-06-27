@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
+from __future__ import division
+from future import standard_library
+from builtins import str
+from past.utils import old_div
 import sys
 
-sys.path.append('../')
-
-from Maneuvers.SelfControlManeuverTable import \
-    SelfControlManeuverTable, BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
+from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
+from Maneuvers.StaticManeuverTable import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
     PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
-from ttk import Frame, Label, OptionMenu
-from Tkinter import IntVar
+from tkinter.ttk import Frame, Label, OptionMenu
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import LEFT, RIGHT, BOTH, RAISED
+from tkinter import IntVar, LEFT, RIGHT, BOTH, RAISED
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 TIME_PROMPT = "Number of rounds stunned: "
 
@@ -53,6 +58,15 @@ class StunnedManeuveringManeuverTable(SelfControlManeuverTable):
         SUCCESS: (100, 1, 20),
         ABSOLUTE_SUCCESS: (100, 1, 30)
     }
+
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.maneuver_difficulty_options = None
+        self.maneuver_difficulty_selector = None
+        self.fight_through = IntVar()
+
+        trace.exit()
 
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()
@@ -105,7 +119,6 @@ class StunnedManeuveringManeuverTable(SelfControlManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.fight_through = IntVar()
         self.fight_through.set(0)
         setup_fight_through_frame()
 
@@ -132,8 +145,9 @@ class StunnedManeuveringManeuverTable(SelfControlManeuverTable):
                 return str("Your accumulated stun is reduced by %d rounds." % rounds_stun_relieved)
             else:
                 trace.flow("Act immediately")
-                act_rounds = (rounds_stun_relieved + 1) / 2
-                return str("You may act for %d rounds, during which time your accumulated stun will reduce normally." % act_rounds)
+                act_rounds = old_div((rounds_stun_relieved + 1), 2)
+                return str("You may act for %d rounds, during which time your accumulated stun will reduce normally."
+                           % act_rounds)
 
     rounds_stun_relieved = {
         BLUNDER: -3,

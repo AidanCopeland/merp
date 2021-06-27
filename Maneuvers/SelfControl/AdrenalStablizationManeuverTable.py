@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
-sys.path.append('../')
-
 from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
-from ttk import Frame, Label, OptionMenu
+from tkinter.ttk import Frame, Label, OptionMenu
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import LEFT, RIGHT, BOTH, RAISED
+from tkinter import LEFT, RIGHT, BOTH, RAISED
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 INJURY_PROMPT = "Severity of injuries: "
 
@@ -43,7 +46,14 @@ maneuver_difficulty_bonuses = {
 }
 
 
-class AdrenalStablizationManueverTable(SelfControlManeuverTable):
+class AdrenalStabilizationManeuverTable(SelfControlManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.maneuver_difficulty_options = None
+        self.maneuver_difficulty_selector = None
+
+        trace.exit()
 
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()

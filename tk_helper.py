@@ -1,10 +1,14 @@
+from future import standard_library
 import trace_log as trace
-from Tkinter import _setit
+from tkinter import _setit
+standard_library.install_aliases()
+
 
 def clear_option_menu(selector):
     trace.entry()
     selector['menu'].delete(0, 'end')
     trace.exit()
+
 
 def refresh_option_menu(selector, parent_widget, choices):
     trace.entry()

@@ -1,18 +1,28 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
 
 from Maneuvers.ScienceAnalyticManeuverTable import ScienceAnalyticManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 EQUIPMENT_TEXT = "Reduction to bonus caused by lack of suitable equipment (up to -70)"
 
+
 class AlchemyManeuverTable(ScienceAnalyticManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ScienceAnalyticManeuverTable, self).__init__(**kwargs)
+        self.equipment_penalty = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -30,7 +40,6 @@ class AlchemyManeuverTable(ScienceAnalyticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.equipment_penalty = IntVar()
         setup_equipment_penalty_frame()
         self.equipment_penalty.set(0)
 

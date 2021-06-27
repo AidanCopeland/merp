@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
-sys.path.append('../')
-
-from Maneuvers.PowerManipulationManeuverTable import \
-    PowerManipulationManeuverTable, BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
+from Maneuvers.PowerManipulationManeuverTable import PowerManipulationManeuverTable
+from Maneuvers.StaticManeuverTable import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
     PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
 
-from ttk import Frame, Label, OptionMenu
+from tkinter.ttk import Frame, Label, OptionMenu
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import LEFT, RIGHT, BOTH, RAISED, IntVar, StringVar
+from tkinter import LEFT, RIGHT, BOTH, RAISED, IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 TIME_PROMPT = "Duration of effect (no more than): "
 
@@ -103,6 +106,16 @@ class MagicRitualManeuverTable(PowerManipulationManeuverTable):
             "future attempts to cast this ritual as he realizes what has just happened."
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(PowerManipulationManeuverTable, self).__init__(**kwargs)
+        self.caster_type = StringVar()
+        self.gm_bonus = IntVar()
+        self.maneuver_difficulty_options = None
+        self.maneuver_difficulty_selector = None
+
+        trace.exit()
+
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
@@ -152,8 +165,6 @@ class MagicRitualManeuverTable(PowerManipulationManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.caster_type = StringVar()
-        self.gm_bonus = IntVar()
         setup_caster_type_frame()
         setup_gm_bonus_frame()
         self.gm_bonus.set(0)

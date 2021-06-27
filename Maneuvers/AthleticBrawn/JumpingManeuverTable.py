@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.MovingManeuverTable import MovingManeuverTable, ROUTINE, EASY, LIGHT, MEDIUM, HARD, \
@@ -7,8 +8,9 @@ from Maneuvers.MovingManeuverTable import MovingManeuverTable, ROUTINE, EASY, LI
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar, RAISED, LEFT, RIGHT, BOTH
-from ttk import Frame, Label, OptionMenu
+from tkinter import IntVar, StringVar, RAISED, LEFT, RIGHT, BOTH
+from tkinter.ttk import Frame, Label, OptionMenu
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -54,6 +56,7 @@ class JumpingManeuverTable(MovingManeuverTable):
         trace.entry()
         super(MovingManeuverTable, self).__init__(**kwargs)
         self.desired_length = StringVar()
+        self.equipment_bonus = IntVar()
         trace.exit()
 
     def setup_difficulty_frame(self, parent_frame):
@@ -102,7 +105,6 @@ class JumpingManeuverTable(MovingManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.equipment_bonus = IntVar()
         self.equipment_bonus.set(0)
         setup_equipment_frame()
 

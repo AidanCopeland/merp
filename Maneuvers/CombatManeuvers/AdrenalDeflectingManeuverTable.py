@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.MovingManeuverTable import MovingManeuverTable, EXTREMELY_HARD, SHEER_FOLLY, \
@@ -7,8 +8,9 @@ from Maneuvers.MovingManeuverTable import MovingManeuverTable, EXTREMELY_HARD, S
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar, RAISED, LEFT, RIGHT, BOTH
-from ttk import Frame, Label, OptionMenu
+from tkinter import StringVar, RAISED, LEFT, RIGHT, BOTH
+from tkinter.ttk import Frame, Label, OptionMenu
+standard_library.install_aliases()
 
 sys.path.append('../')
 

@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
 
 from Maneuvers.SubterfugeStealthManeuverTable import SubterfugeStealthManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 HIDING_PLACE_PROMPT = "Quality of hiding place"
 BAD_TEXT = "Bad"
@@ -30,8 +32,8 @@ HIDING_PLACE_OPTIONS = (
     VERY_GOOD_TEXT, EXCELLENT_TEXT
 )
 
-INVISIBILITY_TEXT = "Bonus due to any invisibility or other sensory suppression (Invisiblity I gives +70, modified by " \
-                    "fringe effects) "
+INVISIBILITY_TEXT = "Bonus due to any invisibility or other sensory suppression" \
+                    " (Invisiblity I gives +70, modified by fringe effects) "
 
 PRESENCE_KNOWN_TEXT = "Presence of hider known to searchers?"
 PRESENCE_KNOWN_BONUS = -30
@@ -39,6 +41,7 @@ PRESENCE_KNOWN_BONUS = -30
 CONTESTED_TEXT = "Roll against searcher's Perception bonus?"
 
 SEARCHER_BONUS_TEXT = "Searcher's Perception bonus"
+
 
 def determine_hiding_place_bonus(quality):
     """
@@ -82,13 +85,23 @@ def determine_presence_known_bonus(presence_known):
 
 
 class HideManeuverTable(SubterfugeStealthManeuverTable, object):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SubterfugeStealthManeuverTable, self).__init__(**kwargs)
+        self.hiding_place = StringVar()
+        self.invisibility_bonus = IntVar()
+        self.presence_known = IntVar()
+        self.contested = IntVar()
+        self.searcher_bonus = IntVar()
+        self.skill_frames_parent_frame = None
+
+        trace.exit()
 
     def init_hiding_modifiers(self):
         """
         Set up the modifiers related to hiding.
         """
-        self.hiding_place = StringVar()
-        self.invisibility_bonus = IntVar()
+
         self.invisibility_bonus.set(0)
 
     def setup_maneuver_skill_frames(self, parent_frame):
@@ -99,10 +112,8 @@ class HideManeuverTable(SubterfugeStealthManeuverTable, object):
         trace.entry()
 
         self.skill_frames_parent_frame = parent_frame
+
         self.init_hiding_modifiers()
-        self.presence_known = IntVar()
-        self.contested = IntVar()
-        self.searcher_bonus = IntVar()
         self.searcher_bonus.set(0)
         self.contested.set(0)
         self.redraw_maneuver_skill_frames()
@@ -169,7 +180,7 @@ class HideManeuverTable(SubterfugeStealthManeuverTable, object):
             FrameUtils.setup_checkbox_frame(
                 parent_frame, CONTESTED_TEXT, self.contested
             )
-            self.contested.trace("w",self.skill_frames_update_callback)
+            self.contested.trace("w", self.skill_frames_update_callback)
 
             trace.exit()
 
@@ -192,7 +203,7 @@ class HideManeuverTable(SubterfugeStealthManeuverTable, object):
 
         trace.exit()
 
-    def skill_frames_update_callback(self, *args):
+    def skill_frames_update_callback(self, *_args):
 
         trace.entry()
 

@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
 
 from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 MOON_PHASE_PROMPT = "Phase of moon"
 FULL_MOON_TEXT = "Full moon"
@@ -144,9 +147,21 @@ def determine_friend_damage_bonus(friend_damage):
         return 0
 
 
-class ControlLycanthrophyManeuverTable(SelfControlManeuverTable):
+class ControlLycanthropyManeuverTable(SelfControlManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.moon_phase = StringVar()
+        self.day_night = StringVar()
+        self.start_stop = StringVar()
+        self.taken_damage = IntVar()
+        self.taken_critical = IntVar()
+        self.friend_wounded = StringVar()
 
-    def setup_difficulty_frame(self, parent_frame):
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -215,16 +230,9 @@ class ControlLycanthrophyManeuverTable(SelfControlManeuverTable):
                 *FRIEND_WOUNDED_OPTIONS)
             trace.exit()
 
-
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.moon_phase = StringVar()
-        self.day_night = StringVar()
-        self.start_stop = StringVar()
-        self.taken_damage = IntVar()
-        self.taken_critical = IntVar()
-        self.friend_wounded = StringVar()
         setup_moon_phase_frame()
         setup_day_night_frame()
         setup_start_stop_frame()

@@ -7,7 +7,7 @@ import trace_log as trace
 sys.path.append('../')
 
 
-def verify_int_value(value_to_check, default, minimum=-sys.maxint - 1, maximum=sys.maxint):
+def verify_int_value(value_to_check, default, minimum=-sys.maxsize - 1, maximum=sys.maxsize):
     """
     Function to check that a StringVar contains a number.
     :param value_to_check: The value to check.

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.AthleticGymnasticsManeuverTable import AthleticGymnasticsManeuverTable
@@ -6,7 +7,8 @@ from Maneuvers.AthleticGymnasticsManeuverTable import AthleticGymnasticsManeuver
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import StringVar
+from tkinter import StringVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -21,6 +23,12 @@ BONDS_METAL_PENALTY = 30
 
 
 class ContortionsManeuverTable(AthleticGymnasticsManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AthleticGymnasticsManeuverTable, self).__init__(**kwargs)
+        self.bonds = StringVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -39,7 +47,6 @@ class ContortionsManeuverTable(AthleticGymnasticsManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.bonds = StringVar()
         setup_bonds_frame()
 
         trace.exit()

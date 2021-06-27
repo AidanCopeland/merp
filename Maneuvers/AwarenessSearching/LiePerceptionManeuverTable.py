@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.AwarenessSearchingManeuverTable import AwarenessSearchingManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 CANNOT_SEE_TEXT = "Cannot see target?"
 CANNOT_HEAR_TEXT = "Cannot hear target?"
@@ -28,6 +32,15 @@ POOR_LANGUAGE_BONUS = -20
 
 
 class LiePerceptionManeuverTable(AwarenessSearchingManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AwarenessSearchingManeuverTable, self).__init__(**kwargs)
+        self.cannot_see = IntVar()
+        self.cannot_hear = IntVar()
+        self.familiarity_type = StringVar()
+        self.language_ranks = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -59,7 +72,6 @@ class LiePerceptionManeuverTable(AwarenessSearchingManeuverTable):
                 parent_frame, FAMILIARITY_PROMPT, UNFAMILIAR_TEXT, self.familiarity_type, *FAMILIARITY_OPTIONS)
             trace.exit()
 
-
         def setup_language_ranks_frame():
             """
             Create a frame with an Entry indicating the number of ranks the searcher has in the
@@ -72,10 +84,6 @@ class LiePerceptionManeuverTable(AwarenessSearchingManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.cannot_see = IntVar()
-        self.cannot_hear = IntVar()
-        self.familiarity_type = StringVar()
-        self.language_ranks = IntVar()
         setup_cannot_see_frame()
         setup_cannot_hear_frame()
         setup_familiarity_frame()

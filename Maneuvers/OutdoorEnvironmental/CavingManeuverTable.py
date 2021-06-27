@@ -1,18 +1,29 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.OutdoorEnvironmentalManeuverTable import OutdoorEnvironmentalManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 DWARF_TEXT = "Dwarf?"
 DWARF_BONUS = 25
 
+
 class CavingManeuverTable(OutdoorEnvironmentalManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(OutdoorEnvironmentalManeuverTable, self).__init__(**kwargs)
+        self.dwarf = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -27,11 +38,9 @@ class CavingManeuverTable(OutdoorEnvironmentalManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, DWARF_TEXT, self.dwarf)
             trace.exit()
 
-
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.dwarf = IntVar()
         setup_dwarf_frame()
 
         trace.exit()

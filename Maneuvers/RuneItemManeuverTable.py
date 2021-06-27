@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append('../')
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 DIFFERENT_REALM_TEXT = "Is the realm of the spell different from the character's?"
 KNOWS_SPELL_TEXT = "Does the character know what the spell or ability is?"
@@ -18,6 +21,7 @@ DIFFERENT_REALM_BONUS = -30
 KNOWS_SPELL_BONUS = 20
 DOES_NOT_KNOW_SPELL_PENALTY = 10
 CAN_CAST_BONUS = 30
+
 
 class RuneItemManeuverTable(StaticManeuverTable):
     maneuver_result_text = {
@@ -40,6 +44,16 @@ class RuneItemManeuverTable(StaticManeuverTable):
                           "and you may used them whenever you hold the item or rune paper (runes are only usable once)."
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.different_realm = IntVar()
+        self.knows_spell = IntVar()
+        self.can_cast = IntVar()
+        self.spell_level = IntVar()
+
+        trace.exit()
+
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
@@ -51,7 +65,7 @@ class RuneItemManeuverTable(StaticManeuverTable):
         Set up the frames specific to the maneuver table.
         """
 
-        def setup_different_realm_frame(parent_frame):
+        def setup_different_realm_frame():
             """
             Create a frame with a Checkbox indicating whether spell realm is different from the character's
             """
@@ -59,7 +73,7 @@ class RuneItemManeuverTable(StaticManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, DIFFERENT_REALM_TEXT, self.different_realm)
             trace.exit()
 
-        def setup_knows_spell_frame(parent_frame):
+        def setup_knows_spell_frame():
             """
             Create a frame with a Checkbox indicating whether the character knows the spell.
             """
@@ -67,7 +81,7 @@ class RuneItemManeuverTable(StaticManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, KNOWS_SPELL_TEXT, self.knows_spell)
             trace.exit()
 
-        def setup_can_cast_frame(parent_frame):
+        def setup_can_cast_frame():
             """
             Create a frame with a Checkbox indicating whether the character can cast the spell.
             """
@@ -75,7 +89,7 @@ class RuneItemManeuverTable(StaticManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, CAN_CAST_TEXT, self.can_cast)
             trace.exit()
 
-        def setup_spell_level_frame(parent_frame):
+        def setup_spell_level_frame():
             """
             Create a frame with an Entry specifying the level of the spell.
             """
@@ -86,19 +100,16 @@ class RuneItemManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.different_realm = IntVar()
-        self.knows_spell = IntVar()
-        self.can_cast = IntVar()
-        self.spell_level = IntVar()
-        setup_different_realm_frame(parent_frame)
-        setup_knows_spell_frame(parent_frame)
-        setup_can_cast_frame(parent_frame)
-        setup_spell_level_frame(parent_frame)
+
+        setup_different_realm_frame()
+        setup_knows_spell_frame()
+        setup_can_cast_frame()
+        setup_spell_level_frame()
 
         trace.exit()
 
     def difficulty_bonus(self):
-        return (0)
+        return 0
 
     def table_bonus(self):
         """

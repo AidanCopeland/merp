@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.PowerAwarenessManeuverTable import PowerAwarenessManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 KNOW_REALM_TEXT = "Character knows the realm of the spell"
 KNOW_SPELL_TEXT = "Character know the spell"
@@ -26,6 +30,7 @@ SAME_REALM_DIFFERENT_BASE_BONUS = -30
 DIFFERENT_REALM_DIFFERENT_BASE_BONUS = -40
 CAN_CAST_BONUS = 30
 
+
 def known_realm_bonus(known_realm):
     """
     Determine the bonus to the maneuver based on whether the character knows the
@@ -39,6 +44,7 @@ def known_realm_bonus(known_realm):
     else:
         trace.flow("Unknown realm: -20")
         return UNKNOWN_REALM_BONUS
+
 
 def known_spell_bonus(known_spell):
     """
@@ -54,12 +60,15 @@ def known_spell_bonus(known_spell):
         trace.flow("Unknown spell: -10")
         return UNKNOWN_SPELL_BONUS
 
+
 def different_realm_bonus(different_realm, different_base):
     """
     Determine the bonus to the maneuver based on whether the caster's realm
     and/or base differs from the spell's.
     :param different_realm: Whether the caster's realm differs from the
     spell's.
+    :param different_base: Whether the spell is from a different profession's
+    base spell lists to the caster's.
     :return: The bonus to the maneuver.
     """
     if different_realm and different_base:
@@ -74,6 +83,7 @@ def different_realm_bonus(different_realm, different_base):
     else:
         return 0
 
+
 def intrinsic_cast_bonus(can_cast):
     """
     Determine the bonus to the maneuver based on whether the caster can cast
@@ -87,9 +97,21 @@ def intrinsic_cast_bonus(can_cast):
     else:
         return 0
 
-class ReadRunesManeuverTable(PowerAwarenessManeuverTable):
 
-    def setup_difficulty_frame(self, parent_frame):
+class ReadRunesManeuverTable(PowerAwarenessManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(PowerAwarenessManeuverTable, self).__init__(**kwargs)
+        self.known_realm = IntVar()
+        self.known_spell = IntVar()
+        self.different_realm = IntVar()
+        self.different_base = IntVar()
+        self.can_cast = IntVar()
+
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -149,11 +171,7 @@ class ReadRunesManeuverTable(PowerAwarenessManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.known_realm = IntVar()
-        self.known_spell = IntVar()
-        self.different_realm = IntVar()
-        self.different_base = IntVar()
-        self.can_cast = IntVar()
+
         setup_known_realm_frame()
         setup_known_spell_frame()
         setup_different_realm_frame()

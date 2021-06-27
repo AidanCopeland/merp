@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import sys
+import trace_log as trace
+from Maneuvers.CombatManeuversManeuverTable import CombatManeuversManeuverTable
+from Maneuvers.StaticManeuverTable import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
+    PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
 
 sys.path.append('../')
 
-from Maneuvers.CombatManeuversManeuverTable import *
-
-import FrameUtils
-import trace_log as trace
 
 class QuickdrawManeuverTable(CombatManeuversManeuverTable):
     speed_effect_text = {

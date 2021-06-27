@@ -1,7 +1,9 @@
+from builtins import str
 import logging
 import inspect
 from shutil import copyfile
 import os
+
 
 def init(log_file_name):
     delete_backup(log_file_name)
@@ -16,6 +18,7 @@ def entry():
     logger.info(output_string)
 
 
+# noinspection PyShadowingBuiltins
 def exit():
     logger = logging.getLogger('MERP')
     output_string = generate_output("} Exit")
@@ -75,5 +78,3 @@ def set_up_file_handler(logger, log_file_name):
     logger.addHandler(fh)
     formatter = logging.Formatter('%(asctime)s - %(message)s')
     fh.setFormatter(formatter)
-
-

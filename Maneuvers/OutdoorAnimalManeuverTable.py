@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
@@ -216,6 +216,15 @@ class OutdoorAnimalManeuverTable(StaticManeuverTable):
         ABSOLUTE_SUCCESS: (120, 0.5, 30)
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.intelligence = StringVar()
+        self.domestication = StringVar()
+        self.creature_type = StringVar()
+
+        trace.exit()
+
     @staticmethod
     def select_outdoor_animal_table(maneuver_type):
         """
@@ -232,7 +241,6 @@ class OutdoorAnimalManeuverTable(StaticManeuverTable):
             return RidingManeuverTable()
         else:
             return OutdoorAnimalManeuverTable()
-
 
     def setup_intelligence_frame(self, parent_frame):
         """
@@ -252,7 +260,6 @@ class OutdoorAnimalManeuverTable(StaticManeuverTable):
             parent_frame, DOMESTICATION_PROMPT, TAME_TEXT, self.domestication, *DOMESTICATION_OPTIONS)
         trace.exit()
 
-
     def setup_creature_type_frame(self, parent_frame):
         """
         Create a frame with an OptionMenu specifying the type of the creature.
@@ -262,7 +269,6 @@ class OutdoorAnimalManeuverTable(StaticManeuverTable):
             parent_frame, CREATURE_TYPE_PROMPT, EQUINE_TEXT, self.creature_type, *CREATURE_TYPE_OPTIONS)
         trace.exit()
 
-
     def setup_maneuver_table_frames(self, parent_frame):
         """
         Set up the frames specific to the skill.
@@ -270,9 +276,7 @@ class OutdoorAnimalManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.intelligence = StringVar()
-        self.domestication = StringVar()
-        self.creature_type = StringVar()
+
         self.setup_intelligence_frame(parent_frame)
         self.setup_domestication_frame(parent_frame)
         self.setup_creature_type_frame(parent_frame)

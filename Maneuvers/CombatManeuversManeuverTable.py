@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
@@ -24,7 +24,7 @@ class CombatManeuversManeuverTable(StaticManeuverTable):
             "(-30 penalty) injury to a random location.  You are stunned for two rounds.  "
             "You'd better hope this was just for show...",
         ABSOLUTE_FAILURE:
-            "It's unfortunate that you didn't listen to your first instict, which was "
+            "It's unfortunate that you didn't listen to your first instinct, which was "
             "_not to try this!!_  You deal yourself an injury (i.e., Critical) appropriate "
             "to the maneuver you were attempting (GM's discretion), and hopefully gain a "
             "little wisdom.",
@@ -64,8 +64,8 @@ class CombatManeuversManeuverTable(StaticManeuverTable):
         :param maneuver_type: The type of maneuver selected.
         :return: The maneuver table.
         """
-        from CombatManeuvers.AdrenalDeflectingManeuverTable import AdrenalDeflectingManeuverTable
-        from CombatManeuvers.QuickdrawManeuverTable import QuickdrawManeuverTable
+        from .CombatManeuvers.AdrenalDeflectingManeuverTable import AdrenalDeflectingManeuverTable
+        from .CombatManeuvers.QuickdrawManeuverTable import QuickdrawManeuverTable
 
         if maneuver_type == CombatManeuversManeuverTable.MANEUVER_ADRENAL_DEFLECTING:
             trace.flow("Adrenal Deflecting maneuver")
@@ -76,5 +76,3 @@ class CombatManeuversManeuverTable(StaticManeuverTable):
         else:
             trace.flow("Combat maneuvers")
             return CombatManeuversManeuverTable()
-
-

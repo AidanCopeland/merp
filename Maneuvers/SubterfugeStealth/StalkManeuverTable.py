@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
-
-
 from Maneuvers.SubterfugeStealthManeuverTable import SubterfugeStealthManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import StringVar, IntVar
+from tkinter import StringVar, IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 PACE_PROMPT = "Stalking pace"
 CRAWL_TEXT = "Crawl (0.25x base)"
@@ -30,11 +30,13 @@ PACE_OPTIONS = (
     CRAWL_TEXT, CREEP_TEXT, WALK_TEXT,
     JOG_TEXT, RUN_TEXT, SPRINT_TEXT
 )
-INVISIBILITY_TEXT = "Bonus due to any invisibility or other sensory suppression (Invisiblity I gives +70, modified by fringe effects)"
+INVISIBILITY_TEXT = "Bonus due to any invisibility or other sensory suppression " \
+                    "(Invisiblity I gives +70, modified by fringe effects)"
 
 CONTESTED_TEXT = "Roll against searcher's Perception bonus?"
 
 SEARCHER_BONUS_TEXT = "Searcher's Perception bonus"
+
 
 def determine_pace_bonus(pace):
     """
@@ -63,13 +65,21 @@ def determine_pace_bonus(pace):
 
 
 class StalkManeuverTable(SubterfugeStealthManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SubterfugeStealthManeuverTable, self).__init__(**kwargs)
+        self.pace = StringVar()
+        self.invisibility_bonus = IntVar()
+        self.skill_frames_parent_frame = None
+        self.contested = IntVar()
+        self.searcher_bonus = IntVar()
+
+        trace.exit()
 
     def init_stalking_modifiers(self):
         """
         Set up the modifiers related to stalking.
         """
-        self.pace = StringVar()
-        self.invisibility_bonus = IntVar()
         self.invisibility_bonus.set(0)
 
     def setup_maneuver_skill_frames(self, parent_frame):
@@ -84,8 +94,6 @@ class StalkManeuverTable(SubterfugeStealthManeuverTable):
         FrameUtils.destroy_frame_objects(parent_frame)
 
         self.init_stalking_modifiers()
-        self.contested = IntVar()
-        self.searcher_bonus = IntVar()
         self.searcher_bonus.set(0)
         self.contested.set(0)
         self.redraw_maneuver_skill_frames()
@@ -142,7 +150,7 @@ class StalkManeuverTable(SubterfugeStealthManeuverTable):
             FrameUtils.setup_checkbox_frame(
                 parent_frame, CONTESTED_TEXT, self.contested
             )
-            self.contested.trace("w",self.skill_frames_update_callback)
+            self.contested.trace("w", self.skill_frames_update_callback)
 
             trace.exit()
 
@@ -165,7 +173,7 @@ class StalkManeuverTable(SubterfugeStealthManeuverTable):
 
         trace.exit()
 
-    def skill_frames_update_callback(self, *args):
+    def skill_frames_update_callback(self, *_args):
 
         trace.entry()
 

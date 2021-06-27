@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
-from Tkinter import IntVar
-
-import trace_log as trace
+from Maneuvers.StaticManeuverTable import *
 
 sys.path.append('../')
 
@@ -28,7 +25,7 @@ class TechnicalTradeGeneralManeuverTable(StaticManeuverTable):
 
     maneuver_result_text = {
         BLUNDER:
-            "You manage to ruin the tools of your trade through carelessless and "
+            "You manage to ruin the tools of your trade through carelessness and "
             "frustration.  Your fumbling hands also inflict an 'A' Critical of an "
             "appropriate type upon your person.  Is this your idea of fun?",
         ABSOLUTE_FAILURE:

@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
-
 from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 COMPLEX_CONCEPTS_TEXT = "Complex concepts?"
 WITH_PROPS_TEXT = "With props?"
@@ -17,13 +20,19 @@ WITH_PROPS_BONUS = 10
 
 
 class MimeryManeuverTable(ArtisticActiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticActiveManeuverTable, self).__init__(**kwargs)
+        self.complex_concepts = IntVar()
+        self.with_props = IntVar()
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
         Set up the frames specific to the skill.
         """
 
-        def setup_complex_concepts_frame(parent_frame):
+        def setup_complex_concepts_frame():
             """
             Create a frame with a Checkbox indicating whether the mime involves complex concepts
             """
@@ -31,7 +40,7 @@ class MimeryManeuverTable(ArtisticActiveManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, COMPLEX_CONCEPTS_TEXT, self.complex_concepts)
             trace.exit()
 
-        def setup_with_props_frame(parent_frame):
+        def setup_with_props_frame():
             """
             Create a frame with a Checkbox indicating whether the mime uses props
             """
@@ -42,10 +51,8 @@ class MimeryManeuverTable(ArtisticActiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.complex_concepts = IntVar()
-        self.with_props = IntVar()
-        setup_complex_concepts_frame(parent_frame)
-        setup_with_props_frame(parent_frame)
+        setup_complex_concepts_frame()
+        setup_with_props_frame()
 
         trace.exit()
 

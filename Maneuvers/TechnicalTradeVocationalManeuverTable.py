@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
-from Tkinter import IntVar
-
-import trace_log as trace
+from Maneuvers.StaticManeuverTable import *
 
 sys.path.append('../')
 
@@ -66,7 +63,7 @@ class TechnicalTradeVocationalManeuverTable(StaticManeuverTable):
             "Experience doesn't always outweigh knowledge.  You should have studied "
             "more.  You fail.",
         PARTIAL_SUCCESS:
-            "To your chagrin, you will have to consult another exopert.  If you are "
+            "To your chagrin, you will have to consult another expert.  If you are "
             "able to do so, you may try again in 24 hours to complete your task. "
             "Otherwise, you are stumped.",
         NEAR_SUCCESS:

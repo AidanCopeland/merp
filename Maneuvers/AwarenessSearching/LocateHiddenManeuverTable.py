@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.AwarenessSearchingManeuverTable import AwarenessSearchingManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 SPECIFIC_ITEM_TEXT = "Searching for a specific item?"
 LOCATION_DESCRIBED_TEXT = "Location described in detail?"
@@ -17,6 +21,13 @@ LOCATION_DESCRIBED_BONUS = 20
 
 
 class LocateHiddenManeuverTable(AwarenessSearchingManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AwarenessSearchingManeuverTable, self).__init__(**kwargs)
+        self.specific_item = IntVar()
+        self.location_described = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -44,8 +55,7 @@ class LocateHiddenManeuverTable(AwarenessSearchingManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.specific_item = IntVar()
-        self.location_described = IntVar()
+
         setup_specific_item_frame()
         setup_location_described_frame()
 

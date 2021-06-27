@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
 sys.path.append('../')
 
 
+# noinspection SpellCheckingInspection
 class CommunicationManeuverTable(StaticManeuverTable):
     MANEUVER_LIP_READING = "Lip Reading"
     MANEUVER_MAGICAL_LANGUAGES = "Magical Languages"
@@ -17,6 +18,7 @@ class CommunicationManeuverTable(StaticManeuverTable):
         MANEUVER_LIP_READING, MANEUVER_MAGICAL_LANGUAGES, MANEUVER_SIGNALLING
     )
 
+    # noinspection SpellCheckingInspection
     maneuver_result_text = {
         BLUNDER:
             "If this was an attempt at normal communication, you have just delivered (or "
@@ -74,5 +76,3 @@ class CommunicationManeuverTable(StaticManeuverTable):
             return LipReadingManeuverTable()
         else:
             return CommunicationManeuverTable()
-
-

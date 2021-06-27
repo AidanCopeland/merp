@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.AwarenessPerceptionsManeuverTable import AwarenessPerceptionsManeuverTable
@@ -7,7 +8,8 @@ from Maneuvers.SubterfugeStealth.HideManeuverTable import HideManeuverTable
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -15,7 +17,18 @@ AMBUSH_TEXT = "Bonus/penalty based on efficacy of ambush: +30 to -70"
 CONTESTED_TEXT = "Roll against opponent's Hiding bonus?"
 OPPONENT_BONUS_TEXT = "Opponent's Stalk/Hide bonus:"
 
+
 class SenseAmbushManeuverTable(AwarenessPerceptionsManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AwarenessPerceptionsManeuverTable, self).__init__(**kwargs)
+        self.skill_frames_parent_frame = None
+        self.efficacy_bonus = IntVar()
+        self.contested = IntVar()
+        self.opponent_bonus = IntVar()
+        self.opponent_hide_maneuver = HideManeuverTable()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -25,13 +38,9 @@ class SenseAmbushManeuverTable(AwarenessPerceptionsManeuverTable):
         trace.entry()
 
         self.skill_frames_parent_frame = parent_frame
-        self.efficacy_bonus = IntVar()
-        self.contested = IntVar()
         self.contested.set(0)
-        self.opponent_bonus = IntVar()
         self.opponent_bonus.set(0)
 
-        self.opponent_hide_maneuver = HideManeuverTable()
         self.opponent_hide_maneuver.init_hiding_modifiers()
 
         self.redraw_maneuver_skill_frames()
@@ -71,7 +80,7 @@ class SenseAmbushManeuverTable(AwarenessPerceptionsManeuverTable):
             FrameUtils.setup_checkbox_frame(
                 parent_frame, CONTESTED_TEXT, self.contested
             )
-            self.contested.trace("w",self.skill_frames_update_callback)
+            self.contested.trace("w", self.skill_frames_update_callback)
 
         trace.entry()
         parent_frame = self.skill_frames_parent_frame
@@ -87,7 +96,7 @@ class SenseAmbushManeuverTable(AwarenessPerceptionsManeuverTable):
 
         trace.exit()
 
-    def skill_frames_update_callback(self, *args):
+    def skill_frames_update_callback(self, *_args):
 
         trace.entry()
 

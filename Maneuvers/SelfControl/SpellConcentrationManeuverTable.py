@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
-sys.path.append('../')
-
-from Maneuvers.SelfControlManeuverTable import \
-    SelfControlManeuverTable, BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
+from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
+from Maneuvers.StaticManeuverTable import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
     PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
 
 import FrameUtils
 import trace_log as trace
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 MEDITATIVE_TRANCE_TEXT = "In a meditative trance?"
 MEDITATIVE_TRANCE_BONUS = 20
@@ -87,7 +90,20 @@ class SpellConcentrationManeuverTable(SelfControlManeuverTable):
         ABSOLUTE_SUCCESS: (100, 1, 30)
     }
 
-    def setup_difficulty_frame(self, parent_frame):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.additional_activity = IntVar()
+        self.meditative_trance = IntVar()
+        self.surroundings = IntVar()
+        self.num_interruptions = IntVar()
+        self.startled = IntVar()
+        self.physical_strike = StringVar()
+
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -157,17 +173,12 @@ class SpellConcentrationManeuverTable(SelfControlManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.additional_activity = IntVar()
+
         self.additional_activity.set(0)
-        self.meditative_trance = IntVar()
         self.meditative_trance.set(0)
-        self.surroundings = IntVar()
         self.surroundings.set(0)
-        self.num_interruptions = IntVar()
         self.num_interruptions.set(0)
-        self.startled = IntVar()
         self.startled.set(0)
-        self.physical_strike = StringVar()
 
         setup_activity_frame()
         setup_meditative_trance_frame()
@@ -315,5 +326,3 @@ class SpellConcentrationManeuverTable(SelfControlManeuverTable):
 
         trace.exit()
         return bonus
-
-

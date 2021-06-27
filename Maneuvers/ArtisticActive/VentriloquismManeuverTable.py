@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 WITH_PROPS_TEXT = "With props?"
 VOICE_DISTANCE_TEXT = "Distance voice thrown (in feet)?"
@@ -17,13 +21,19 @@ VOICE_DISTANCE_PENALTY = 5
 
 
 class VentriloquismManeuverTable(ArtisticActiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticActiveManeuverTable, self).__init__(**kwargs)
+        self.with_props = IntVar()
+        self.voice_distance = IntVar()
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
         Set up the frames specific to the skill.
         """
 
-        def setup_with_props_frame(parent_frame):
+        def setup_with_props_frame():
             """
             Create a frame with a Checkbox indicating whether the mime uses props
             """
@@ -31,7 +41,7 @@ class VentriloquismManeuverTable(ArtisticActiveManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, WITH_PROPS_TEXT, self.with_props)
             trace.exit()
 
-        def setup_voice_distance_frame(parent_frame):
+        def setup_voice_distance_frame():
             """
             Create a frame with an Entry specifying the distance the voice is "thrown"
             """
@@ -41,10 +51,9 @@ class VentriloquismManeuverTable(ArtisticActiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.with_props = IntVar()
-        self.voice_distance = IntVar()
         self.voice_distance.set(0)
-        setup_with_props_frame(parent_frame)
+        setup_with_props_frame()
+        setup_voice_distance_frame()
 
         trace.exit()
 

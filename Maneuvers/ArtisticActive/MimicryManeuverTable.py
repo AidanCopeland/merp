@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
-
 from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 SOUNDS_PROMPT = "Type of sounds being imitated:"
 SOUNDS_SIMPLE_TEXT = "Simple (one note/tone)"
@@ -32,6 +34,14 @@ NON_ANIMATE_COMPLEX_PENALTY = 35
 
 
 class MimicryManeuverTable(ArtisticActiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticActiveManeuverTable, self).__init__(**kwargs)
+        self.sounds_type = StringVar()
+        self.imitate_vocal_patterns = IntVar()
+        self.multi_sided = IntVar()
+        self.non_animate = StringVar()
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -75,10 +85,6 @@ class MimicryManeuverTable(ArtisticActiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.sounds_type = StringVar()
-        self.imitate_vocal_patterns = IntVar()
-        self.multi_sided = IntVar()
-        self.non_animate = StringVar()
         setup_sounds_type_frame()
         setup_imitate_vocal_frame()
         setup_multi_sided_frame()

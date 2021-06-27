@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append('../')
-
-from StaticManeuverTable import *
-from SubterfugeStealth.HideManeuverTable import HideManeuverTable
-from SubterfugeStealth.StalkManeuverTable import StalkManeuverTable
+from __future__ import absolute_import
+from Maneuvers.StaticManeuverTable import *
+from Maneuvers.SubterfugeStealth.HideManeuverTable import HideManeuverTable
+from Maneuvers.SubterfugeStealth.StalkManeuverTable import StalkManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
 
 SEARCHING_TEXT = "Is character spending time looking for specific information?"
 
@@ -25,6 +26,7 @@ PERCEPTION_OPTIONS = (
 )
 
 OPPONENT_BONUS_TEXT = "Opponent's Stalk/Hide bonus:"
+
 
 class PerceptionManeuverTable(StaticManeuverTable):
     maneuver_result_text = {
@@ -47,12 +49,24 @@ class PerceptionManeuverTable(StaticManeuverTable):
                           "This includes information on topics other than the one requiring the perception roll."
     }
 
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(StaticManeuverTable, self).__init__(**kwargs)
+        self.is_searching = IntVar()
+        self.skill_frames_parent_frame = Frame()
+        self.perception_type = StringVar()
+        self.opponent_bonus = IntVar()
+        self.opponent_hide_maneuver = HideManeuverTable()
+        self.opponent_stalk_maneuver = StalkManeuverTable()
+
+        trace.exit()
+
     def setup_maneuver_table_frames(self, parent_frame):
         """
         Set up the frames specific to the maneuver table.
         """
 
-        def setup_searching_frame(parent_frame):
+        def setup_searching_frame():
             """
             Create a frame with a Checkbox indicating whether the character is searching for the information
             """
@@ -65,8 +79,7 @@ class PerceptionManeuverTable(StaticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.is_searching = IntVar()
-        setup_searching_frame(parent_frame)
+        setup_searching_frame()
 
         trace.exit()
 
@@ -77,15 +90,11 @@ class PerceptionManeuverTable(StaticManeuverTable):
         trace.entry()
 
         self.skill_frames_parent_frame = parent_frame
-        self.perception_type = StringVar()
         self.perception_type.set(PERCEPTION_NONE_TEXT)
-        self.opponent_bonus = IntVar()
         self.opponent_bonus.set(0)
 
-        self.opponent_hide_maneuver = HideManeuverTable()
         self.opponent_hide_maneuver.init_hiding_modifiers()
 
-        self.opponent_stalk_maneuver = StalkManeuverTable()
         self.opponent_stalk_maneuver.init_stalking_modifiers()
 
         self.redraw_maneuver_skill_frames(self.perception_type.get())
@@ -93,7 +102,7 @@ class PerceptionManeuverTable(StaticManeuverTable):
 
         trace.exit()
 
-    def perception_type_update_callback(self, *args):
+    def perception_type_update_callback(self, *_args):
         """
         Callback when the type of perception has changed.
         """

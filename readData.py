@@ -1,6 +1,7 @@
 import re
 import trace_log as trace
 
+
 def read_tabbed_line(input_file):
     last_pos = input_file.tell()
     read_line = input_file.readline()
@@ -22,7 +23,6 @@ def read_semicolon_text(input_text):
 
 
 def read_delimited_text(input_text, separator):
-    split_regex = re.escape(separator)
     entry_list = re.split("%s" % separator, input_text)
     return [x.strip(' ') for x in entry_list]
 

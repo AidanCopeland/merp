@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.CommunicationManeuverTable import CommunicationManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 RANGE_TEXT = "Distance from target (feet)?"
 
@@ -21,6 +25,12 @@ POOR_LANGUAGE_BONUS = -20
 
 
 class LipReadingManeuverTable(CommunicationManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(CommunicationManeuverTable, self).__init__(**kwargs)
+        self.range = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -39,7 +49,6 @@ class LipReadingManeuverTable(CommunicationManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.range = IntVar()
         setup_range_frame()
 
         trace.exit()
@@ -56,11 +65,11 @@ class LipReadingManeuverTable(CommunicationManeuverTable):
 
         if self.range.get():
             trace.flow("Set range bonus")
-            range = self.range.get()
+            range_val = self.range.get()
 
-            if range > 20:
+            if range_val > 20:
                 trace.flow("Over 20'")
-                bonus -= (2 * (range - 20))
+                bonus -= (2 * (range_val - 20))
 
         trace.detail("Bonus %d" % bonus)
 

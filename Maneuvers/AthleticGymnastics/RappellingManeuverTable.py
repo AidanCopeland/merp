@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.MovingManeuverTable import MovingManeuverTable, LIGHT, MEDIUM, HARD, \
@@ -7,8 +8,9 @@ from Maneuvers.MovingManeuverTable import MovingManeuverTable, LIGHT, MEDIUM, HA
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar, RAISED, LEFT, RIGHT, BOTH
-from ttk import Frame, Label, OptionMenu
+from tkinter import IntVar, StringVar, RAISED, LEFT, RIGHT, BOTH
+from tkinter.ttk import Frame, Label, OptionMenu
+standard_library.install_aliases()
 
 sys.path.append('../')
 
@@ -48,6 +50,7 @@ class RappellingManeuverTable(MovingManeuverTable):
         trace.entry()
         super(MovingManeuverTable, self).__init__(**kwargs)
         self.descent_pace = StringVar()
+        self.gear = IntVar()
         trace.exit()
 
     def setup_difficulty_frame(self, parent_frame):
@@ -89,7 +92,6 @@ class RappellingManeuverTable(MovingManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.gear = IntVar()
         setup_gear_frame()
 
         trace.exit()

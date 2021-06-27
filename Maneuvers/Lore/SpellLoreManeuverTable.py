@@ -1,18 +1,29 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.LoreManeuverTable import LoreManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 INSTANT_SPELL_TEXT = "Instant spell cast?"
 INSTANT_SPELL_BONUS = -30
 
+
 class SpellLoreManeuverTable(LoreManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(LoreManeuverTable, self).__init__(**kwargs)
+        self.instant_spell = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -27,11 +38,9 @@ class SpellLoreManeuverTable(LoreManeuverTable):
             FrameUtils.setup_checkbox_frame(parent_frame, INSTANT_SPELL_TEXT, self.instant_spell)
             trace.exit()
 
-
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.instant_spell = IntVar()
         setup_instant_spell_frame()
 
         trace.exit()

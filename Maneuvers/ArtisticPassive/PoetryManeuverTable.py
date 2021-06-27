@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.ArtisticPassiveManeuverTable import ArtisticPassiveManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 PERSONAL_TEXT = "Is this about a personal experience?"
 UNFAMILIAR_TEXT = "Is this about an unfamiliar topic?"
@@ -19,6 +23,14 @@ LANGUAGE_BONUS = 15
 
 
 class PoetryManeuverTable(ArtisticPassiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticPassiveManeuverTable, self).__init__(**kwargs)
+        self.unfamiliar = IntVar()
+        self.personal = IntVar()
+        self.language_proficient = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
@@ -52,9 +64,6 @@ class PoetryManeuverTable(ArtisticPassiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.unfamiliar = IntVar()
-        self.personal = IntVar()
-        self.language_proficient = IntVar()
         setup_unfamiliar_frame()
         setup_personal_frame()
         setup_language_frame()

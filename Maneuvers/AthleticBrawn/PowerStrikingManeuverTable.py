@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
-
 from Maneuvers.AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
 from Maneuvers.StaticManeuverTable import \
     maneuver_difficulty_bonuses, MEDIUM, HARD, VERY_HARD, EXTREMELY_HARD, SHEER_FOLLY, ABSURD
-
 import FrameUtils
 import trace_log as trace
+from tkinter import StringVar
+standard_library.install_aliases()
 
-from Tkinter import StringVar
+sys.path.append('../')
+
 
 TARGET_BONUS_PROMPT = "Desired bonus to blow"
 TARGET_BONUS_10_TEXT = "+10 (Medium)"
@@ -19,17 +20,24 @@ TARGET_BONUS_40_TEXT = "+40 (Extremely Hard)"
 TARGET_BONUS_50_TEXT = "+50 (Sheer Folly)"
 TARGET_BONUS_60_TEXT = "+60 (Absurd)"
 TARGET_BONUS_OPTIONS = (
-    TARGET_BONUS_10_TEXT, 
-    TARGET_BONUS_20_TEXT, 
-    TARGET_BONUS_30_TEXT, 
-    TARGET_BONUS_40_TEXT, 
-    TARGET_BONUS_50_TEXT, 
+    TARGET_BONUS_10_TEXT,
+    TARGET_BONUS_20_TEXT,
+    TARGET_BONUS_30_TEXT,
+    TARGET_BONUS_40_TEXT,
+    TARGET_BONUS_50_TEXT,
     TARGET_BONUS_60_TEXT)
 
 
 class PowerStrikingManeuverTable(AthleticBrawnManeuverTable):
 
-    def setup_difficulty_frame(self, parent_frame):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AthleticBrawnManeuverTable, self).__init__(**kwargs)
+        self.target_bonus = StringVar()
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -52,7 +60,6 @@ class PowerStrikingManeuverTable(AthleticBrawnManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.target_bonus = StringVar()
         setup_target_bonus_frame()
 
         trace.exit()

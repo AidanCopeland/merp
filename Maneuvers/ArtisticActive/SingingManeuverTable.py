@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
 from Maneuvers.ArtisticActiveManeuverTable import ArtisticActiveManeuverTable, PARTNER_PENALTY, LORE_BONUS
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar
+from tkinter import IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 BAD_LANGUAGE_TEXT = "Only one skill rank in language?"
 
@@ -16,13 +20,19 @@ IMPROVISATION_PENALTY = 30
 
 
 class SingingManeuverTable(ArtisticActiveManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ArtisticActiveManeuverTable, self).__init__(**kwargs)
+        self.bad_language = IntVar()
+
+        trace.exit()
 
     def setup_maneuver_skill_frames(self, parent_frame):
         """
         Set up the frames specific to the skill.
         """
 
-        def setup_bad_language_frame(parent_frame):
+        def setup_bad_language_frame():
             """
             Create a frame with a Checkbox indicating whether the speaker has only 1 rank in the language
             """
@@ -33,8 +43,7 @@ class SingingManeuverTable(ArtisticActiveManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.bad_language = IntVar()
-        setup_bad_language_frame(parent_frame)
+        setup_bad_language_frame()
 
         trace.exit()
 

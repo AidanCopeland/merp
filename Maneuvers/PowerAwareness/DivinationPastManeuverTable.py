@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-sys.path.append('../')
 
-from Maneuvers.PowerAwarenessManeuverTable import \
-    PowerAwarenessManeuverTable, BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
+from Maneuvers.PowerAwarenessManeuverTable import PowerAwarenessManeuverTable
+from Maneuvers.StaticManeuverTable import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
     PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
-from ttk import Frame, Label, OptionMenu
+from tkinter.ttk import Frame, Label, OptionMenu
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import LEFT, RIGHT, BOTH, RAISED, IntVar
+from tkinter import LEFT, RIGHT, BOTH, RAISED, IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 TIME_PROMPT = "Distance into past (no more than): "
 
@@ -47,6 +51,7 @@ MAJOR_FACTOR_TEXT = "Major influencing factor on the past"
 
 MAJOR_FACTOR_BONUS = 10
 MINOR_FACTOR_BONUS = -10
+
 
 def major_factor_bonus(major_factor):
     """
@@ -99,6 +104,15 @@ class DivinationPastManeuverTable(PowerAwarenessManeuverTable):
             "correctly.  Hopefully the querent is paying you well. "
             "Now how about those Lottery numbers, Nostradamus?"
     }
+
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(PowerAwarenessManeuverTable, self).__init__(**kwargs)
+        self.major_factor = IntVar()
+        self.maneuver_difficulty_options = None
+        self.maneuver_difficulty_selector = None
+
+        trace.exit()
 
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()

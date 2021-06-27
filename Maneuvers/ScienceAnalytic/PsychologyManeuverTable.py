@@ -1,14 +1,17 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
-
-sys.path.append('../')
 
 from Maneuvers.ScienceAnalyticManeuverTable import ScienceAnalyticManeuverTable
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import IntVar, StringVar
+from tkinter import IntVar, StringVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 ILLNESS_LEVEL_PROMPT = "Severity of mental illness"
 ILLNESS_SLIGHT_TEXT = "Slight"
@@ -29,6 +32,7 @@ SEVERITY_TEXT = "Bonus caused by severity of event which caused illness (+30 to 
 
 LEVEL_TEXT = "Level of PC/NPC which caused illness"
 
+
 def illness_level_bonus(illness_level):
     """
     Determine the bonus to the maneuver based on the severity of the illness.
@@ -45,6 +49,7 @@ def illness_level_bonus(illness_level):
         trace.flow("Severe illness: -20")
         return ILLNESS_SEVERE_BONUS
 
+
 def years_affected_bonus(years_affected):
     """
     Determine the bonus to the maneuver based on the number of years affected.
@@ -55,9 +60,20 @@ def years_affected_bonus(years_affected):
                (years_affected, years_affected * YEARS_BONUS))
     return years_affected * YEARS_BONUS
 
-class PsychologyManeuverTable(ScienceAnalyticManeuverTable):
 
-    def setup_difficulty_frame(self, parent_frame):
+class PsychologyManeuverTable(ScienceAnalyticManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(ScienceAnalyticManeuverTable, self).__init__(**kwargs)
+        self.illness_level = StringVar()
+        self.years_affected = IntVar()
+        self.event_severity = IntVar()
+        self.npc_level = IntVar()
+
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -106,10 +122,7 @@ class PsychologyManeuverTable(ScienceAnalyticManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.illness_level = StringVar()
-        self.years_affected = IntVar()
-        self.event_severity = IntVar()
-        self.npc_level = IntVar()
+
         setup_illness_level_frame()
         setup_years_affected_frame()
         setup_event_severity_frame()

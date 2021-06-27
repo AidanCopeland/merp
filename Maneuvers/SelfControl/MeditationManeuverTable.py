@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
-sys.path.append('../')
-
 from Maneuvers.SelfControlManeuverTable import SelfControlManeuverTable
-from ttk import Frame, Label, OptionMenu
+from tkinter.ttk import Frame, Label, OptionMenu
 
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import LEFT, RIGHT, BOTH, RAISED, IntVar
+from tkinter import LEFT, RIGHT, BOTH, RAISED, IntVar
+standard_library.install_aliases()
+
+sys.path.append('../')
+
 
 TIME_PROMPT = "Difficulty of meditation: "
 
@@ -45,6 +48,14 @@ ELF_BONUS = 25
 
 
 class MeditationManeuverTable(SelfControlManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(SelfControlManeuverTable, self).__init__(**kwargs)
+        self.maneuver_difficulty_options = None
+        self.maneuver_difficulty_selector = None
+        self.is_elf = IntVar()
+
+        trace.exit()
 
     def setup_difficulty_frame(self, parent_frame):
         trace.entry()
@@ -84,7 +95,6 @@ class MeditationManeuverTable(SelfControlManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.is_elf = IntVar()
         setup_is_elf_frame()
 
         trace.exit()

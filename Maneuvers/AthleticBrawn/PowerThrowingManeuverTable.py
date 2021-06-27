@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from future import standard_library
 import sys
 
 from Maneuvers.AthleticBrawnManeuverTable import AthleticBrawnManeuverTable
@@ -8,7 +9,8 @@ from Maneuvers.StaticManeuverTable import \
 import FrameUtils
 import trace_log as trace
 
-from Tkinter import StringVar
+from tkinter import StringVar
+standard_library.install_aliases()
 sys.path.append('../')
 
 TARGET_BONUS_PROMPT = "Desired bonus to range"
@@ -28,8 +30,15 @@ TARGET_BONUS_OPTIONS = (
 
 
 class PowerThrowingManeuverTable(AthleticBrawnManeuverTable):
+    def __init__(self, **kwargs):
+        trace.entry()
+        super(AthleticBrawnManeuverTable, self).__init__(**kwargs)
+        self.target_bonus = StringVar()
 
-    def setup_difficulty_frame(self, parent_frame):
+        trace.exit()
+
+    @staticmethod
+    def setup_difficulty_frame(parent_frame):
         trace.entry()
         FrameUtils.destroy_frame_objects(parent_frame)
 
@@ -52,7 +61,6 @@ class PowerThrowingManeuverTable(AthleticBrawnManeuverTable):
         trace.entry()
 
         FrameUtils.destroy_frame_objects(parent_frame)
-        self.target_bonus = StringVar()
         setup_target_bonus_frame()
 
         trace.exit()

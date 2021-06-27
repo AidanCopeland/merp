@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
@@ -41,7 +41,7 @@ class AwarenessSensesManeuverTable(StaticManeuverTable):
             "Your senses never lie.  You pick up all pertinent information on your target or "
             "situation.",
         ABSOLUTE_SUCCESS:
-            "The hairs on the back of your neck spring upright!  With preternatural intutition, "
+            "The hairs on the back of your neck spring upright!  With preternatural intuition, "
             "you may react immediately (with no penalty) to any information you receive on your "
             "target or situation.  In addition, you receive unusual or extraneous information, "
             "and you may make a secondary static maneuver at no penalty to utilize this "
@@ -84,5 +84,3 @@ class AwarenessSensesManeuverTable(StaticManeuverTable):
             return TimeSenseManeuverTable()
         else:
             return AwarenessSensesManeuverTable()
-
-

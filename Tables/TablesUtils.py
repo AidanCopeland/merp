@@ -27,7 +27,6 @@ def find_merp_table_row_entry(table, roll):
     """
     Find the row in a table, passing in the set of minimum values for each row and the dice roll.
     :param table: The table to check.
-    :param table_minimum_values: The set of minimum values for entries in the table.
     :param roll: The resolved dice roll.
     :return: The row in the table.
     """

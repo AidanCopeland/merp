@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
-from Tkinter import IntVar
-
-import trace_log as trace
+from Maneuvers.StaticManeuverTable import *
 
 sys.path.append('../')
 

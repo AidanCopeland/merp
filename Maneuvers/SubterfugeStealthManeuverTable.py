@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
-from Tkinter import IntVar
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 

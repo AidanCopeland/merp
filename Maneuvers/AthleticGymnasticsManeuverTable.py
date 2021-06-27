@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
+from __future__ import absolute_import
 
-from StaticManeuverTable import *
+from Maneuvers.StaticManeuverTable import *
 
 import trace_log as trace
 
@@ -32,6 +32,7 @@ class AthleticGymnasticsManeuverTable(StaticManeuverTable):
         MANEUVER_TIGHTROPE_WALKING, MANEUVER_TUMBLING
     )
 
+    # noinspection SpellCheckingInspection
     maneuver_result_text = {
         BLUNDER: "In your zeal, you have forgotten to fully warm up.  You severely pull a major muscle group in the "
                  "middle of your maneuver, inflicting a ""Medium"" Muscle wound (with a -30 penalty) and two rounds of "
@@ -148,4 +149,3 @@ class AthleticGymnasticsManeuverTable(StaticManeuverTable):
             trace.flow("Tumbling maneuver")
             trace.exit()
             return AthleticGymnasticsManeuverTable()
-
