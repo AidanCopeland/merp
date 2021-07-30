@@ -27,12 +27,14 @@ class PowerAwarenessManeuverTable(StaticManeuverTable):
     MANEUVER_USE_ITEMS = "Use Items"
     MANEUVER_DIVINATION_PAST = "Divination (past)"
     MANEUVER_DIVINATION_FUTURE = "Divination (future)"
+    MANEUVER_MAGICAL_PREDICTION = "Magical Prediction"
     MANEUVER_POWER_PERCEPTION = "Power Perception"
     MANEUVER_READ_RUNES = "Read Runes"
 
     maneuver_type_options = (
         MANEUVER_ATTUNEMENT, MANEUVER_USE_ITEMS, MANEUVER_DIVINATION_PAST,
-        MANEUVER_DIVINATION_FUTURE, MANEUVER_POWER_PERCEPTION, MANEUVER_READ_RUNES
+        MANEUVER_DIVINATION_FUTURE, MANEUVER_MAGICAL_PREDICTION, MANEUVER_POWER_PERCEPTION,
+        MANEUVER_READ_RUNES
     )
 
     maneuver_result_text = {

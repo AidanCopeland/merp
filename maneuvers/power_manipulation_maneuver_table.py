@@ -25,15 +25,19 @@ class PowerManipulationManeuverTable(StaticManeuverTable):
         select_power_manipulation_table(maneuver_type)
     """
     MANEUVER_CHANNELING = "Channeling"
+    MANEUVER_DIRECTED_SPELLS = "Directed Spells"
     MANEUVER_MAGIC_RITUAL = "Magic Ritual"
+    MANEUVER_MENTAL_CONTROL = "Mental Control"
     MANEUVER_SPELL_ARTISTRY = "Spell Artistry"
     MANEUVER_SPELL_MASTERY = "Spell Mastery"
     MANEUVER_SPELL_TRICKERY = "Spell Trickery"
     MANEUVER_SUMMONING = "Summoning"
+    MANEUVER_TRANSCEND_ARMOUR = "Transcend Armour"
 
     maneuver_type_options = (
-        MANEUVER_CHANNELING, MANEUVER_MAGIC_RITUAL, MANEUVER_SPELL_ARTISTRY,
-        MANEUVER_SPELL_MASTERY, MANEUVER_SPELL_TRICKERY, MANEUVER_SUMMONING
+        MANEUVER_CHANNELING, MANEUVER_DIRECTED_SPELLS, MANEUVER_MAGIC_RITUAL,
+        MANEUVER_MENTAL_CONTROL, MANEUVER_SPELL_ARTISTRY, MANEUVER_SPELL_MASTERY,
+        MANEUVER_SPELL_TRICKERY, MANEUVER_SUMMONING, MANEUVER_TRANSCEND_ARMOUR
     )
 
     maneuver_result_text = {

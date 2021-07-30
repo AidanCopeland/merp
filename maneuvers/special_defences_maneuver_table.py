@@ -25,7 +25,7 @@ class SpecialDefencesManeuverTable(StaticManeuverTable):
     MANEUVER_ADRENAL_TOUGHNESS = "Adrenal Toughness"
 
     maneuver_type_options = (
-        MANEUVER_ADRENAL_TOUGHNESS,
+        MANEUVER_ADRENAL_TOUGHNESS
     )
 
     maneuver_result_text = {
