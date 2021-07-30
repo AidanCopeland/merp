@@ -61,7 +61,7 @@ maneuver_fumble_bonuses = {
 FMB = -99
 
 
-class MovingManeuverTable():
+class MovingManeuverTable:
     """
     The base moving maneuver table.  Overridden by skill-specific maneuver tables.
 

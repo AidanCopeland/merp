@@ -26,11 +26,14 @@ class CombatManeuversManeuverTable(StaticManeuverTable):
         table_bonus(self)
     """
     MANEUVER_ADRENAL_DEFLECTING = "Adrenal Deflecting"
+    MANEUVER_ADRENAL_EVASION = "Adrenal Evasion"
     MANEUVER_QUICKDRAW = "Quickdraw"
+    MANEUVER_RAPID_FIRE = "Rapid Fire"
     MANEUVER_SWASHBUCKLING = "Swashbuckling"
 
     maneuver_type_options = (
-        MANEUVER_ADRENAL_DEFLECTING, MANEUVER_QUICKDRAW, MANEUVER_SWASHBUCKLING
+        MANEUVER_ADRENAL_DEFLECTING, MANEUVER_ADRENAL_EVASION, MANEUVER_QUICKDRAW,
+        MANEUVER_RAPID_FIRE, MANEUVER_SWASHBUCKLING
     )
 
     maneuver_result_text = {
@@ -74,24 +77,33 @@ class CombatManeuversManeuverTable(StaticManeuverTable):
     }
 
     @staticmethod
-    def select_combat_maneuvers_table(maneuver_type):
+    def select_combat_maneuvers_table(maneuver_type, parent_maneuver_table):
         """
         Set the current combat maneuvers maneuver table to use.
         :param maneuver_type: The type of maneuver selected.
+        :param parent_maneuver_table: The owning maneuver table.
         :return: The maneuver table.
         """
         # pylint: disable=import-outside-toplevel
         # Avoid circular import problems
         from .combat_maneuvers.adrenal_deflecting_maneuver_table import \
             AdrenalDeflectingManeuverTable
+        from .combat_maneuvers.adrenal_evasion_maneuver_table import AdrenalEvasionManeuverTable
         from .combat_maneuvers.quickdraw_maneuver_table import QuickdrawManeuverTable
+        from .combat_maneuvers.rapid_fire_maneuver_table import RapidFireManeuverTable
 
         if maneuver_type == CombatManeuversManeuverTable.MANEUVER_ADRENAL_DEFLECTING:
             trace.flow("Adrenal Deflecting maneuver")
             return AdrenalDeflectingManeuverTable()
+        elif maneuver_type == CombatManeuversManeuverTable.MANEUVER_ADRENAL_EVASION:
+            trace.flow("Adrenal Evasion maneuver")
+            return AdrenalEvasionManeuverTable()
         elif maneuver_type == CombatManeuversManeuverTable.MANEUVER_QUICKDRAW:
             trace.flow("Quickdraw maneuver")
             return QuickdrawManeuverTable()
+        elif maneuver_type == CombatManeuversManeuverTable.MANEUVER_RAPID_FIRE:
+            trace.flow("Rapid Fire maneuver")
+            return RapidFireManeuverTable(parent_maneuver_table)
         else:
             trace.flow("Combat maneuvers")
             return CombatManeuversManeuverTable()

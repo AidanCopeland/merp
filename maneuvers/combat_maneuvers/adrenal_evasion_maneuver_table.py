@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-The Adrenal Deflecting moving maneuver table.
+The Adrenal Evasion moving maneuver table.
 
 Classes:
-    AdrenalDeflectingManeuverTable
+    AdrenalEvasionManeuverTable
 """
 import sys
 from tkinter import StringVar
 
-from maneuvers.moving_maneuver_table import EXTREMELY_HARD, SHEER_FOLLY
+from maneuvers.moving_maneuver_table import HARD, EXTREMELY_HARD
 from maneuvers.combat_maneuvers.adrenal_deflection_evasion_maneuver_table import \
     AdrenalDeflectionEvasionManeuverTable
 
@@ -16,22 +16,22 @@ import trace_log as trace
 
 sys.path.append('../')
 
-THROWN_WEAPON_TEXT = "Thrown"
+MELEE_THROWN_WEAPON_TEXT = "Melee/Thrown"
 MISSILE_WEAPON_TEXT = "Missile"
 
 weapon_options = (
-    THROWN_WEAPON_TEXT,
+    MELEE_THROWN_WEAPON_TEXT,
     MISSILE_WEAPON_TEXT)
 
 weapon_difficulties = {
-    THROWN_WEAPON_TEXT: EXTREMELY_HARD,
-    MISSILE_WEAPON_TEXT: SHEER_FOLLY
+    MELEE_THROWN_WEAPON_TEXT: HARD,
+    MISSILE_WEAPON_TEXT: EXTREMELY_HARD
 }
 
 
-class AdrenalDeflectingManeuverTable(AdrenalDeflectionEvasionManeuverTable):
+class AdrenalEvasionManeuverTable(AdrenalDeflectionEvasionManeuverTable):
     """
-    Adrenal Deflecting moving maneuver table.
+    Adrenal Evasion moving maneuver table.
 
     Methods:
         setup_difficulty_frame(self, parent_frame)

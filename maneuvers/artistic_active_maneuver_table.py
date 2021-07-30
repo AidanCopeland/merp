@@ -45,7 +45,7 @@ class ArtisticActiveManeuverTable(StaticManeuverTable):
     MANEUVER_PLAY_INSTRUMENT = "Play instrument"
     MANEUVER_POETIC_IMPROVISATION = "Poetic Improvisation"
     MANEUVER_SINGING = "Singing"
-    MANEUVER_TALE_TELLING = "Tale Telling"
+    MANEUVER_TALE_TELLING = "Story/Tale Telling"
     MANEUVER_VENTRILOQUISM = "Ventriloquism"
 
     maneuver_type_options = (

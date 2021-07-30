@@ -24,6 +24,7 @@ class AwarenessSearchingManeuverTable(StaticManeuverTable):
         select_awareness_searching_table(maneuver_type)
     """
     MANEUVER_DETECT_TRAPS = "Detect Traps"
+    MANEUVER_DISCERN_WOUNDS = "Discern Wounds"
     MANEUVER_LIE_PERCEPTION = "Lie Perception"
     MANEUVER_LOCATE_HIDDEN = "Locate Hidden"
     MANEUVER_OBSERVATION = "Observation"
@@ -33,9 +34,9 @@ class AwarenessSearchingManeuverTable(StaticManeuverTable):
     MANEUVER_TRACKING = "Tracking"
 
     maneuver_type_options = (
-        MANEUVER_DETECT_TRAPS, MANEUVER_LIE_PERCEPTION, MANEUVER_LOCATE_HIDDEN,
-        MANEUVER_OBSERVATION, MANEUVER_POISON_PERCEPTION, MANEUVER_READING_TRACKS,
-        MANEUVER_SURVEILLANCE, MANEUVER_TRACKING
+        MANEUVER_DETECT_TRAPS, MANEUVER_DISCERN_WOUNDS, MANEUVER_LIE_PERCEPTION,
+        MANEUVER_LOCATE_HIDDEN, MANEUVER_OBSERVATION, MANEUVER_POISON_PERCEPTION,
+        MANEUVER_READING_TRACKS, MANEUVER_SURVEILLANCE, MANEUVER_TRACKING
     )
 
     maneuver_result_text = {

@@ -452,8 +452,7 @@ class ManeuverTable(Frame):
         self.old_maneuver_type.set(self.maneuver_type.get())
         trace.exit()
 
-    @staticmethod
-    def __select_maneuver_table(maneuver_type):
+    def __select_maneuver_table(self, maneuver_type):
         """
         Set the current maneuver table to use.
         :param maneuver_type: The type of maneuver.
@@ -518,7 +517,7 @@ class ManeuverTable(Frame):
         elif maneuver_type in CombatManeuversManeuverTable.maneuver_type_options:
             trace.flow("Combat Maneuvers maneuver")
             trace.exit()
-            return CombatManeuversManeuverTable.select_combat_maneuvers_table(maneuver_type)
+            return CombatManeuversManeuverTable.select_combat_maneuvers_table(maneuver_type, self)
         elif maneuver_type in CommunicationManeuverTable.maneuver_type_options:
             trace.flow("Communication maneuver")
             trace.exit()
@@ -706,6 +705,14 @@ class ManeuverTable(Frame):
         self.result_text.insert(END, "")
 
         trace.exit()
+
+    def result_text_callback(self, text):
+        """
+        Receive result text from the maneuver table outside the normal maneuver resolution process.
+        :param text: Result text received from the maneuver_table.
+        """
+        self.result_text.delete(1.0, END)
+        self.result_text.insert(END, text)
 
     def roll_dice(self):
         """

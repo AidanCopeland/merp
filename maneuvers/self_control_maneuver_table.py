@@ -45,10 +45,12 @@ class SelfControlManeuverTable(StaticManeuverTable):
     MANEUVER_CLEANSING_TRANCE = "Cleansing Trance"
     MANEUVER_CONTROL_LYCANTHROPY = "Control Lycanthropy"
     MANEUVER_DEATH_TRANCE = "Death Trance"
+    MANEUVER_DRUG_TOLERANCE = "Drug Tolerance"
     MANEUVER_FRENZY = "Frenzy"
     MANEUVER_HEALING_TRANCE = "Healing Trance"
     MANEUVER_MEDITATION = "Meditation"
     MANEUVER_MNEMONICS = "Mnemonics"
+    MANEUVER_POISON_TOLERANCE = "Poison Tolerance"
     MANEUVER_SLEEP_TRANCE = "Sleep Trance"
     MANEUVER_SPELL_CONCENTRATION = "Spell Concentration"
     MANEUVER_STUNNED_MANEUVERING = "Stunned Maneuvering"
@@ -57,9 +59,10 @@ class SelfControlManeuverTable(StaticManeuverTable):
         MANEUVER_ADRENAL_BALANCE, MANEUVER_ADRENAL_CONCENTRATION, MANEUVER_ADRENAL_LANDING,
         MANEUVER_ADRENAL_LEAPING, MANEUVER_ADRENAL_QUICKDRAW, MANEUVER_ADRENAL_SPEED,
         MANEUVER_ADRENAL_STABILIZATION, MANEUVER_ADRENAL_STRENGTH, MANEUVER_CLEANSING_TRANCE,
-        MANEUVER_CONTROL_LYCANTHROPY, MANEUVER_DEATH_TRANCE, MANEUVER_FRENZY,
-        MANEUVER_HEALING_TRANCE, MANEUVER_MEDITATION, MANEUVER_MNEMONICS,
-        MANEUVER_SLEEP_TRANCE, MANEUVER_SPELL_CONCENTRATION, MANEUVER_STUNNED_MANEUVERING
+        MANEUVER_CONTROL_LYCANTHROPY, MANEUVER_DEATH_TRANCE, MANEUVER_DRUG_TOLERANCE,
+        MANEUVER_FRENZY, MANEUVER_HEALING_TRANCE, MANEUVER_MEDITATION, MANEUVER_MNEMONICS,
+        MANEUVER_POISON_TOLERANCE, MANEUVER_SLEEP_TRANCE, MANEUVER_SPELL_CONCENTRATION,
+        MANEUVER_STUNNED_MANEUVERING
     )
 
     maneuver_result_text = {
@@ -127,8 +130,12 @@ class SelfControlManeuverTable(StaticManeuverTable):
             AdrenalStrengthManeuverTable
         from maneuvers.self_control.control_lycanthropy_maneuver_table import \
             ControlLycanthropyManeuverTable
+        from maneuvers.self_control.drug_tolerance_maneuver_table import \
+            DrugToleranceManeuverTable
         from maneuvers.self_control.meditation_maneuver_table import MeditationManeuverTable
         from maneuvers.self_control.mnemonics_maneuver_table import MnemonicsManeuverTable
+        from maneuvers.self_control.poison_tolerance_maneuver_table import \
+            PoisonToleranceManeuverTable
         from maneuvers.self_control.spell_concentration_maneuver_table import \
             SpellConcentrationManeuverTable
         from maneuvers.self_control.stunned_maneuvering_maneuver_table import \
@@ -150,6 +157,10 @@ class SelfControlManeuverTable(StaticManeuverTable):
             trace.flow("Control Lycanthropy maneuver")
             trace.exit()
             return ControlLycanthropyManeuverTable()
+        elif maneuver_type == SelfControlManeuverTable.MANEUVER_DRUG_TOLERANCE:
+            trace.flow("Drug Tolerance maneuver")
+            trace.exit()
+            return DrugToleranceManeuverTable()
         elif maneuver_type == SelfControlManeuverTable.MANEUVER_MEDITATION:
             trace.flow("Meditation maneuver")
             trace.exit()
@@ -158,6 +169,10 @@ class SelfControlManeuverTable(StaticManeuverTable):
             trace.flow("Mnemonics maneuver")
             trace.exit()
             return MnemonicsManeuverTable()
+        elif maneuver_type == SelfControlManeuverTable.MANEUVER_POISON_TOLERANCE:
+            trace.flow("Poison Tolerance maneuver")
+            trace.exit()
+            return PoisonToleranceManeuverTable()
         elif maneuver_type == SelfControlManeuverTable.MANEUVER_SPELL_CONCENTRATION:
             trace.flow("Spell Concentration maneuver")
             trace.exit()
