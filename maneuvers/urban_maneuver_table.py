@@ -11,6 +11,12 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.general_skills import SKILL_FORAGING
+from console.character.subterfuge_skills import \
+    SKILL_CONTACTING_SUBTERFUGE, SKILL_STREETWISE, SKILL_STALK_HIDE
+from console.character.secondary_skills import SKILL_MINGLING, SKILL_SCROUNGING
+
+import trace_log as trace
 
 sys.path.append('../')
 
@@ -80,3 +86,24 @@ class UrbanManeuverTable(StaticManeuverTable):
         :return: The maneuver table.
         """
         return UrbanManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            UrbanManeuverTable.MANEUVER_CONTACTING:
+                [SKILL_CONTACTING_SUBTERFUGE, ],
+            UrbanManeuverTable.MANEUVER_MINGLING:
+                [SKILL_MINGLING, SKILL_STALK_HIDE, SKILL_STREETWISE],
+            UrbanManeuverTable.MANEUVER_SCROUNGING:
+                [SKILL_SCROUNGING, SKILL_FORAGING],
+            UrbanManeuverTable.MANEUVER_STREETWISE:
+                [SKILL_STREETWISE, SKILL_MINGLING]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

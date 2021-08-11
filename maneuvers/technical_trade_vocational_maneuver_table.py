@@ -11,6 +11,22 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.general_skills import \
+    SKILL_NAVIGATION, SKILL_PREPARING_HERBS, SKILL_HERB_LORE
+from console.character.subterfuge_skills import SKILL_DUPING
+from console.character.leadership_skills import \
+    SKILL_LEADERSHIP_LEADERSHIP, SKILL_PUBLIC_SPEAKING_LEADERSHIP, SKILL_CONTACTING_LEADERSHIP
+from console.character.secondary_skills import \
+    SKILL_ADVERTISING, SKILL_ARCHITECTURE, SKILL_DRAFTING, SKILL_DIAGNOSTICS, \
+    SKILL_DISCERN_WOUNDS, SKILL_DOWSING, SKILL_DROWSING, SKILL_MEDITATION, SKILL_ENGINEERING, \
+    SKILL_REGION_LORE_WILD, SKILL_CULTURE_WILD, SKILL_MECHANITION, SKILL_SMITHING, \
+    SKILL_MILITARY_ORGANISATION, SKILL_MINING, SKILL_SECOND_AID, SKILL_FIRST_AID, SKILL_SURGERY, \
+    SKILL_ADMINISTRATION, SKILL_APPRAISAL, SKILL_EVALUATE_ARMOUR, SKILL_EVALUATE_METAL, \
+    SKILL_EVALUATE_STONE, SKILL_EVALUATE_WEAPON, SKILL_BOAT_PILOT, SKILL_CARTOGRAPHY, \
+    SKILL_GIMMICKRY, SKILL_HYPNOSIS, SKILL_MIDWIFERY, SKILL_ORIENTEERING, SKILL_SERVICE, \
+    SKILL_SIEGE_ENGINEERING, SKILL_TACTICS
+
+import trace_log as trace
 
 sys.path.append('../')
 
@@ -112,3 +128,78 @@ class TechnicalTradeVocationalManeuverTable(StaticManeuverTable):
         :return: The maneuver table.
         """
         return TechnicalTradeVocationalManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            TechnicalTradeVocationalManeuverTable.MANEUVER_ADVERTISING:
+                [SKILL_ADVERTISING,
+                 SKILL_DUPING,
+                 SKILL_LEADERSHIP_LEADERSHIP,
+                 SKILL_PUBLIC_SPEAKING_LEADERSHIP],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_ARCHITECTURE:
+                [SKILL_ARCHITECTURE, SKILL_DRAFTING, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_DIAGNOSTICS:
+                [SKILL_DIAGNOSTICS, SKILL_DISCERN_WOUNDS],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_DOWSING:
+                [SKILL_DOWSING, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_DROWSING:
+                [SKILL_DROWSING, SKILL_MEDITATION],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_ENGINEERING:
+                [SKILL_ENGINEERING, SKILL_REGION_LORE_WILD, SKILL_CULTURE_WILD, SKILL_MECHANITION],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_MECHANITION:
+                [SKILL_MECHANITION, SKILL_ENGINEERING, SKILL_SMITHING],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_MILITARY_ORGANISATION:
+                [SKILL_MILITARY_ORGANISATION, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_MINING:
+                [SKILL_MINING, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_SECOND_AID:
+                [SKILL_SECOND_AID, SKILL_SURGERY, SKILL_FIRST_AID],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_SURGERY:
+                [SKILL_SURGERY, SKILL_SECOND_AID],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_ADMINISTRATION:
+                [SKILL_ADMINISTRATION, SKILL_LEADERSHIP_LEADERSHIP, SKILL_CONTACTING_LEADERSHIP],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_APPRAISAL:
+                [SKILL_APPRAISAL,
+                 SKILL_EVALUATE_ARMOUR,
+                 SKILL_EVALUATE_METAL,
+                 SKILL_EVALUATE_STONE,
+                 SKILL_EVALUATE_WEAPON],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_BOAT_PILOT:
+                [SKILL_BOAT_PILOT, SKILL_NAVIGATION],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_CARTOGRAPHY:
+                [SKILL_CARTOGRAPHY, SKILL_NAVIGATION],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_EVALUATE_ARMOUR:
+                [SKILL_EVALUATE_ARMOUR, SKILL_APPRAISAL],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_EVALUATE_METAL:
+                [SKILL_EVALUATE_METAL, SKILL_APPRAISAL],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_EVALUATE_STONE:
+                [SKILL_EVALUATE_STONE, SKILL_APPRAISAL],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_EVALUATE_WEAPON:
+                [SKILL_EVALUATE_WEAPON, SKILL_APPRAISAL],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_GIMMICKRY:
+                [SKILL_GIMMICKRY, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_HYPNOSIS:
+                [SKILL_HYPNOSIS, SKILL_DUPING],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_MIDWIFERY:
+                [SKILL_MIDWIFERY, SKILL_SECOND_AID, SKILL_SURGERY],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_NAVIGATION:
+                [SKILL_NAVIGATION, SKILL_ORIENTEERING],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_PREPARING_HERBS:
+                [SKILL_PREPARING_HERBS, SKILL_HERB_LORE],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_SERVICE:
+                [SKILL_SERVICE, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_SIEGE_ENGINEERING:
+                [SKILL_SIEGE_ENGINEERING, ],
+            TechnicalTradeVocationalManeuverTable.MANEUVER_TACTICS:
+                [SKILL_TACTICS, ]
+
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

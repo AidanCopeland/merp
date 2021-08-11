@@ -12,6 +12,10 @@ from tkinter import StringVar
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.secondary_skills import \
+    SKILL_ANIMAL_HANDLING, SKILL_ANIMAL_HEALING, SKILL_ANIMAL_HUSBANDRY, SKILL_ANIMAL_TRAINING, \
+    SKILL_BEAST_MASTERY, SKILL_HERDING, SKILL_DRIVING
+from console.character.general_skills import SKILL_ANIMAL_MASTERY, SKILL_RIDE
 
 import frame_utils
 import trace_log as trace
@@ -322,3 +326,32 @@ class OutdoorAnimalManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            OutdoorAnimalManeuverTable.MANEUVER_ANIMAL_HANDLING:
+                [SKILL_ANIMAL_HANDLING, SKILL_ANIMAL_MASTERY],
+            OutdoorAnimalManeuverTable.MANEUVER_ANIMAL_HEALING:
+                [SKILL_ANIMAL_HEALING, SKILL_ANIMAL_MASTERY],
+            OutdoorAnimalManeuverTable.MANEUVER_ANIMAL_HUSBANDRY:
+                [SKILL_ANIMAL_HUSBANDRY, SKILL_ANIMAL_HANDLING, SKILL_ANIMAL_MASTERY],
+            OutdoorAnimalManeuverTable.MANEUVER_ANIMAL_MASTERY:
+                [SKILL_ANIMAL_MASTERY, ],
+            OutdoorAnimalManeuverTable.MANEUVER_ANIMAL_TRAINING:
+                [SKILL_ANIMAL_TRAINING, SKILL_ANIMAL_MASTERY],
+            OutdoorAnimalManeuverTable.MANEUVER_BEAST_MASTERY:
+                [SKILL_BEAST_MASTERY, SKILL_ANIMAL_MASTERY],
+            OutdoorAnimalManeuverTable.MANEUVER_DRIVING:
+                [SKILL_DRIVING, SKILL_RIDE],
+            OutdoorAnimalManeuverTable.MANEUVER_HERDING:
+                [SKILL_HERDING, SKILL_ANIMAL_MASTERY]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

@@ -11,6 +11,19 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.secondary_skills import \
+    SKILL_CULTURE_WILD, SKILL_REGION_LORE_WILD, SKILL_FAUNA_LORE_WILD, SKILL_FLORA_LORE_WILD, \
+    SKILL_HERALDRY_WILD, SKILL_HISTORY_WILD, SKILL_PHILOSOPHY, SKILL_UNDEAD_LORE, \
+    SKILL_DREAM_LORE, SKILL_DEMON_DEVIL_LORE, SKILL_FAERIE_LORE, SKILL_DRAGON_LORE, \
+    SKILL_METAL_LORE, SKILL_METAL_CRAFTS, SKILL_SMITHING, SKILL_STONE_LORE, SKILL_STONE_CRAFTS, \
+    SKILL_EVALUATE_STONE, SKILL_EVALUATE_METAL, SKILL_TRADING_LORE, SKILL_TRADING, SKILL_RELIGION
+from console.character.magical_skills import \
+    SKILL_ARTIFACT_LORE, SKILL_MAGICAL_LORE, SKILL_CIRCLE_LORE, SKILL_SPELL_LORE, \
+    SKILL_SYMBOL_LORE, SKILL_WARDING_LORE, SKILL_DIVINATION_LORE, SKILL_DIVINATION
+from console.character.general_skills import SKILL_HERB_LORE, SKILL_FORAGING
+from console.character.subterfuge_skills import \
+    SKILL_LOCK_LORE, SKILL_PICK_LOCK, SKILL_POISON_LORE, SKILL_PREPARING_POISONS, \
+    SKILL_USE_REMOVE_POISON
 import trace_log as trace
 
 sys.path.append('../')
@@ -131,3 +144,71 @@ class LoreManeuverTable(StaticManeuverTable):
             return SpellLoreManeuverTable()
         else:
             return LoreManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            LoreManeuverTable.MANEUVER_CULTURE_LORE:
+                [SKILL_CULTURE_WILD, SKILL_REGION_LORE_WILD],
+            LoreManeuverTable.MANEUVER_FAUNA_LORE:
+                [SKILL_FAUNA_LORE_WILD, SKILL_REGION_LORE_WILD],
+            LoreManeuverTable.MANEUVER_FLORA_LORE:
+                [SKILL_FLORA_LORE_WILD, SKILL_REGION_LORE_WILD],
+            LoreManeuverTable.MANEUVER_HERALDRY:
+                [SKILL_HERALDRY_WILD, SKILL_CULTURE_WILD, SKILL_REGION_LORE_WILD],
+            LoreManeuverTable.MANEUVER_HISTORY:
+                [SKILL_HISTORY_WILD, SKILL_REGION_LORE_WILD],
+            LoreManeuverTable.MANEUVER_PHILOSOPHY:
+                [SKILL_PHILOSOPHY, ],
+            LoreManeuverTable.MANEUVER_REGION_LORE:
+                [SKILL_REGION_LORE_WILD,
+                 SKILL_CULTURE_WILD,
+                 SKILL_FAUNA_LORE_WILD,
+                 SKILL_FLORA_LORE_WILD],
+            LoreManeuverTable.MANEUVER_RELIGION:
+                [SKILL_RELIGION, SKILL_CULTURE_WILD, SKILL_REGION_LORE_WILD],
+            LoreManeuverTable.MANEUVER_ARTIFACT_LORE:
+                [SKILL_ARTIFACT_LORE, SKILL_MAGICAL_LORE],
+            LoreManeuverTable.MANEUVER_CIRCLE_LORE:
+                [SKILL_CIRCLE_LORE, SKILL_MAGICAL_LORE],
+            LoreManeuverTable.MANEUVER_DIVINATION_LORE:
+                [SKILL_DIVINATION_LORE, SKILL_DIVINATION, SKILL_MAGICAL_LORE],
+            LoreManeuverTable.MANEUVER_DREAM_LORE:
+                [SKILL_DREAM_LORE, ],
+            LoreManeuverTable.MANEUVER_MAGICAL_LORE:
+                [SKILL_MAGICAL_LORE, SKILL_SPELL_LORE],
+            LoreManeuverTable.MANEUVER_SPELL_LORE:
+                [SKILL_SPELL_LORE, SKILL_MAGICAL_LORE],
+            LoreManeuverTable.MANEUVER_SYMBOL_LORE:
+                [SKILL_SYMBOL_LORE, SKILL_MAGICAL_LORE],
+            LoreManeuverTable.MANEUVER_UNDEAD_LORE:
+                [SKILL_UNDEAD_LORE, ],
+            LoreManeuverTable.MANEUVER_WARDING_LORE:
+                [SKILL_WARDING_LORE, SKILL_MAGICAL_LORE],
+            LoreManeuverTable.MANEUVER_DEMON_LORE:
+                [SKILL_DEMON_DEVIL_LORE, SKILL_FAERIE_LORE, ],
+            LoreManeuverTable.MANEUVER_DRAGON_LORE:
+                [SKILL_DRAGON_LORE, ],
+            LoreManeuverTable.MANEUVER_FAERIE_LORE:
+                [SKILL_FAERIE_LORE, SKILL_DEMON_DEVIL_LORE],
+            LoreManeuverTable.MANEUVER_HERB_LORE:
+                [SKILL_HERB_LORE, SKILL_FORAGING, SKILL_FLORA_LORE_WILD],
+            LoreManeuverTable.MANEUVER_LOCK_LORE:
+                [SKILL_LOCK_LORE, SKILL_PICK_LOCK],
+            LoreManeuverTable.MANEUVER_METAL_LORE:
+                [SKILL_METAL_LORE, SKILL_METAL_CRAFTS, SKILL_SMITHING, SKILL_EVALUATE_METAL],
+            LoreManeuverTable.MANEUVER_POISON_LORE:
+                [SKILL_POISON_LORE, SKILL_USE_REMOVE_POISON, SKILL_PREPARING_POISONS],
+            LoreManeuverTable.MANEUVER_STONE_LORE:
+                [SKILL_STONE_LORE, SKILL_STONE_CRAFTS, SKILL_EVALUATE_STONE],
+            LoreManeuverTable.MANEUVER_TRADING_LORE:
+                [SKILL_TRADING_LORE, SKILL_TRADING]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

@@ -55,7 +55,7 @@
       "chain": -70,
       "plate": -85
     },
-    "combat-skills": {
+    "weapon-skills": {
       "1h-edged": 55,
       "1h-concussion": -25,
       "2-handed": -25,
@@ -71,7 +71,6 @@
     },
     "subterfuge-skills": {
       "ambush": 35,
-      "ambush-ranks": 7,
       "stalk-hide": 107,
       "pick-lock": 110,
       "disarm-trap": 80,
@@ -81,26 +80,20 @@
       "read-runes": 110,
       "use-items": 80,
       "directed-spells": 70,
+      "magic-lore": 85,
       "spell-mastery": 95,
       "spell-trickery": 75,
       "divination": 50
     },
-    "influence-skills": {
+    "leadership-skills": {
+      "leadership": 40,
       "diplomacy": 50
     },
     "miscellaneous-bonuses": {
-      "perception": 55,
-      "base-spells": 40,
-      "leadership": 40
+      "base-spells": 40
     },
     "secondary-skills": {
-      "adrenal-defence": 50,
-      "discern-wounds": 40,
-      "surgery": 70,
-      "beast-mastery": 40,
-      "divination": 40,
-      "animal-handling": 65,
-      "numenorean-culture": 10
+      "perception": 55
     }
   }
 }

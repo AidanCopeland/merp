@@ -11,6 +11,11 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.subterfuge_skills import SKILL_BRIBERY, SKILL_DUPING, SKILL_INTERROGATION
+from console.character.leadership_skills import \
+    SKILL_DIPLOMACY, SKILL_LEADERSHIP_LEADERSHIP, SKILL_PUBLIC_SPEAKING_LEADERSHIP
+from console.character.secondary_skills import \
+    SKILL_PROPAGANDA, SKILL_SEDUCTION, SKILL_TRADING, SKILL_TRADING_LORE
 import trace_log as trace
 
 sys.path.append('../')
@@ -96,3 +101,34 @@ class InfluenceManeuverTable(StaticManeuverTable):
             return InterrogationManeuverTable()
         else:
             return InfluenceManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            InfluenceManeuverTable.MANEUVER_BRIBERY:
+                [SKILL_BRIBERY, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_DIPLOMACY:
+                [SKILL_DIPLOMACY, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_DUPING:
+                [SKILL_DUPING, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_INTERROGATION:
+                [SKILL_INTERROGATION, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_LEADERSHIP:
+                [SKILL_LEADERSHIP_LEADERSHIP, ],
+            InfluenceManeuverTable.MANEUVER_PROPAGANDA:
+                [SKILL_PROPAGANDA, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_PUBLIC_SPEAKING:
+                [SKILL_PUBLIC_SPEAKING_LEADERSHIP, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_SEDUCTION:
+                [SKILL_SEDUCTION, SKILL_LEADERSHIP_LEADERSHIP],
+            InfluenceManeuverTable.MANEUVER_TRADING:
+                [SKILL_TRADING, SKILL_TRADING_LORE]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

@@ -101,7 +101,7 @@ class CharacterImporter(Frame):
         self._init_ui_variables()
         self._init_category_selector()
         self._init_character_selector()
-        frame_utils.init_ui_go_button(self, 'Import character', self.character_import_callback())
+        frame_utils.init_ui_go_button(self, 'Import character', self.character_import_callback)
 
         self._add_entries_to_category_selector()
 
@@ -217,7 +217,7 @@ class CharacterImporter(Frame):
         for entry in os.listdir(character_directory):
             trace.detail("File is %s" % entry)
             filename = os.path.join(character_directory, entry)
-            with open(filename, 'r') as myfile:
+            with open(filename, 'r', encoding='utf-8') as myfile:
                 data = myfile.read()
 
             # parse file
@@ -270,6 +270,8 @@ class CharacterImporter(Frame):
             trace.detail("Character selected %s" % character_name)
             character_object = self.character_map[character_name]
             self.import_character(character_object)
+        self.character_selector.selection_clear(0, END)
+        self.parent_console.characters_updated()
 
         trace.exit()
 
@@ -281,7 +283,6 @@ class CharacterImporter(Frame):
         trace.entry()
         character_entry = Character(character_object)
         self.character_database.add_character(character_entry)
-        self.parent_console.characters_updated()
         trace.exit()
 
 

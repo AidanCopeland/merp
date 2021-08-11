@@ -11,6 +11,7 @@ from tkinter import StringVar
 from maneuvers.moving_maneuver_table import EXTREMELY_HARD, SHEER_FOLLY
 from maneuvers.combat_maneuvers.adrenal_deflection_evasion_maneuver_table import \
     AdrenalDeflectionEvasionManeuverTable
+from console.character.weapon_skills import SKILL_ADRENAL_DEFLECTING
 
 import trace_log as trace
 
@@ -56,3 +57,11 @@ class AdrenalDeflectingManeuverTable(AdrenalDeflectionEvasionManeuverTable):
         Returns the difficulty of the maneuver based on the weapon type.
         """
         return weapon_difficulties[self.weapon_type.get()]
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [SKILL_ADRENAL_DEFLECTING, ]

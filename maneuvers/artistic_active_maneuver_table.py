@@ -12,6 +12,9 @@ from tkinter import IntVar
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.secondary_skills import SKILL_ACTING, SKILL_DANCING, SKILL_MIMERY, \
+    SKILL_MIMICRY, SKILL_PLAY_INSTRUMENT, SKILL_POETIC_IMPROVISATION, SKILL_SINGING, \
+    SKILL_TALE_TELLING, SKILL_VENTRILOQUISM
 
 import frame_utils
 import trace_log as trace
@@ -245,3 +248,26 @@ class ArtisticActiveManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            ArtisticActiveManeuverTable.MANEUVER_ACTING: [SKILL_ACTING, ],
+            ArtisticActiveManeuverTable.MANEUVER_DANCING: [SKILL_DANCING, ],
+            ArtisticActiveManeuverTable.MANEUVER_MIMERY: [SKILL_MIMERY, ],
+            ArtisticActiveManeuverTable.MANEUVER_MIMICRY: [SKILL_MIMICRY, ],
+            ArtisticActiveManeuverTable.MANEUVER_PLAY_INSTRUMENT: [SKILL_PLAY_INSTRUMENT, ],
+            ArtisticActiveManeuverTable.MANEUVER_POETIC_IMPROVISATION:
+                [SKILL_POETIC_IMPROVISATION, ],
+            ArtisticActiveManeuverTable.MANEUVER_SINGING: [SKILL_SINGING, ],
+            ArtisticActiveManeuverTable.MANEUVER_TALE_TELLING: [SKILL_TALE_TELLING, ],
+            ArtisticActiveManeuverTable.MANEUVER_VENTRILOQUISM: [SKILL_VENTRILOQUISM, ]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

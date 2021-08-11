@@ -21,6 +21,10 @@ import frame_utils
 from tables.moving_maneuver_fumble_table import resolve_moving_maneuver_fumble
 from maneuvers.maneuver_utils import setup_maneuver_difficulty_frame, maneuver_difficulty_options, \
     ROUTINE, EASY, LIGHT, MEDIUM, HARD, VERY_HARD, EXTREMELY_HARD, SHEER_FOLLY, ABSURD
+from maneuvers.athletic_gymnastic_maneuver_table import AthleticGymnasticsManeuverTable
+from console.character.general_skills import \
+    SKILL_CLIMB, SKILL_RAPPELLING, SKILL_SCALING, SKILL_FLYING, SKILL_SKIING, SKILL_SWIM
+from console.character.secondary_skills import SKILL_SKATING, SKILL_STILT_WALKING, SKILL_SURFING
 
 sys.path.append('../')
 
@@ -355,3 +359,42 @@ class MovingManeuverTable:
         :return: The text to return.
         """
         return resolve_moving_maneuver_fumble(roll, self.maneuver_difficulty.get())
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        # pylint: disable=too-many-return-statements
+        if maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_CLIMBING:
+            trace.flow("Climbing maneuver")
+            trace.exit()
+            return [SKILL_CLIMB, SKILL_RAPPELLING, SKILL_SCALING]
+
+        elif maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_FLYING_GLIDING:
+            trace.flow("Flying/gliding maneuver")
+            return [SKILL_FLYING, ]
+
+        elif maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_SKATING:
+            trace.flow("Skating maneuver")
+            return [SKILL_SKATING, ]
+
+        elif maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_SKIING:
+            trace.flow("Skiing maneuver")
+            trace.exit()
+            return [SKILL_SKIING, ]
+
+        elif maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_STILT_WALKING:
+            trace.flow("Stilt-walking maneuver")
+            trace.exit()
+            return [SKILL_STILT_WALKING, ]
+
+        elif maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_SURFING:
+            trace.flow("Surfing maneuver")
+            trace.exit()
+            return [SKILL_SURFING, SKILL_SWIM]
+
+        else:
+            trace.flow("Other maneuver")
+            return []

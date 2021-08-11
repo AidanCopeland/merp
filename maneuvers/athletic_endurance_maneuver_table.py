@@ -13,6 +13,7 @@ from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
 from maneuvers import maneuver_utils
+from console.character.secondary_skills import SKILL_ATHLETIC_GAMES
 import trace_log as trace
 
 sys.path.append('../')
@@ -147,3 +148,11 @@ class AthleticEnduranceManeuverTable(StaticManeuverTable):
         :return: The additional maneuver bonus
         """
         return maneuver_utils.table_bonus_from_equipment(self)
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [SKILL_ATHLETIC_GAMES, ]

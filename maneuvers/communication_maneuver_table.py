@@ -11,6 +11,7 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.language_skills import SKILL_LIP_READING, SKILL_SIGNALLING
 import trace_log as trace
 
 sys.path.append('../')
@@ -91,3 +92,22 @@ class CommunicationManeuverTable(StaticManeuverTable):
             return LipReadingManeuverTable()
         else:
             return CommunicationManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            CommunicationManeuverTable.MANEUVER_LIP_READING:
+                [SKILL_LIP_READING, ],
+            CommunicationManeuverTable.MANEUVER_MAGICAL_LANGUAGES:
+                [],
+            CommunicationManeuverTable.MANEUVER_SIGNALLING:
+                [SKILL_SIGNALLING, ]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

@@ -11,6 +11,11 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.general_skills import \
+    SKILL_CAVING, SKILL_FORAGING, SKILL_HUNTING, SKILL_STAR_GAZING, SKILL_SURVIVAL, \
+    SKILL_WEATHER_WATCHING, SKILL_NAVIGATION
+from console.character.secondary_skills import \
+    SKILL_REGION_LORE_WILD, SKILL_FLORA_LORE_WILD, SKILL_FAUNA_LORE_WILD
 
 import trace_log as trace
 
@@ -93,3 +98,31 @@ class OutdoorEnvironmentalManeuverTable(StaticManeuverTable):
             return CavingManeuverTable()
         else:
             return OutdoorEnvironmentalManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            OutdoorEnvironmentalManeuverTable.MANEUVER_CAVING:
+                [SKILL_CAVING, SKILL_NAVIGATION],
+            OutdoorEnvironmentalManeuverTable.MANEUVER_FORAGING:
+                [SKILL_FORAGING,
+                 SKILL_REGION_LORE_WILD,
+                 SKILL_FLORA_LORE_WILD,
+                 SKILL_FAUNA_LORE_WILD],
+            OutdoorEnvironmentalManeuverTable.MANEUVER_HUNTING:
+                [SKILL_HUNTING, SKILL_FAUNA_LORE_WILD],
+            OutdoorEnvironmentalManeuverTable.MANEUVER_STAR_GAZING:
+                [SKILL_STAR_GAZING, SKILL_NAVIGATION],
+            OutdoorEnvironmentalManeuverTable.MANEUVER_SURVIVAL:
+                [SKILL_SURVIVAL, ],
+            OutdoorEnvironmentalManeuverTable.MANEUVER_WEATHER_WATCHING:
+                [SKILL_WEATHER_WATCHING, ]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

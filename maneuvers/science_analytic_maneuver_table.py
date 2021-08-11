@@ -11,6 +11,10 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.secondary_skills import \
+    SKILL_MATHS, SKILL_SCIENTIFIC_RESEARCH, SKILL_ANTHROPOLOGY, SKILL_ALCHEMY, SKILL_ASTRONOMY, \
+    SKILL_BIOCHEMISTRY, SKILL_PSYCHOLOGY
+from console.character.magical_skills import SKILL_SANITY_HEALING
 import trace_log as trace
 
 sys.path.append('../')
@@ -104,3 +108,32 @@ class ScienceAnalyticManeuverTable(StaticManeuverTable):
         else:
             trace.flow("Other maneuver")
             return ScienceAnalyticManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            ScienceAnalyticManeuverTable.MANEUVER_ALCHEMY:
+                [SKILL_ALCHEMY, ],
+            ScienceAnalyticManeuverTable.MANEUVER_MATHEMATICS:
+                [SKILL_MATHS, ],
+            ScienceAnalyticManeuverTable.MANEUVER_RESEARCH:
+                [SKILL_SCIENTIFIC_RESEARCH, ],
+            ScienceAnalyticManeuverTable.MANEUVER_ANTHROPOLOGY:
+                [SKILL_ANTHROPOLOGY, ],
+            ScienceAnalyticManeuverTable.MANEUVER_ASTRONOMY:
+                [SKILL_ASTRONOMY, ],
+            ScienceAnalyticManeuverTable.MANEUVER_BIOCHEMISTRY:
+                [SKILL_BIOCHEMISTRY, ],
+            ScienceAnalyticManeuverTable.MANEUVER_PSYCHOLOGY:
+                [SKILL_PSYCHOLOGY, ],
+            ScienceAnalyticManeuverTable.MANEUVER_SANITY_HEALING:
+                [SKILL_SANITY_HEALING, ]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

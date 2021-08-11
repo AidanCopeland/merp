@@ -12,6 +12,7 @@ from tkinter.ttk import Frame, Label, OptionMenu
 from maneuvers.moving_maneuver_table import \
     MovingManeuverTable, ROUTINE, EASY, LIGHT, MEDIUM, HARD, \
     VERY_HARD, EXTREMELY_HARD, SHEER_FOLLY, ABSURD, maneuver_difficulty_table_columns
+from console.character.general_skills import SKILL_ACROBATICS, SKILL_TIGHTROPE_WALKING
 
 import frame_utils
 import trace_log as trace
@@ -187,3 +188,11 @@ class TightropeWalkingManeuverTable(MovingManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS]

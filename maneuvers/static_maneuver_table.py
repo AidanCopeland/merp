@@ -267,3 +267,11 @@ class StaticManeuverTable:
         asserts.
         """
         assert False
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return []

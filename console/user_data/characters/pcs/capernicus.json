@@ -53,68 +53,69 @@
       "soft-leather": 25,
       "rigid-leather": -20,
       "chain": -40,
-      "plate": -55
+      "plate": -55,
+      "adrenal-leaping": 15,
+      "adrenal-speed": 15
     },
     "weapon-skills": {
-      "1h-edged": 75,
-      "1h-concussion": 75,
-      "2-handed": 139,
-      "thrown": 90,
-      "missile": 80,
-      "pole-arms": 80,
-      "adrenal-strength": 100,
-      "martial-arts-strikes": 80,
-      "martial-arts-sweeps": 85,
-      "martial-arts-pillars-mirror": 83,
-      "combat-deception": 45,
-      "combat-deception-feint": 70,
-      "combat-deception-intimidate": 65
+      "1h-edged": 77,
+      "1h-concussion": 77,
+      "2-handed": 141,
+      "thrown": 92,
+      "missile": 82,
+      "pole-arms": 82,
+      "adrenal-strength": 102,
+      "martial-arts-strikes": 82,
+      "martial-arts-sweeps": 87,
+      "martial-arts-pillars-mirror": 129,
+      "combat-deception": 52,
+      "combat-deception-feint": 52,
+      "combat-deception-intimidate": 52
     },
     "general-skills": {
-      "climb": 80,
-      "ride": 70,
-      "swim": -70,
-      "track": 60,
-      "acrobatics": 125,
-      "navigation": 65,
-      "survival - desert": 35,
-      "sailing": 65
+      "climb": 82,
+      "ride": 72,
+      "swim": 72,
+      "track": 62,
+      "acrobatics": 127,
+      "navigation": 72,
+      "survival - desert": 37,
+      "sailing": 72
     },
     "subterfuge-skills": {
       "ambush": 10,
-      "ambush-ranks": 2,
-      "stalk-hide": 90,
-      "pick-lock": 40,
-      "disarm-trap": 35,
-      "contacting": 45,
-      "streetwise": 40,
-      "bribery": 35
+      "stalk-hide": 92,
+      "pick-lock": 42,
+      "disarm-trap": 37,
+      "contacting": 47,
+      "streetwise": 42,
+      "bribery": 37
     },
     "magical-skills": {
       "read-runes": 10,
       "use-items": 5,
       "directed-spells": 20
     },
-    "influence-skills": {
+    "leadership-skills": {
       "leadership": 65,
-      "public-speaking": 55,
-      "diplomacy": 75
+      "public-speaking": 57,
+      "diplomacy": 82
     },
     "miscellaneous-bonuses": {
-      "perception": 30,
       "base-spells": 25
     },
     "secondary-skills": {
+      "perception": 30,
       "adrenal-defence": 52,
       "adrenal-focus": 30,
       "appraisal": 20,
-      "trading": 30,
+      "trading": 35,
       "trading-lore": 25,
       "region-lore-near-harad": 30,
       "region-lore-far-harad": 20,
       "region-lore-rhun": 10,
       "region-lore-mordor": 10,
-      "religion-lore-harad": 15,
+      "religion-harad": 15,
       "poetry": 25,
       "dancing": 80,
       "animal-husbandry": 5

@@ -11,6 +11,10 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.magical_skills import \
+    SKILL_CHANNELING, SKILL_DIRECTED_SPELLS, SKILL_MAGIC_RITUAL, SKILL_MENTAL_CONTROL, \
+    SKILL_SPELL_ARTISTRY, SKILL_SPELL_MASTERY, SKILL_SPELL_TRICKERY, SKILL_SUMMONING
+from console.character.secondary_skills import SKILL_TRANSCEND_ARMOUR
 
 import trace_log as trace
 
@@ -108,3 +112,34 @@ class PowerManipulationManeuverTable(StaticManeuverTable):
             trace.flow("Power Manipulation maneuver")
             trace.exit()
             return PowerManipulationManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            PowerManipulationManeuverTable.MANEUVER_CHANNELING:
+                [SKILL_CHANNELING, ],
+            PowerManipulationManeuverTable.MANEUVER_DIRECTED_SPELLS:
+                [SKILL_DIRECTED_SPELLS, ],
+            PowerManipulationManeuverTable.MANEUVER_MAGIC_RITUAL:
+                [SKILL_MAGIC_RITUAL, SKILL_SPELL_MASTERY],
+            PowerManipulationManeuverTable.MANEUVER_MENTAL_CONTROL:
+                [SKILL_MENTAL_CONTROL, ],
+            PowerManipulationManeuverTable.MANEUVER_SPELL_ARTISTRY:
+                [SKILL_SPELL_ARTISTRY, SKILL_SPELL_MASTERY],
+            PowerManipulationManeuverTable.MANEUVER_SPELL_MASTERY:
+                [SKILL_SPELL_MASTERY, ],
+            PowerManipulationManeuverTable.MANEUVER_SPELL_TRICKERY:
+                [SKILL_SPELL_TRICKERY, SKILL_SPELL_ARTISTRY, SKILL_SPELL_MASTERY],
+            PowerManipulationManeuverTable.MANEUVER_SUMMONING:
+                [SKILL_SUMMONING, ],
+            PowerManipulationManeuverTable.MANEUVER_TRANSCEND_ARMOUR:
+                [SKILL_TRANSCEND_ARMOUR, ]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

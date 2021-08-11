@@ -10,6 +10,7 @@ import trace_log as trace
 from maneuvers.combat_maneuvers_maneuver_table import CombatManeuversManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE, \
     PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.weapon_skills import SKILL_ADRENAL_QUICKDRAW, SKILL_QUICKDRAW
 
 sys.path.append('../')
 
@@ -60,3 +61,11 @@ class QuickdrawManeuverTable(CombatManeuversManeuverTable):
         speed_effect_text = self.speed_effect_text[result]
 
         return result_text + "\n\n" + speed_effect_text
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        return [SKILL_QUICKDRAW, SKILL_ADRENAL_QUICKDRAW]
