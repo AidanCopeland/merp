@@ -24,6 +24,7 @@ class CharacterDatabase:
         entries_in_database(self)
         names_with_indices(self)
         get_character(self, index)
+        get_character_skills(self, index)
     """
     def __init__(self):
         trace.entry()
@@ -88,6 +89,42 @@ class CharacterDatabase:
 
         trace.exit()
         return self.database[index]
+
+    def get_character_skills(self, index):
+        """
+        Return information about the character's skills.
+        :param index: Index of character to return.
+        :return: Dict of character's skills.
+        """
+        trace.entry()
+        trace.detail("Get skills for character index %d" % index)
+
+        if index > (len(self.database) - 1):
+            trace.flow("No entry in database")
+            trace.exit()
+            return self.__return_unknown_skills()
+        else:
+            trace.flow("Return database entry for %s" % self.database[index].name)
+            trace.exit()
+            return self.__return_character_skills(index)
+
+    def __return_character_skills(self, index):
+        """
+        Return a list containing the set of skills that a character may use.
+        """
+        skills_dict = self.database[index].abilities.get_skills()
+        skills = []
+
+        for (skill_name, skill_value) in skills_dict.items():
+            skills.append("%s: %s" % (skill_name, skill_value))
+
+        return skills
+
+    @staticmethod
+    def __return_unknown_skills():
+        return ["Untrained: -25",]
+
+
 
 
 def main():

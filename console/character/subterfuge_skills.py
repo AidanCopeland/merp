@@ -7,6 +7,7 @@ Functions:
     init_subterfuge_skills(subterfuge_skills_json_object)
 """
 import sys
+from collections import OrderedDict
 import trace_log as trace
 
 sys.path.append('../../')
@@ -40,7 +41,7 @@ def init_subterfuge_skills(subterfuge_skills_json_object):
     :return: Parsed subterfuge skills information.
     """
     trace.entry()
-    subterfuge_skills = {}
+    subterfuge_skills = OrderedDict()
     for json_skill in list(subterfuge_skills_json_object.keys()):
         skill_value = subterfuge_skills_json_object[json_skill]
         skill_name = json_input_map.get(json_skill)

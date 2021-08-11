@@ -7,6 +7,7 @@ Functions:
     init_magical_skills(magical_skills_json_object)
 """
 import sys
+from collections import OrderedDict
 import trace_log as trace
 
 sys.path.append('../../')
@@ -37,7 +38,7 @@ def init_magical_skills(magical_skills_json_object):
     :return: Parsed magical skills information.
     """
     trace.entry()
-    magical_skills = {}
+    magical_skills = OrderedDict()
     for json_skill in list(magical_skills_json_object.keys()):
         skill_value = magical_skills_json_object[json_skill]
         skill_name = json_input_map.get(json_skill)

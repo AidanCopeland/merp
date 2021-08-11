@@ -252,7 +252,7 @@ class CharacterManager(Frame):
         Tell any other objects using the characters that the characters have been updated.
         """
         trace.entry()
-        self.parent_console.characters_updated(self.parent_console)
+        self.parent_console.characters_updated()
         if self.character_viewer is not None:
             trace.flow("Kick character viewer")
             self.character_viewer.characters_updated()

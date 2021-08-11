@@ -7,6 +7,7 @@ Functions:
     init_movement_skills(movement_skills_json_object)
 """
 import sys
+from collections import OrderedDict
 import trace_log as trace
 
 sys.path.append('../../')
@@ -43,7 +44,7 @@ def init_movement_skills(movement_skills_json_object):
     :return: Parsed movement skills information.
     """
     trace.entry()
-    movement_skills = {}
+    movement_skills = OrderedDict()
     for json_skill in list(movement_skills_json_object.keys()):
         skill_value = movement_skills_json_object[json_skill]
         skill_name = json_input_map.get(json_skill)

@@ -7,6 +7,7 @@ Functions:
     init_weapon_skills(weapon_skills_json_object)
 """
 import sys
+from collections import OrderedDict
 import trace_log as trace
 
 sys.path.append('../../')
@@ -46,7 +47,7 @@ def init_weapon_skills(weapon_skills_json_object):
     :return: Parsed weapon skills information.
     """
     trace.entry()
-    weapon_skills = {}
+    weapon_skills = OrderedDict()
     for json_skill in list(weapon_skills_json_object.keys()):
         skill_value = weapon_skills_json_object[json_skill]
         skill_name = json_input_map.get(json_skill)

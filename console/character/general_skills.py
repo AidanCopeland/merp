@@ -7,6 +7,7 @@ Functions:
     init_general_skills(general_skills_json_object)
 """
 import sys
+from collections import OrderedDict
 import trace_log as trace
 
 sys.path.append('../../')
@@ -40,7 +41,7 @@ def init_general_skills(general_skills_json_object):
     :return: Parsed general skills information.
     """
     trace.entry()
-    general_skills = {}
+    general_skills = OrderedDict()
     for json_skill in list(general_skills_json_object.keys()):
         skill_value = general_skills_json_object[json_skill]
         skill_name = json_input_map.get(json_skill)

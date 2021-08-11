@@ -20,6 +20,7 @@ class Abilities:
 
     Methods:
         __init__(self, abilities_object)
+        get_skills(self)
     """
     # pylint: disable=too-few-public-methods
     def __init__(self, abilities_object):
@@ -41,3 +42,19 @@ class Abilities:
         trace.detail("Magical skills: %r" % self.magical_skills)
 
         trace.exit()
+
+    def get_skills(self):
+        """
+        Return the character's skill bonuses.
+        :return: Dict containing all skills.
+        """
+        trace.entry()
+        skills = self.movement_skills
+        skills.update(self.weapon_skills)
+        skills.update(self.general_skills)
+        skills.update(self.subterfuge_skills)
+        skills.update(self.magical_skills)
+
+        trace.detail("Returning %r" % skills)
+        trace.exit()
+        return skills
