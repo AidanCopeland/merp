@@ -69,7 +69,7 @@
       "swim": 110,
       "track": 112,
       "foraging": 125,
-      "herblore": 110,
+      "herb-lore": 110,
       "survival": 115,
       "navigation": 110
     },
@@ -87,17 +87,17 @@
       "split-focus": 55,
       "spell-concentration": 60
     },
-    "influence-skills": {
-    },
-    "miscellaneous-bonuses": {
-      "perception": 90,
-      "base-spells": 40,
+    "leadership-skills": {
       "leadership": 10
     },
+    "miscellaneous-bonuses": {
+      "base-spells": 40
+    },
     "secondary-skills": {
+      "perception": 90,
       "discern-wounds": 50,
       "animal-handling": 65,
-      "music": 20,
+      "music": 30,
       "dancing": 25,
       "orienteering": 20,
       "cooking": 25

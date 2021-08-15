@@ -12,6 +12,9 @@ from .weapon_skills import init_weapon_skills
 from .general_skills import init_general_skills
 from .subterfuge_skills import init_subterfuge_skills
 from .magical_skills import init_magical_skills
+from .leadership_skills import init_leadership_skills
+from .language_skills import init_language_skills
+from .secondary_skills import init_secondary_skills
 sys.path.append('../../')
 
 
@@ -41,20 +44,66 @@ class Abilities:
         self.magical_skills = init_magical_skills(abilities_object.get("magical-skills"))
         trace.detail("Magical skills: %r" % self.magical_skills)
 
+        self.leadership_skills = init_leadership_skills(abilities_object.get("leadership-skills"))
+        trace.detail("Leadership skills: %r" % self.leadership_skills)
+
+        self.language_skills = init_language_skills(abilities_object.get("language-skills"))
+        trace.detail("Language skills: %r" % self.language_skills)
+
+        self.secondary_skills = init_secondary_skills(abilities_object.get("secondary-skills"))
+        trace.detail("Secondary skills: %r" % self.secondary_skills)
+
         trace.exit()
 
-    def get_skills(self):
+    def get_skills_list(self):
         """
         Return the character's skill bonuses.
         :return: Dict containing all skills.
         """
         trace.entry()
-        skills = self.movement_skills
+        skills_dict = self.__populate_skills_dict()
+
+        skills = self.__skills_category_as_list(self.movement_skills, "===MOVEMENT SKILLS===")
+        skills.extend(self.__skills_category_as_list(self.weapon_skills, "===WEAPON SKILLS==="))
+        skills.extend(self.__skills_category_as_list(self.general_skills, "===GENERAL SKILLS==="))
+        skills.extend(
+            self.__skills_category_as_list(self.subterfuge_skills, "===SUBTERFUGE SKILLS==="))
+        skills.extend(self.__skills_category_as_list(self.magical_skills, "===MAGICAL SKILLS==="))
+        skills.extend(
+            self.__skills_category_as_list(
+                self.leadership_skills,
+                "===LEADERSHIP/INFLUENCE SKILLS==="))
+        skills.extend(self.__skills_category_as_list(self.language_skills, "===LANGUAGE SKILLS==="))
+        skills.extend(
+            self.__skills_category_as_list(self.secondary_skills, "===SECONDARY SKILLS==="))
+
+        skills.insert(0, "Untrained: -25")
+        trace.detail("Returning %r" % skills)
+        trace.exit()
+        return skills
+
+    def __populate_skills_dict(self):
+        trace.entry()
+        skills = self.movement_skills.copy()
         skills.update(self.weapon_skills)
         skills.update(self.general_skills)
         skills.update(self.subterfuge_skills)
         skills.update(self.magical_skills)
 
-        trace.detail("Returning %r" % skills)
         trace.exit()
+        return skills
+
+    @staticmethod
+    def __skills_category_as_list(skills_dict, category):
+        trace.detail("Skills dict %r" % skills_dict)
+        skills = []
+
+        for (skill_name, skill_value) in skills_dict.items():
+            skills.append("%s: %s" % (skill_name, skill_value))
+
+        trace.detail("Skills %r" % skills)
+        if skills:
+            skills.insert(0, category)
+            trace.detail("Skills %r" % skills)
+
         return skills

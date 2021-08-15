@@ -22,13 +22,25 @@ SKILL_CHAIN = "Chain"
 JSON_CHAIN = "chain"
 SKILL_PLATE = "Plate"
 JSON_PLATE = "plate"
+SKILL_ADRENAL_BALANCE = "Adrenal Balance"
+JSON_ADRENAL_BALANCE = "adrenal-balance"
+SKILL_ADRENAL_LANDING = "Adrenal Landing"
+JSON_ADRENAL_LANDING = "adrenal-landing"
+SKILL_ADRENAL_LEAPING = "Adrenal Leaping"
+JSON_ADRENAL_LEAPING = "adrenal-leaping"
+SKILL_ADRENAL_SPEED = "Adrenal Speed"
+JSON_ADRENAL_SPEED = "adrenal-speed"
 
 json_input_map = {
     JSON_NO_ARMOUR: SKILL_NO_ARMOUR,
     JSON_SOFT_LEATHER: SKILL_SOFT_LEATHER,
     JSON_RIGID_LEATHER: SKILL_RIGID_LEATHER,
     JSON_CHAIN: SKILL_CHAIN,
-    JSON_PLATE: SKILL_PLATE
+    JSON_PLATE: SKILL_PLATE,
+    JSON_ADRENAL_BALANCE: SKILL_ADRENAL_BALANCE,
+    JSON_ADRENAL_LANDING: SKILL_ADRENAL_LANDING,
+    JSON_ADRENAL_LEAPING: SKILL_ADRENAL_LEAPING,
+    JSON_ADRENAL_SPEED: SKILL_ADRENAL_SPEED
 }
 
 # Add the profession bonus for each profession and level
@@ -45,15 +57,16 @@ def init_movement_skills(movement_skills_json_object):
     """
     trace.entry()
     movement_skills = OrderedDict()
-    for json_skill in list(movement_skills_json_object.keys()):
-        skill_value = movement_skills_json_object[json_skill]
-        skill_name = json_input_map.get(json_skill)
-        if skill_name is None:
-            trace.flow("Unexpected skill %s, convert JSON name" % json_skill)
-            skill_words = json_skill.split('-')
-            skill_name = ' '.join(skill_words)
-            skill_name = skill_name.capitalize()
-        movement_skills[skill_name] = skill_value
+    if movement_skills_json_object is not None:
+        for json_skill in list(movement_skills_json_object.keys()):
+            skill_value = movement_skills_json_object[json_skill]
+            skill_name = json_input_map.get(json_skill)
+            if skill_name is None:
+                trace.flow("Unexpected skill %s, convert JSON name" % json_skill)
+                skill_words = json_skill.split('-')
+                skill_name = ' '.join(skill_words)
+                skill_name = skill_name.capitalize()
+            movement_skills[skill_name] = skill_value
 
     trace.exit()
     return movement_skills

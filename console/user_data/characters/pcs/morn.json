@@ -64,7 +64,7 @@
       "plate": 5
     },
     "weapon-skills": {
-      "1h-edged": 145,
+      "1h-edged": 150,
       "1h-concussion": 145,
       "2-handed": 45,
       "thrown": 5,
@@ -72,8 +72,8 @@
       "pole-arms": 75,
       "adrenal-strength": 120,
       "shield-mastery": 106,
-      "stunned-maneuver": 70,
-      "adrenal-quickdraw":50,
+      "stunned-maneuvering": 70,
+      "adrenal-quickdraw": 50,
       "rapid-fire": 50
     },
     "general-skills": {
@@ -93,15 +93,15 @@
       "use-items": -20,
       "directed-spells": -20
     },
-    "influence-skills": {
+    "leadership-skills": {
+      "leadership": -5
     },
     "miscellaneous-bonuses": {
-      "perception": 78,
-      "base-spells": 30,
-      "leadership": -5
+      "base-spells": 30
     },
     "secondary-skills": {
       "adrenal-defence": 35,
+      "perception": 78,
       "transcend-armour": 63,
       "dragon-lore": 25,
       "discern-wounds": 25,

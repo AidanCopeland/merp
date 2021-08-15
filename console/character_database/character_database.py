@@ -112,11 +112,13 @@ class CharacterDatabase:
         """
         Return a list containing the set of skills that a character may use.
         """
-        skills_dict = self.database[index].abilities.get_skills()
-        skills = []
+        skills = self.database[index].abilities.get_skills_list()
+        trace.detail("Skills %r" % skills)
+#        skills_dict = self.database[index].abilities.get_skills()
+#        skills = []
 
-        for (skill_name, skill_value) in skills_dict.items():
-            skills.append("%s: %s" % (skill_name, skill_value))
+#        for (skill_name, skill_value) in skills_dict.items():
+#            skills.append("%s: %s" % (skill_name, skill_value))
 
         return skills
 
