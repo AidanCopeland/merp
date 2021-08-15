@@ -12,6 +12,8 @@ from tkinter import IntVar
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.weapon_skills import SKILL_COMBAT_AWARENESS
+from console.character.secondary_skills import SKILL_PERCEPTION, SKILL_SENSE_AMBUSH, SKILL_ALERTNESS
 import frame_utils
 import trace_log as trace
 
@@ -143,3 +145,22 @@ class AwarenessPerceptionsManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            AwarenessPerceptionsManeuverTable.MANEUVER_SENSE_AMBUSH:
+                [SKILL_SENSE_AMBUSH, SKILL_PERCEPTION],
+            AwarenessPerceptionsManeuverTable.MANEUVER_COMBAT_AWARENESS:
+                [SKILL_COMBAT_AWARENESS, SKILL_PERCEPTION],
+            AwarenessPerceptionsManeuverTable.MANEUVER_ALERTNESS:
+                [SKILL_ALERTNESS, SKILL_PERCEPTION]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

@@ -11,6 +11,9 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.magical_skills import \
+    SKILL_USE_ITEMS, SKILL_DIVINATION, SKILL_MAGICAL_PREDICTION, SKILL_POWER_PERCEPTION, \
+    SKILL_READ_RUNES, SKILL_MAGICAL_LORE
 import trace_log as trace
 
 sys.path.append('../')
@@ -96,21 +99,40 @@ class PowerAwarenessManeuverTable(StaticManeuverTable):
             DivinationFutureManeuverTable
         from maneuvers.power_awareness.read_runes_maneuver_table import ReadRunesManeuverTable
 
-        if maneuver_type == PowerAwarenessManeuverTable.MANEUVER_USE_ITEMS:
-            trace.flow("Use items maneuver")
-            trace.exit()
-            return UseItemsManeuverTable()
-        elif maneuver_type == PowerAwarenessManeuverTable.MANEUVER_DIVINATION_PAST:
-            trace.flow("Divination (past) maneuver")
-            trace.exit()
-            return DivinationPastManeuverTable()
-        elif maneuver_type == PowerAwarenessManeuverTable.MANEUVER_DIVINATION_FUTURE:
-            trace.flow("Divination (future) maneuver")
-            trace.exit()
-            return DivinationFutureManeuverTable()
-        elif maneuver_type == PowerAwarenessManeuverTable.MANEUVER_READ_RUNES:
-            trace.flow("Read Runes maneuver")
-            trace.exit()
-            return ReadRunesManeuverTable()
-        else:
-            return PowerAwarenessManeuverTable()
+        maneuver_to_table = {
+            PowerAwarenessManeuverTable.MANEUVER_USE_ITEMS: UseItemsManeuverTable(),
+            PowerAwarenessManeuverTable.MANEUVER_DIVINATION_PAST: DivinationPastManeuverTable(),
+            PowerAwarenessManeuverTable.MANEUVER_DIVINATION_FUTURE: DivinationFutureManeuverTable(),
+            PowerAwarenessManeuverTable.MANEUVER_READ_RUNES: ReadRunesManeuverTable(),
+        }
+
+        trace.detail("Maneuver type: %s" % maneuver_type)
+        table = maneuver_to_table.get(maneuver_type, PowerAwarenessManeuverTable())
+        return table
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            PowerAwarenessManeuverTable.MANEUVER_ATTUNEMENT:
+                [SKILL_USE_ITEMS, ],
+            PowerAwarenessManeuverTable.MANEUVER_USE_ITEMS:
+                [SKILL_USE_ITEMS, ],
+            PowerAwarenessManeuverTable.MANEUVER_DIVINATION_PAST:
+                [SKILL_DIVINATION, ],
+            PowerAwarenessManeuverTable.MANEUVER_DIVINATION_FUTURE:
+                [SKILL_DIVINATION, ],
+            PowerAwarenessManeuverTable.MANEUVER_MAGICAL_PREDICTION:
+                [SKILL_MAGICAL_PREDICTION, SKILL_MAGICAL_LORE],
+            PowerAwarenessManeuverTable.MANEUVER_POWER_PERCEPTION:
+                [SKILL_POWER_PERCEPTION, ],
+            PowerAwarenessManeuverTable.MANEUVER_READ_RUNES:
+                [SKILL_READ_RUNES, ]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

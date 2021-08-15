@@ -11,6 +11,11 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.secondary_skills import \
+    SKILL_ATHLETIC_GAMES, SKILL_CONTORTIONS, SKILL_JUGGLING, SKILL_TUMBLING
+from console.character.general_skills import \
+    SKILL_ACROBATICS, SKILL_CLIMB, SKILL_DIVING, SKILL_POLE_VAULTING, SKILL_RAPPELLING, \
+    SKILL_TIGHTROPE_WALKING, SKILL_SWIM
 
 import trace_log as trace
 
@@ -180,3 +185,34 @@ class AthleticGymnasticsManeuverTable(StaticManeuverTable):
             assert maneuver_type == AthleticGymnasticsManeuverTable.MANEUVER_TUMBLING
             trace.exit()
             return AthleticGymnasticsManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            AthleticGymnasticsManeuverTable.MANEUVER_ACROBATICS:
+                [SKILL_ACROBATICS, ],
+            AthleticGymnasticsManeuverTable.MANEUVER_ATHLETIC_GAMES_GYMNASTICS:
+                [SKILL_ATHLETIC_GAMES, ],
+            AthleticGymnasticsManeuverTable.MANEUVER_CONTORTIONS:
+                [SKILL_CONTORTIONS, SKILL_ACROBATICS, ],
+            AthleticGymnasticsManeuverTable.MANEUVER_DIVING:
+                [SKILL_DIVING, SKILL_SWIM, ],
+            AthleticGymnasticsManeuverTable.MANEUVER_JUGGLING:
+                [SKILL_JUGGLING, SKILL_ACROBATICS],
+            AthleticGymnasticsManeuverTable.MANEUVER_POLE_VAULTING:
+                [SKILL_POLE_VAULTING, SKILL_CLIMB, ],
+            AthleticGymnasticsManeuverTable.MANEUVER_RAPPELLING:
+                [SKILL_RAPPELLING, SKILL_CLIMB],
+            AthleticGymnasticsManeuverTable.MANEUVER_TIGHTROPE_WALKING:
+                [SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS],
+            AthleticGymnasticsManeuverTable.MANEUVER_TUMBLING:
+                [SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

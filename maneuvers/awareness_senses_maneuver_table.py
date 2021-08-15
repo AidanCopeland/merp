@@ -11,6 +11,10 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.general_skills import SKILL_DIRECTION_SENSE, SKILL_NAVIGATION
+from console.character.weapon_skills import SKILL_BLINDFIGHTING
+from console.character.secondary_skills import \
+    SKILL_TIME_SENSE, SKILL_PERCEPTION, SKILL_SITUATIONAL_AWARENESS
 import trace_log as trace
 
 sys.path.append('../')
@@ -100,3 +104,26 @@ class AwarenessSensesManeuverTable(StaticManeuverTable):
             return TimeSenseManeuverTable()
         else:
             return AwarenessSensesManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            AwarenessSensesManeuverTable.MANEUVER_DIRECTION_SENSE:
+                [SKILL_DIRECTION_SENSE, SKILL_NAVIGATION],
+            AwarenessSensesManeuverTable.MANEUVER_SLA:
+                [SKILL_BLINDFIGHTING, ],
+            AwarenessSensesManeuverTable.MANEUVER_TIME_SENSE:
+                [SKILL_TIME_SENSE, SKILL_PERCEPTION],
+            AwarenessSensesManeuverTable.MANEUVER_SITUATIONAL_AWARENESS:
+                [SKILL_SITUATIONAL_AWARENESS, SKILL_PERCEPTION],
+            AwarenessSensesManeuverTable.MANEUVER_SENSE_AWARENESS:
+                [SKILL_PERCEPTION, ]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

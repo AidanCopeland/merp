@@ -11,6 +11,9 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.general_skills import SKILL_READING_TRACKS, SKILL_TRACK
+from console.character.subterfuge_skills import SKILL_LIE_PERCEPTION, SKILL_POISON_PERCEPTION, SKILL_SURVEILLANCE, SKILL_INTERROGATION, SKILL_POISON_LORE
+from console.character.secondary_skills import SKILL_DETECT_TRAPS, SKILL_LOCATE_HIDDEN, SKILL_OBSERVATION, SKILL_PERCEPTION, SKILL_DISCERN_WOUNDS, SKILL_FIRST_AID
 import trace_log as trace
 
 sys.path.append('../')
@@ -110,3 +113,34 @@ class AwarenessSearchingManeuverTable(StaticManeuverTable):
             return ObservationSurveillanceManeuverTable()
         else:
             return AwarenessSearchingManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            AwarenessSearchingManeuverTable.MANEUVER_LIE_PERCEPTION:
+                [SKILL_LIE_PERCEPTION, SKILL_INTERROGATION],
+            AwarenessSearchingManeuverTable.MANEUVER_LOCATE_HIDDEN:
+                [SKILL_LOCATE_HIDDEN, SKILL_PERCEPTION],
+            AwarenessSearchingManeuverTable.MANEUVER_OBSERVATION:
+                [SKILL_OBSERVATION, SKILL_PERCEPTION],
+            AwarenessSearchingManeuverTable.MANEUVER_SURVEILLANCE:
+                [SKILL_SURVEILLANCE, SKILL_PERCEPTION],
+            AwarenessSearchingManeuverTable.MANEUVER_DETECT_TRAPS:
+                [SKILL_DETECT_TRAPS, SKILL_PERCEPTION],
+            AwarenessSearchingManeuverTable.MANEUVER_POISON_PERCEPTION:
+                [SKILL_POISON_PERCEPTION, SKILL_PERCEPTION, SKILL_POISON_LORE],
+            AwarenessSearchingManeuverTable.MANEUVER_READING_TRACKS:
+                [SKILL_READING_TRACKS, SKILL_TRACK],
+            AwarenessSearchingManeuverTable.MANEUVER_DISCERN_WOUNDS:
+                [SKILL_DISCERN_WOUNDS, SKILL_FIRST_AID],
+            AwarenessSearchingManeuverTable.MANEUVER_TRACKING:
+                [SKILL_TRACK, SKILL_READING_TRACKS]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

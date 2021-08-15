@@ -90,11 +90,12 @@ class CharacterDatabase:
         trace.exit()
         return self.database[index]
 
-    def get_character_skills(self, index):
+    def get_character_skills(self, index, preferred_skills):
         """
         Return information about the character's skills.
         :param index: Index of character to return.
-        :return: Dict of character's skills.
+        :param preferred_skills: List of preferred skills to return.
+        :return: List of character's skills, with bonuses for the preferred skills at the top.
         """
         trace.entry()
         trace.detail("Get skills for character index %d" % index)
@@ -106,19 +107,17 @@ class CharacterDatabase:
         else:
             trace.flow("Return database entry for %s" % self.database[index].name)
             trace.exit()
-            return self.__return_character_skills(index)
+            return self.__return_character_skills(index, preferred_skills)
 
-    def __return_character_skills(self, index):
+    def __return_character_skills(self, index, preferred_skills):
         """
         Return a list containing the set of skills that a character may use.
+        :param index: Index of character to return.
+        :param preferred_skills: List of preferred skills to return.
+        :return: List of character's skills, with bonuses for the preferred skills at the top.
         """
-        skills = self.database[index].abilities.get_skills_list()
+        skills = self.database[index].abilities.get_skills_list(preferred_skills)
         trace.detail("Skills %r" % skills)
-#        skills_dict = self.database[index].abilities.get_skills()
-#        skills = []
-
-#        for (skill_name, skill_value) in skills_dict.items():
-#            skills.append("%s: %s" % (skill_name, skill_value))
 
         return skills
 

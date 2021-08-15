@@ -12,6 +12,7 @@ from tkinter.ttk import Frame, Label, OptionMenu
 from maneuvers.moving_maneuver_table import MovingManeuverTable, MEDIUM, HARD, \
     VERY_HARD, EXTREMELY_HARD, ABSURD, maneuver_difficulty_table_columns
 from maneuvers import maneuver_utils
+from console.character.general_skills import SKILL_SWIM
 
 import frame_utils
 import trace_log as trace
@@ -95,3 +96,11 @@ class SwimmingManeuverTable(MovingManeuverTable):
         """
         difficulty = armour_difficulties[self.armour_worn.get()]
         return maneuver_difficulty_table_columns[difficulty]
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        return [SKILL_SWIM, ]

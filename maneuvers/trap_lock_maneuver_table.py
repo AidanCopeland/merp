@@ -11,6 +11,7 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.subterfuge_skills import SKILL_PICK_LOCK, SKILL_DISARM_TRAP
 sys.path.append('../')
 
 
@@ -45,3 +46,10 @@ class TrapLockManeuverTable(StaticManeuverTable):
             "In the future you may automatically pick/disarm (takes one round) this lock/trap or "
             "any identical lock/trap.  +10 to attempts on similar locks/traps in the future."
     }
+
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [SKILL_PICK_LOCK, SKILL_DISARM_TRAP]

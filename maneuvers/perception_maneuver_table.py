@@ -14,6 +14,11 @@ from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
 from maneuvers.subterfuge_stealth.hide_maneuver_table import HideManeuverTable
 from maneuvers.subterfuge_stealth.stalk_maneuver_table import StalkManeuverTable
+from console.character.secondary_skills import \
+    SKILL_PERCEPTION, SKILL_OBSERVATION, SKILL_SITUATIONAL_AWARENESS
+from console.character.subterfuge_skills import \
+    SKILL_SURVEILLANCE, SKILL_LIE_PERCEPTION, SKILL_POISON_PERCEPTION
+from console.character.general_skills import SKILL_TRACK, SKILL_READING_TRACKS
 
 import frame_utils
 import trace_log as trace
@@ -234,3 +239,20 @@ class PerceptionManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [
+            SKILL_PERCEPTION,
+            SKILL_TRACK,
+            SKILL_OBSERVATION,
+            SKILL_SITUATIONAL_AWARENESS,
+            SKILL_SURVEILLANCE,
+            SKILL_LIE_PERCEPTION,
+            SKILL_POISON_PERCEPTION,
+            SKILL_READING_TRACKS
+        ]

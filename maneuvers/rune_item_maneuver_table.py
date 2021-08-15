@@ -12,6 +12,7 @@ from tkinter import IntVar
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.magical_skills import SKILL_READ_RUNES, SKILL_USE_ITEMS
 import frame_utils
 import trace_log as trace
 
@@ -168,3 +169,10 @@ class RuneItemManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [SKILL_READ_RUNES, SKILL_USE_ITEMS]

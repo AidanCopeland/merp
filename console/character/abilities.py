@@ -5,6 +5,7 @@ This module handles character skill bonuses.
 
 Classes: Abilities
 """
+import fnmatch
 import sys
 import trace_log as trace
 from .movement_skills import init_movement_skills
@@ -55,13 +56,65 @@ class Abilities:
 
         trace.exit()
 
-    def get_skills_list(self):
+    def get_skills_list(self, preferred_skills):
         """
         Return the character's skill bonuses.
-        :return: Dict containing all skills.
+        :param preferred_skills: List of preferred skills to return.
+        :return: Dict containing all the character's skills, with the preferred skills at the top,
+        if known by the character.
         """
         trace.entry()
         skills_dict = self.__populate_skills_dict()
+
+        preferred_skills_list = self.__populate_preferred_skills_list(skills_dict, preferred_skills)
+
+        skills_list = self.__populate_skills_list()
+
+        trace.detail("Returning %r" % skills_list)
+        trace.exit()
+        return preferred_skills_list + skills_list
+
+    def __populate_skills_dict(self):
+        trace.entry()
+        skills = self.movement_skills.copy()
+        skills.update(self.weapon_skills)
+        skills.update(self.general_skills)
+        skills.update(self.subterfuge_skills)
+        skills.update(self.magical_skills)
+        skills.update(self.leadership_skills)
+        skills.update(self.language_skills)
+        skills.update(self.secondary_skills)
+
+        trace.exit()
+        return skills
+
+    @staticmethod
+    def __populate_preferred_skills_list(skills_dict, preferred_skills):
+        trace.entry()
+
+        preferred_skills_list = []
+
+        for skill_name in preferred_skills:
+            trace.flow("Check skill %s" % skill_name)
+            if '*' in skill_name:
+                trace.flow("Wildcard skill %s" % skill_name)
+                filtered_list = fnmatch.filter(skills_dict, skill_name)
+                trace.flow("Filtered dict %r" % filtered_list)
+                for skill_name in filtered_list:
+                    trace.flow("Found skill %s" % skill_name)
+                    preferred_skills_list.append("%s: %s" % (skill_name, skills_dict.get(skill_name)))
+            elif skills_dict.get(skill_name) is not None:
+                trace.flow("Skill is known by character")
+                preferred_skills_list.append("%s: %s" % (skill_name, skills_dict.get(skill_name)))
+            else:
+                trace.flow("Skill is not known by character")
+
+        trace.detail("Preferred skills list %r" % preferred_skills_list)
+        trace.exit()
+        return preferred_skills_list
+
+    def __populate_skills_list(self):
+        trace.entry()
 
         skills = self.__skills_category_as_list(self.movement_skills, "===MOVEMENT SKILLS===")
         skills.extend(self.__skills_category_as_list(self.weapon_skills, "===WEAPON SKILLS==="))
@@ -78,17 +131,6 @@ class Abilities:
             self.__skills_category_as_list(self.secondary_skills, "===SECONDARY SKILLS==="))
 
         skills.insert(0, "Untrained: -25")
-        trace.detail("Returning %r" % skills)
-        trace.exit()
-        return skills
-
-    def __populate_skills_dict(self):
-        trace.entry()
-        skills = self.movement_skills.copy()
-        skills.update(self.weapon_skills)
-        skills.update(self.general_skills)
-        skills.update(self.subterfuge_skills)
-        skills.update(self.magical_skills)
 
         trace.exit()
         return skills

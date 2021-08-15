@@ -12,6 +12,9 @@ from tkinter import IntVar
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.leadership_skills import \
+    SKILL_LEADERSHIP_LEADERSHIP, SKILL_PUBLIC_SPEAKING_LEADERSHIP, SKILL_DIPLOMACY
+from console.character.subterfuge_skills import SKILL_DUPING, SKILL_INTERROGATION, SKILL_BRIBERY
 import frame_utils
 import trace_log as trace
 
@@ -119,3 +122,17 @@ class InteractionManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param _: The type of maneuver selected.
+        """
+        return [
+            SKILL_LEADERSHIP_LEADERSHIP,
+            SKILL_PUBLIC_SPEAKING_LEADERSHIP,
+            SKILL_DIPLOMACY,
+            SKILL_BRIBERY,
+            SKILL_DUPING,
+            SKILL_INTERROGATION]

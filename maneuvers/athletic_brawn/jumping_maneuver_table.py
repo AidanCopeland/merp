@@ -13,6 +13,7 @@ from maneuvers.moving_maneuver_table import \
     MovingManeuverTable, ROUTINE, EASY, LIGHT, MEDIUM, HARD, \
     VERY_HARD, EXTREMELY_HARD, SHEER_FOLLY, ABSURD, maneuver_difficulty_table_columns
 from maneuvers import maneuver_utils
+from console.character.secondary_skills import SKILL_JUMPING
 
 import frame_utils
 import trace_log as trace
@@ -122,3 +123,10 @@ class JumpingManeuverTable(MovingManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        """
+        return [SKILL_JUMPING, ]

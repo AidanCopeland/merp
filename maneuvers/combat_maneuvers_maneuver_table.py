@@ -11,6 +11,9 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.weapon_skills import \
+    SKILL_ADRENAL_DEFLECTING, SKILL_ADRENAL_EVASION, SKILL_ADRENAL_QUICKDRAW, SKILL_QUICKDRAW, \
+    SKILL_RAPID_FIRE, SKILL_SWASHBUCKLING
 import trace_log as trace
 
 sys.path.append('../')
@@ -107,3 +110,26 @@ class CombatManeuversManeuverTable(StaticManeuverTable):
         else:
             trace.flow("Combat maneuvers")
             return CombatManeuversManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            CombatManeuversManeuverTable.MANEUVER_ADRENAL_DEFLECTING:
+                [SKILL_ADRENAL_DEFLECTING, ],
+            CombatManeuversManeuverTable.MANEUVER_ADRENAL_EVASION:
+                [SKILL_ADRENAL_EVASION, ],
+            CombatManeuversManeuverTable.MANEUVER_QUICKDRAW:
+                [SKILL_QUICKDRAW, SKILL_ADRENAL_QUICKDRAW],
+            CombatManeuversManeuverTable.MANEUVER_RAPID_FIRE:
+                [SKILL_RAPID_FIRE, ],
+            CombatManeuversManeuverTable.MANEUVER_SWASHBUCKLING:
+                [SKILL_SWASHBUCKLING, ]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

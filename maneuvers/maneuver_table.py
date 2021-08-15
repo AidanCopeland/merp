@@ -57,6 +57,7 @@ sys.path.append('../')  #
 TITLE_TEXT = "Maneuver Table"
 MANEUVER_TYPE_LABEL_TEXT = "Maneuver type required: "
 MANEUVER_CHARACTER_LABEL_TEXT = "Character carrying out maneuver: "
+SKILL_CHOICE_LABEL_TEXT = "Skill to use for maneuver: "
 SKILL_BONUS_LABEL_TEXT = "Skill bonus: "
 IS_STUNNED_TEXT = "Is character stunned?"
 CHARACTER_PENALTY_LABEL_TEXT = "Injury penalty to character: "
@@ -102,6 +103,7 @@ class ManeuverTable(Frame):
         reset_inputs(self)
         characters_updated(self)
         populate_maneuver_character_frame(self, parent_frame)
+        populate_skill_choice_frame(self, parent_frame)
         maneuver_type_change_callback(self, *_args)
         verify_inputs(self)
         calculate_modifiers(self)
@@ -126,6 +128,7 @@ class ManeuverTable(Frame):
         self.maneuver_fumble_frame = Frame()
         self.maneuver_difficulty_frame = Frame()
         self.maneuver_character_frame = Frame()
+        self.skill_choice_frame = Frame()
         self.maneuver_type = StringVar()
         self.old_maneuver_type = StringVar()
         self.skill_bonus = StringVar()
@@ -137,6 +140,9 @@ class ManeuverTable(Frame):
         self.maneuver_table = None
         self.maneuver_character = StringVar()
         self.maneuver_character_selector = None
+        self.skill_choice_selector = None
+        self.chosen_skill = StringVar()
+        self.chosen_skill.trace("w", self.chosen_skill_change_callback)
 
         self.maneuver_type_options = maneuver_type_options
 
@@ -154,6 +160,7 @@ class ManeuverTable(Frame):
         self.__setup_maneuver_difficulty_frame()
         self.__setup_maneuver_character_frame()
         self.__setup_maneuver_table_frames()
+        self.__setup_skill_choice_frame()
         self.__setup_skill_bonus_entry()
         self.__setup_stunned_checkbox()
         self.__setup_character_penalty_frame()
@@ -289,6 +296,8 @@ class ManeuverTable(Frame):
 
         self.populate_maneuver_character_frame(self.maneuver_character_frame)
 
+        trace.exit()
+
     def __setup_maneuver_table_frames(self):
         """
         Creates any frames as required by the current maneuver type.
@@ -303,6 +312,19 @@ class ManeuverTable(Frame):
 
         self.maneuver_table.setup_maneuver_table_frames(self.maneuver_table_frame)
         self.maneuver_table.setup_maneuver_skill_frames(self.maneuver_skill_frame)
+
+        trace.exit()
+
+    def __setup_skill_choice_frame(self):
+        """
+        Creates a frame allowing the selection of the correct skill bonus using an OptionMenu.
+        """
+        trace.entry()
+
+        self.skill_choice_frame = Frame(self, relief=FLAT, borderwidth=0)
+        self.skill_choice_frame.pack(fill=BOTH, expand=True)
+
+        self.populate_skill_choice_frame(self.skill_choice_frame)
 
         trace.exit()
 
@@ -405,6 +427,7 @@ class ManeuverTable(Frame):
         trace.entry()
 
         self.populate_maneuver_character_frame(self.maneuver_character_frame)
+        self.populate_skill_choice_frame(self.skill_choice_frame)
 
         trace.exit()
 
@@ -424,6 +447,9 @@ class ManeuverTable(Frame):
 
         names_with_indices = tuple(self.parent_console.character_database.names_with_indices())
 
+        self.maneuver_character.set(names_with_indices[0])
+        self.maneuver_character.trace("w", self.maneuver_character_change_callback)
+
         self.maneuver_character_selector = \
             OptionMenu(
                 maneuver_character_frame,
@@ -431,6 +457,42 @@ class ManeuverTable(Frame):
                 names_with_indices[0],
                 *names_with_indices)
         self.maneuver_character_selector.pack(side=RIGHT)
+
+    def populate_skill_choice_frame(self, parent_frame):
+        """
+        Add the list of skill bonuses based on the currently selected character.
+        :param parent_frame The owning frame.
+        """
+        frame_utils.destroy_frame_objects(parent_frame)
+
+        skill_choice_frame = Frame(parent_frame, relief=RAISED, borderwidth=1)
+        skill_choice_frame.pack(fill=BOTH, expand=True)
+
+        skill_choice_prompt = Label(skill_choice_frame,
+                                    text=SKILL_CHOICE_LABEL_TEXT)
+        skill_choice_prompt.pack(side=LEFT)
+
+        trace.detail("Character is %r" % self.maneuver_character.get())
+        current_character_index = int(self.maneuver_character.get().split(":", 1)[0])
+        maneuver_preferred_skills = \
+            self.maneuver_table.get_maneuver_preferred_skills(self.maneuver_type.get())
+        trace.detail("Preferred skills %r" % maneuver_preferred_skills)
+        character_skills = \
+            self.parent_console.character_database.get_character_skills(
+                current_character_index,
+                maneuver_preferred_skills
+            )
+        trace.detail("Character skills %r" % character_skills)
+
+        self.chosen_skill.set(character_skills[0])
+
+        self.skill_choice_selector = \
+            OptionMenu(
+                skill_choice_frame,
+                self.chosen_skill,
+                character_skills[0],
+                *character_skills)
+        self.skill_choice_selector.pack(side=RIGHT)
 
     def maneuver_type_change_callback(self, *_args):
         """
@@ -450,6 +512,29 @@ class ManeuverTable(Frame):
             self.maneuver_table.setup_maneuver_skill_frames(self.maneuver_skill_frame)
             self.reset_inputs()
         self.old_maneuver_type.set(self.maneuver_type.get())
+        self.populate_skill_choice_frame(self.skill_choice_frame)
+        trace.exit()
+
+    def maneuver_character_change_callback(self, *_args):
+        """
+        Callback made when the character carrying out a maneuver changes.
+        """
+        self.populate_skill_choice_frame(self.skill_choice_frame)
+
+    def chosen_skill_change_callback(self, *_args):
+        """
+        Callback made when the skill bonus used by the character changes.
+        """
+        trace.entry()
+
+        chosen_skill = self.chosen_skill.get()
+        trace.detail("Chosen skill is %s" % chosen_skill)
+
+        skill_value = int(chosen_skill.rsplit(":")[1]) if ':' in chosen_skill else -25
+        trace.detail("Skill value is %d" % skill_value)
+
+        self.skill_bonus.set(skill_value)
+
         trace.exit()
 
     def __select_maneuver_table(self, maneuver_type):

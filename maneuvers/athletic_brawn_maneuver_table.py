@@ -13,6 +13,10 @@ from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
 from maneuvers import maneuver_utils
+from console.character.secondary_skills import \
+    SKILL_ATHLETIC_GAMES, SKILL_JUMPING, SKILL_WEIGHT_LIFTING
+from console.character.weapon_skills import \
+    SKILL_POWER_STRIKING, SKILL_POWER_THROWING, SKILL_ADRENAL_STRENGTH
 
 import trace_log as trace
 
@@ -142,3 +146,23 @@ class AthleticBrawnManeuverTable(StaticManeuverTable):
         :return: The additional maneuver bonus
         """
         return maneuver_utils.table_bonus_from_equipment(self)
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_to_skills = {
+            AthleticBrawnManeuverTable.MANEUVER_ATHLETIC_GAMES_BRAWN: [SKILL_ATHLETIC_GAMES, ],
+            AthleticBrawnManeuverTable.MANEUVER_JUMPING: [SKILL_JUMPING, ],
+            AthleticBrawnManeuverTable.MANEUVER_POWER_STRIKING:
+                [SKILL_POWER_STRIKING, SKILL_ADRENAL_STRENGTH],
+            AthleticBrawnManeuverTable.MANEUVER_POWER_THROWING:
+                [SKILL_POWER_THROWING, SKILL_ADRENAL_STRENGTH],
+            AthleticBrawnManeuverTable.MANEUVER_WEIGHT_LIFTING: [SKILL_WEIGHT_LIFTING]
+        }
+
+        skills_list = maneuver_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list
