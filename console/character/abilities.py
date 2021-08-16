@@ -14,6 +14,7 @@ from .general_skills import init_general_skills
 from .subterfuge_skills import init_subterfuge_skills
 from .magical_skills import init_magical_skills
 from .leadership_skills import init_leadership_skills
+from .body_development_skills import init_body_development_skills
 from .language_skills import init_language_skills
 from .secondary_skills import init_secondary_skills
 sys.path.append('../../')
@@ -47,6 +48,10 @@ class Abilities:
 
         self.leadership_skills = init_leadership_skills(abilities_object.get("leadership-skills"))
         trace.detail("Leadership skills: %r" % self.leadership_skills)
+
+        self.body_development_skills = \
+            init_body_development_skills(abilities_object.get("body-development-skills"))
+        trace.detail("Body development skills: %r" % self.body_development_skills)
 
         self.language_skills = init_language_skills(abilities_object.get("language-skills"))
         trace.detail("Language skills: %r" % self.language_skills)
@@ -82,6 +87,7 @@ class Abilities:
         skills.update(self.subterfuge_skills)
         skills.update(self.magical_skills)
         skills.update(self.leadership_skills)
+        skills.update(self.body_development_skills)
         skills.update(self.language_skills)
         skills.update(self.secondary_skills)
 
@@ -100,9 +106,10 @@ class Abilities:
                 trace.flow("Wildcard skill %s" % skill_name)
                 filtered_list = fnmatch.filter(skills_dict, skill_name)
                 trace.flow("Filtered dict %r" % filtered_list)
-                for skill_name in filtered_list:
-                    trace.flow("Found skill %s" % skill_name)
-                    preferred_skills_list.append("%s: %s" % (skill_name, skills_dict.get(skill_name)))
+                for filtered_skill_name in filtered_list:
+                    trace.flow("Found skill %s" % filtered_skill_name)
+                    preferred_skills_list.append(
+                        "%s: %s" % (filtered_skill_name, skills_dict.get(filtered_skill_name)))
             elif skills_dict.get(skill_name) is not None:
                 trace.flow("Skill is known by character")
                 preferred_skills_list.append("%s: %s" % (skill_name, skills_dict.get(skill_name)))
@@ -126,6 +133,10 @@ class Abilities:
             self.__skills_category_as_list(
                 self.leadership_skills,
                 "===LEADERSHIP/INFLUENCE SKILLS==="))
+        skills.extend(
+            self.__skills_category_as_list(
+                self.body_development_skills,
+                "===BODY DEVELOPMENT SKILLS==="))
         skills.extend(self.__skills_category_as_list(self.language_skills, "===LANGUAGE SKILLS==="))
         skills.extend(
             self.__skills_category_as_list(self.secondary_skills, "===SECONDARY SKILLS==="))

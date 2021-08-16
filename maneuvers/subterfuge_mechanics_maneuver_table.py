@@ -11,6 +11,10 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.subterfuge_skills import \
+    SKILL_CAMOUFLAGE, SKILL_STALK_HIDE, SKILL_DISARM_TRAP, SKILL_DISGUISE, SKILL_COUNTERFEITING, \
+    SKILL_FORGERY, SKILL_HIDING_ITEMS, SKILL_PICK_LOCK, SKILL_SETTING_TRAPS, SKILL_TRAP_BUILDING, \
+    SKILL_USE_REMOVE_POISON, SKILL_POISON_LORE
 import trace_log as trace
 
 sys.path.append('../')
@@ -104,3 +108,36 @@ class SubterfugeMechanicsManeuverTable(StaticManeuverTable):
         else:
             trace.flow("Subterfuge/Mechanics")
             return SubterfugeMechanicsManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            SubterfugeMechanicsManeuverTable.MANEUVER_CAMOUFLAGE:
+                [SKILL_CAMOUFLAGE, SKILL_STALK_HIDE, ],
+            SubterfugeMechanicsManeuverTable.MANEUVER_DISARM_TRAPS:
+                [SKILL_DISARM_TRAP, ],
+            SubterfugeMechanicsManeuverTable.MANEUVER_DISGUISE:
+                [SKILL_DISGUISE, SKILL_STALK_HIDE],
+            SubterfugeMechanicsManeuverTable.MANEUVER_COUNTERFEITING:
+                [SKILL_COUNTERFEITING, SKILL_FORGERY],
+            SubterfugeMechanicsManeuverTable.MANEUVER_FORGERY:
+                [SKILL_FORGERY, SKILL_COUNTERFEITING],
+            SubterfugeMechanicsManeuverTable.MANEUVER_HIDING_ITEMS:
+                [SKILL_HIDING_ITEMS, SKILL_STALK_HIDE],
+            SubterfugeMechanicsManeuverTable.MANEUVER_PICK_LOCKS:
+                [SKILL_PICK_LOCK, ],
+            SubterfugeMechanicsManeuverTable.MANEUVER_SET_TRAPS:
+                [SKILL_SETTING_TRAPS, SKILL_TRAP_BUILDING, ],
+            SubterfugeMechanicsManeuverTable.MANEUVER_TRAP_BUILDING:
+                [SKILL_TRAP_BUILDING, SKILL_SETTING_TRAPS],
+            SubterfugeMechanicsManeuverTable.MANEUVER_USE_REMOVE_POISON:
+                [SKILL_USE_REMOVE_POISON, SKILL_POISON_LORE]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

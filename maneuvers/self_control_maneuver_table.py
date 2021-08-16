@@ -14,6 +14,17 @@ from past.utils import old_div
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.movement_skills import \
+    SKILL_ADRENAL_BALANCE, SKILL_ADRENAL_LANDING, SKILL_ADRENAL_LEAPING, SKILL_ADRENAL_SPEED
+from console.character.weapon_skills import \
+    SKILL_ADRENAL_QUICKDRAW, SKILL_QUICKDRAW, SKILL_ADRENAL_STABILIZATION, SKILL_ADRENAL_STRENGTH, \
+    SKILL_FRENZY, SKILL_STUNNED_MANEUVERING, SKILL_POWER_STRIKING
+from console.character.general_skills import SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS
+from console.character.magical_skills import SKILL_SPELL_CONCENTRATION
+from console.character.secondary_skills import \
+    SKILL_ADRENAL_CONCENTRATION, SKILL_CLEANSING_TRANCE, SKILL_CONTROL_LYCANTHROPY, \
+    SKILL_DEATH_TRANCE, SKILL_DRUG_TOLERANCE, SKILL_HEALING_TRANCE, SKILL_MEDITATION, \
+    SKILL_MNEMONICS, SKILL_POISON_TOLERANCE, SKILL_SLEEP_TRANCE, SKILL_TUMBLING
 import frame_utils
 import trace_log as trace
 
@@ -224,3 +235,56 @@ class SelfControlManeuverTable(StaticManeuverTable):
 
         trace.exit()
         return bonus
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            SelfControlManeuverTable.MANEUVER_ADRENAL_BALANCE:
+                [SKILL_ADRENAL_BALANCE, SKILL_TIGHTROPE_WALKING],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_CONCENTRATION:
+                [SKILL_ADRENAL_CONCENTRATION, SKILL_SPELL_CONCENTRATION, ],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_LANDING:
+                [SKILL_ADRENAL_LANDING, SKILL_TUMBLING, SKILL_ACROBATICS],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_LEAPING:
+                [SKILL_ADRENAL_LEAPING, SKILL_ACROBATICS, ],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_QUICKDRAW:
+                [SKILL_ADRENAL_QUICKDRAW, SKILL_QUICKDRAW],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_SPEED:
+                [SKILL_ADRENAL_SPEED, ],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_STABILIZATION:
+                [SKILL_ADRENAL_STABILIZATION, SKILL_DEATH_TRANCE],
+            SelfControlManeuverTable.MANEUVER_ADRENAL_STRENGTH:
+                [SKILL_ADRENAL_STRENGTH, SKILL_POWER_STRIKING],
+            SelfControlManeuverTable.MANEUVER_CLEANSING_TRANCE:
+                [SKILL_CLEANSING_TRANCE, SKILL_HEALING_TRANCE, SKILL_DEATH_TRANCE, ],
+            SelfControlManeuverTable.MANEUVER_CONTROL_LYCANTHROPY:
+                [SKILL_CONTROL_LYCANTHROPY, ],
+            SelfControlManeuverTable.MANEUVER_DEATH_TRANCE:
+                [SKILL_DEATH_TRANCE, SKILL_SLEEP_TRANCE],
+            SelfControlManeuverTable.MANEUVER_DRUG_TOLERANCE:
+                [SKILL_DRUG_TOLERANCE, SKILL_POISON_TOLERANCE],
+            SelfControlManeuverTable.MANEUVER_FRENZY:
+                [SKILL_FRENZY, ],
+            SelfControlManeuverTable.MANEUVER_HEALING_TRANCE:
+                [SKILL_HEALING_TRANCE, SKILL_CLEANSING_TRANCE, SKILL_SLEEP_TRANCE],
+            SelfControlManeuverTable.MANEUVER_MEDITATION:
+                [SKILL_MEDITATION, ],
+            SelfControlManeuverTable.MANEUVER_MNEMONICS:
+                [SKILL_MNEMONICS, ],
+            SelfControlManeuverTable.MANEUVER_POISON_TOLERANCE:
+                [SKILL_POISON_TOLERANCE, SKILL_DRUG_TOLERANCE],
+            SelfControlManeuverTable.MANEUVER_SLEEP_TRANCE:
+                [SKILL_SLEEP_TRANCE, SKILL_CLEANSING_TRANCE, SKILL_DEATH_TRANCE],
+            SelfControlManeuverTable.MANEUVER_SPELL_CONCENTRATION:
+                [SKILL_SPELL_CONCENTRATION, SKILL_ADRENAL_CONCENTRATION],
+            SelfControlManeuverTable.MANEUVER_STUNNED_MANEUVERING:
+                [SKILL_STUNNED_MANEUVERING, ]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

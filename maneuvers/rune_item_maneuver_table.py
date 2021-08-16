@@ -170,6 +170,7 @@ class RuneItemManeuverTable(StaticManeuverTable):
         trace.exit()
         return bonus
 
+    @staticmethod
     def get_maneuver_preferred_skills(_):
         """
         Return a list of skills that are the preferred skills to use for this maneuver.

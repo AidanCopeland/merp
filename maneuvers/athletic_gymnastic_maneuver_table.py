@@ -210,7 +210,7 @@ class AthleticGymnasticsManeuverTable(StaticManeuverTable):
             AthleticGymnasticsManeuverTable.MANEUVER_TIGHTROPE_WALKING:
                 [SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS],
             AthleticGymnasticsManeuverTable.MANEUVER_TUMBLING:
-                [SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS]
+                [SKILL_TUMBLING, SKILL_TIGHTROPE_WALKING, SKILL_ACROBATICS]
         }
 
         skills_list = maneuver_to_skills.get(maneuver_type, [])

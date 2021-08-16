@@ -14,7 +14,7 @@ from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCE
 from console.character.secondary_skills import \
     SKILL_COOKING, SKILL_DRAFTING, SKILL_FLETCHING, SKILL_HORTICULTURE, SKILL_LEATHER_CRAFTS, \
     SKILL_METAL_CRAFTS, SKILL_ROPE_MASTERY, SKILL_SCRIBING, SKILL_SERVICE, SKILL_SEWING_WEAVING, \
-    SKILL_SKINNING, SKILL_STONE_CRAFTS, SKILL_WOOD_CRAFTS, SKILL_SMITHING
+    SKILL_SKINNING, SKILL_STONE_CRAFTS, SKILL_WOOD_CRAFTS, SKILL_SMITHING, SKILL_ARCHITECTURE
 from console.character.general_skills import \
     SKILL_TRAPPING, SKILL_HERB_LORE, SKILL_SURVIVAL, SKILL_READING_TRACKS, SKILL_TRACK
 from console.character.subterfuge_skills import SKILL_TRAP_BUILDING
@@ -113,7 +113,7 @@ class CraftsManeuverTable(StaticManeuverTable):
             CraftsManeuverTable.MANEUVER_COOKING:
                 [SKILL_COOKING, ],
             CraftsManeuverTable.MANEUVER_DRAFTING:
-                [SKILL_DRAFTING, ],
+                [SKILL_DRAFTING, SKILL_ARCHITECTURE],
             CraftsManeuverTable.MANEUVER_FLETCHING:
                 [SKILL_FLETCHING, ],
             CraftsManeuverTable.MANEUVER_HORTICULTURE:

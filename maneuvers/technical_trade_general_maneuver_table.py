@@ -11,6 +11,14 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.general_skills import \
+    SKILL_NAVIGATION, SKILL_SAILING, SKILL_ROWING, SKILL_HERB_LORE, SKILL_PREPARING_HERBS
+from console.character.leadership_skills import SKILL_DIPLOMACY
+from console.character.secondary_skills import \
+    SKILL_BEGGING, SKILL_FIRST_AID, SKILL_DISCERN_WOUNDS, SKILL_GAMBLING, SKILL_MAPPING, \
+    SKILL_OPERATING_EQUIPMENT, SKILL_ORIENTEERING, SKILL_TACTICAL_GAMES, SKILL_USING_PREPARED_HERBS
+
+import trace_log as trace
 
 sys.path.append('../')
 
@@ -85,3 +93,34 @@ class TechnicalTradeGeneralManeuverTable(StaticManeuverTable):
         :return: The maneuver table.
         """
         return TechnicalTradeGeneralManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            TechnicalTradeGeneralManeuverTable.MANEUVER_BEGGING:
+                [SKILL_BEGGING, SKILL_DIPLOMACY],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_FIRST_AID:
+                [SKILL_FIRST_AID, SKILL_DISCERN_WOUNDS],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_GAMBLING:
+                [SKILL_GAMBLING, ],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_MAPPING:
+                [SKILL_MAPPING, SKILL_NAVIGATION],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_OPERATING_EQUIPMENT:
+                [SKILL_OPERATING_EQUIPMENT, ],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_ORIENTEERING:
+                [SKILL_ORIENTEERING, SKILL_NAVIGATION],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_SAILING:
+                [SKILL_SAILING, SKILL_ROWING],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_TACTICAL_GAMES:
+                [SKILL_TACTICAL_GAMES, ],
+            TechnicalTradeGeneralManeuverTable.MANEUVER_USE_PREPARED_HERBS:
+                [SKILL_USING_PREPARED_HERBS, SKILL_HERB_LORE, SKILL_PREPARING_HERBS]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list

@@ -47,6 +47,7 @@ class TrapLockManeuverTable(StaticManeuverTable):
             "any identical lock/trap.  +10 to attempts on similar locks/traps in the future."
     }
 
+    @staticmethod
     def get_maneuver_preferred_skills(_):
         """
         Return a list of skills that are the preferred skills to use for this maneuver.

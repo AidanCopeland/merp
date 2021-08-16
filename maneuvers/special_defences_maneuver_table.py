@@ -11,6 +11,7 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.body_development_skills import SKILL_ADRENAL_TOUGHNESS
 
 sys.path.append('../')
 
@@ -73,3 +74,11 @@ class SpecialDefencesManeuverTable(StaticManeuverTable):
         :return: The maneuver table.
         """
         return SpecialDefencesManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(_):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        return [SKILL_ADRENAL_TOUGHNESS, ]

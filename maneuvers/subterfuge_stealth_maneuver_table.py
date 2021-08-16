@@ -11,6 +11,8 @@ import sys
 from maneuvers.static_maneuver_table import StaticManeuverTable
 from maneuvers.static_maneuver_table import BLUNDER, ABSOLUTE_FAILURE, FAILURE
 from maneuvers.static_maneuver_table import PARTIAL_SUCCESS, NEAR_SUCCESS, SUCCESS, ABSOLUTE_SUCCESS
+from console.character.subterfuge_skills import \
+    SKILL_STALK_HIDE, SKILL_PICK_POCKETS, SKILL_TRICKERY, SKILL_DUPING
 import trace_log as trace
 
 sys.path.append('../')
@@ -95,3 +97,24 @@ class SubterfugeStealthManeuverTable(StaticManeuverTable):
         else:
             trace.flow("Subterfuge/Stealth")
             return SubterfugeStealthManeuverTable()
+
+    @staticmethod
+    def get_maneuver_preferred_skills(maneuver_type):
+        """
+        Return a list of skills that are the preferred skills to use for this maneuver.
+        :param maneuver_type: The type of maneuver selected.
+        """
+        maneuver_type_to_skills = {
+            SubterfugeStealthManeuverTable.MANEUVER_HIDE:
+                [SKILL_STALK_HIDE, ],
+            SubterfugeStealthManeuverTable.MANEUVER_PICK_POCKETS:
+                [SKILL_PICK_POCKETS, ],
+            SubterfugeStealthManeuverTable.MANEUVER_STALK:
+                [SKILL_STALK_HIDE, ],
+            SubterfugeStealthManeuverTable.MANEUVER_TRICKERY:
+                [SKILL_TRICKERY, SKILL_DUPING]
+        }
+
+        skills_list = maneuver_type_to_skills.get(maneuver_type, [])
+        trace.detail("Maneuver type %s, skills list %r" % (maneuver_type, skills_list))
+        return skills_list
