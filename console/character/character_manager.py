@@ -20,6 +20,7 @@ from tk_helper import clear_option_menu, refresh_option_menu
 
 from .character_importer import CharacterImporter
 from .character_viewer import CharacterViewer
+from .damage_record_sheet import DamageRecordSheet
 
 standard_library.install_aliases()
 
@@ -203,9 +204,9 @@ class CharacterManager(Frame):
                 self.damage_record_sheet_window.wm_title(DAMAGE_RECORD_SHEET)
                 self.damage_record_sheet_window.protocol("WM_DELETE_WINDOW",
                                                          self.damage_record_sheet_closed)
-#                self.damage_record_sheet = DamageRecordSheet(self.damage_record_sheet_window,
-#                                                             self,
-#                                                             self.character_database)
+                self.damage_record_sheet = DamageRecordSheet(self.damage_record_sheet_window,
+                                                             self,
+                                                             self.character_database)
             elif self.damage_record_sheet_window.state() == 'normal':
                 trace.flow("Switch focus to damage record sheet")
                 self.damage_record_sheet_window.focus_set()

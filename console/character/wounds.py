@@ -23,6 +23,13 @@ class Wounds:
     # pylint: disable=too-few-public-methods
     def __init__(self):
         trace.entry()
-        self.wound_list = list()
+
+        # Total damage taken by a character.
         self.total_damage = Wound()
+
+        # List of individual wounds taken by a character.  For information
+        # only; individual wounds are not used to calculate total damage.
+        # Optionally, removing a wound can be made to reduce the total
+        # damage by the same amount.
+        self.wound_list = list()
         trace.exit()
