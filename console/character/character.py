@@ -10,7 +10,7 @@ import sys
 import trace_log as trace
 from .abilities import Abilities
 from .basic_stats import BasicStats
-from .wounds import Wounds
+from .total_damage import TotalDamage
 
 sys.path.append('../../')
 
@@ -41,7 +41,7 @@ class Character:
         trace.entry()
         self.name = character_object.get("name")
 
-        self.wounds = Wounds()
+        self.total_damage = TotalDamage()
 
         basic_stats_object = character_object.get("basic-stats")
         self.basic_stats = BasicStats(basic_stats_object)

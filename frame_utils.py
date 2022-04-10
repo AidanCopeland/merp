@@ -84,6 +84,30 @@ def setup_entry_frame(parent_frame, entry_text, entry_variable):
     trace.exit()
 
 
+def setup_label_frame(parent_frame, label_text, label_value):
+    """
+    Sets up a frame containing a Label.
+    :param parent_frame: The parent frame.
+    :param label_text: The text to apply to the label.
+    :param label_variable: The variable corresponding to the label.
+    """
+    trace.entry()
+
+    label_frame = Frame(parent_frame, relief=RAISED, borderwidth=1)
+    label_frame.pack(fill=BOTH, expand=True)
+
+    label_prompt = Label(label_frame, text=label_text)
+    label_prompt.pack(side=LEFT)
+
+    label_value = Label(
+        label_frame,
+        textvariable=label_value
+    )
+    label_value.pack(side=RIGHT)
+
+    trace.exit()
+
+
 def setup_optionmenu_frame(parent_frame, prompt_text, default, variable, *options):
     """
     Sets up a frame containing an OptionMenu.

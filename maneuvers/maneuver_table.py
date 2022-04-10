@@ -411,10 +411,10 @@ class ManeuverTable(Frame):
         """
         trace.entry()
 
-        self.skill_bonus.set(SKILL_BONUS_DEFAULT)
+        self.skill_bonus.set(str(SKILL_BONUS_DEFAULT))
         self.is_stunned.set(STUN_DEFAULT)
-        self.character_penalty.set(CHARACTER_PENALTY_DEFAULT)
-        self.additional_bonus.set(ADDITIONAL_BONUS_DEFAULT)
+        self.character_penalty.set(str(CHARACTER_PENALTY_DEFAULT))
+        self.additional_bonus.set(str(ADDITIONAL_BONUS_DEFAULT))
         self.dice_roll.set(DICE_ROLL_DEFAULT)
         self.result_text.delete(1.0, END)
 

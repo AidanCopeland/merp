@@ -21,8 +21,6 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 # Work to do:
-# Add option to view details of a single character
-# Handle deletion of a character when detail windows are open (close and re-open windows?)
 # Add option to update each field for a single character
 # Add option to reset a single character
 # Add option to reset all damage
@@ -34,6 +32,7 @@ sys.path.append('../../')
 # Update incapacity if rounds to death reaches zero
 # Allow collected wounds to determine incapacity state
 
+DAMAGE_RECORD_SHEET = ": Damage Record Sheet"
 
 def _clear_table(damage_record_table):
     trace.entry()
@@ -158,19 +157,19 @@ class DamageRecordSheet(Frame):
         characters = self.character_database.entries_in_database_with_indices()
         for (character, index) in characters:
             trace.detail("Character stats %r" % character.stats)
-            character_damage = character.wounds.total_damage
+            character_damage = character.total_damage
             damage_record_table.insert(
                 parent="",
                 index=index,
                 iid=index,
                 values=(
                     character.name,
-                    character_damage.hits,
-                    character_damage.bleeding,
+                    character_damage.hits_taken,
+                    character_damage.hits_per_round,
                     character_damage.stun,
                     character_damage.stun_no_parry,
-                    character_damage.penalty,
-                    character_damage.incapacitation
+                    character_damage.subtraction_from_bonuses,
+                    character_damage.combat_readiness
                 )
             )
 
@@ -189,50 +188,52 @@ class DamageRecordSheet(Frame):
         View or edit the currently selected character.
         """
         trace.entry()
-        character = self.damage_record_table.focus()
-        if character is not None:
-            if self.character_damage_record.get(character) is None:
-                trace.flow("Open character damage record sheet, index %s" % character)
-                self.character_damage_record_window[character] = Toplevel(self)
-                self.character_damage_record_window[character].protocol(
+        character_index = self.damage_record_table.focus()
+        if character_index != '':
+            if self.character_damage_record.get(character_index) is None:
+                trace.flow("Open character damage record sheet, index %s" % character_index)
+                character = self.character_database.get_character(int(character_index))
+                self.character_damage_record_window[character_index] = Toplevel(self)
+                self.character_damage_record_window[character_index].wm_title(
+                    "%s%s" % (character.name, DAMAGE_RECORD_SHEET))
+                self.character_damage_record_window[character_index].protocol(
                     "WM_DELETE_WINDOW",
-                    lambda charcter=character: self.character_damage_window_closed(character))
-                self.character_damage_record[character] = \
+                    lambda charcter=character_index: self.character_damage_window_closed(character_index))
+                self.character_damage_record[character_index] = \
                     CharacterDamageRecord(
-                        self.character_damage_record_window[character],
+                        self.character_damage_record_window[character_index],
                         self,
                         self.character_database,
-                        int(character)
+                        int(character_index)
                     )
 
-            elif self.character_damage_record_window[character].state() == 'normal':
+            elif self.character_damage_record_window[character_index].state() == 'normal':
                 trace.flow("Switch focus to damage record sheet")
-                self.character_damage_record_window[character].focus_set()
+                self.character_damage_record_window[character_index].focus_set()
             else:
                 trace.flow("Deiconify character viewer")
-                self.character_damage_record_window[character].deiconify()
+                self.character_damage_record_window[character_index].deiconify()
         trace.exit()
 
-    def character_damage_window_closed(self, character):
+    def character_damage_window_closed(self, character_index):
         """
         Callback when a request is received to close the character damage record window.
         """
         trace.entry()
-        self.character_damage_record_window[character].destroy()
-        self.character_damage_record_window[character] = None
-        self.character_damage_record[character] = None
+        self.character_damage_record_window[character_index].destroy()
+        self.character_damage_record_window[character_index] = None
+        self.character_damage_record[character_index] = None
 
         trace.exit()
-
 
     def reset_character(self):
         """
         Reset the currently selected character.
         """
         trace.entry()
-        character = self.damage_record_table.selection()
-        if character is not None:
-            trace.flow("Reset character index %r" % character)
+        character_index = self.damage_record_table.selection()
+        if character_index != '':
+            trace.flow("Reset character index %r" % character_index)
         trace.exit()
 
     def reset_party(self):
