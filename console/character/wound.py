@@ -11,7 +11,7 @@ import trace_log as trace
 
 sys.path.append('../../')
 
-ACTIVE = "Active"
+ACTIVE = ""
 OUT_OF_COMBAT = "Out of combat"
 DYING = "Dying"
 UNCONSCIOUS = "Unconscious"

@@ -55,12 +55,23 @@ class CharacterDatabase:
 
     def entries_in_database(self):
         """
-        Return a the entries in the database.
+        Return the entries in the database.
         """
         trace.entry()
 
         trace.exit()
         return self.database
+
+    def entries_in_database_with_indices(self):
+        """
+        Return the entries in the database.
+        """
+        trace.entry()
+
+        indices = range(len(self.database))
+
+        trace.exit()
+        return zip(self.database, indices)
 
     def names_with_indices(self):
         """

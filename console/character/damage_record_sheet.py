@@ -7,11 +7,13 @@ Classes:
     DamageRecordSheet
 """
 import sys
-from tkinter import Tk, BOTH, RAISED, END, Text, WORD
-from tkinter.ttk import Frame, Label, Style
+from tkinter import Tk, BOTH, RAISED, NO, CENTER, RIGHT, Toplevel
+from tkinter.ttk import Frame, Label, Style, Treeview, Scrollbar
 
 from future import standard_library
 
+from console.character.character_damage_record import CharacterDamageRecord
+import frame_utils
 import trace_log as trace
 
 standard_library.install_aliases()
@@ -19,17 +21,26 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 # Work to do:
-# Print the damage record sheet out as a table
+# Add option to view details of a single character
+# Handle deletion of a character when detail windows are open (close and re-open windows?)
+# Add option to update each field for a single character
+# Add option to reset a single character
 # Add option to reset all damage
 # Add option to reset PCs only
-# Add option to view details of a single character
-# Add option to update each field for a single character
 # Feed penalty into maneuvers
 # Feed stun into maneuvers
 # Allow maneuvers (fumbles) to update damage sheet
 # Add end of round trigger: add bleeding, subtract stun (stun no parry first), update rounds to death
 # Update incapacity if rounds to death reaches zero
 # Allow collected wounds to determine incapacity state
+
+
+def _clear_table(damage_record_table):
+    trace.entry()
+    table_entries = damage_record_table.get_children()
+    for entry in table_entries:
+        trace.flow("Delete entry ID {}".format(entry))
+        damage_record_table.delete(entry)
 
 
 class DamageRecordSheet(Frame):
@@ -51,7 +62,12 @@ class DamageRecordSheet(Frame):
 
         self.style = None
         self.damage_record_sheet_frame = None
-        self.damage_record_list = None
+        self.damage_record_table = None
+        self.damage_record_scrollbar = None
+
+        self.character_damage_record = {}
+        self.character_damage_record_window = {}
+#        self.current_character_record = None
 
         self._initialize_variables()
         self._init_ui()
@@ -81,39 +97,82 @@ class DamageRecordSheet(Frame):
 
         def init_damage_record_sheet(this):
             this.damage_record_sheet_frame = Frame(self, relief=RAISED, borderwidth=1)
-            this.damage_record_list = Text(this.damage_record_sheet_frame, wrap=WORD)
+            damage_record_table = Treeview(
+                self.damage_record_sheet_frame,
+                columns=("Name", "Hits", "Hits/rnd", "Stun", "Stun no parry", "Penalties", "State"),
+                selectmode="browse"
+            )
+            damage_record_table.column('#0', width=0, stretch=NO)
+            damage_record_table.column("Name", width=200)
+            damage_record_table.column("Hits", anchor=CENTER, width=60)
+            damage_record_table.column("Hits/rnd", anchor=CENTER, width=60)
+            damage_record_table.column("Stun", anchor=CENTER, width=60)
+            damage_record_table.column("Stun no parry", anchor=CENTER, width=80)
+            damage_record_table.column("Penalties", anchor=CENTER, width=80)
+            damage_record_table.column("State", anchor=CENTER, width=300)
+
+            damage_record_table.heading('#0', text='', anchor=CENTER)
+            damage_record_table.heading("Name", text="Name")
+            damage_record_table.heading("Hits", text="Hits", anchor=CENTER)
+            damage_record_table.heading("Hits/rnd", text="Hits/rnd", anchor=CENTER)
+            damage_record_table.heading("Stun", text="Stun", anchor=CENTER)
+            damage_record_table.heading("Stun no parry", text="Stun no parry", anchor=CENTER)
+            damage_record_table.heading("Penalties", text="Penalties", anchor=CENTER)
+            damage_record_table.heading("State", text="State", anchor=CENTER)
+
+            this.damage_record_table = damage_record_table
+
+            this.damage_record_scrollbar = Scrollbar(
+                self.damage_record_sheet_frame,
+                orient="vertical")
+            this.damage_record_scrollbar.configure(command=this.damage_record_table.yview)
+            this.damage_record_table.configure(yscrollcommand=this.damage_record_scrollbar.set)
+            this.damage_record_scrollbar.pack(side=RIGHT, fill=BOTH)
+            this.damage_record_table.pack()
             this.damage_record_sheet_frame.pack(fill=BOTH, expand=True)
-            this.damage_record_list.pack(fill=BOTH)
 
         init_ui_title(self)
         init_damage_record_sheet(self)
+        frame_utils.init_ui_go_buttons(
+            self,
+            [
+                ('View/edit selected', self.view_edit_character),
+                ('Reset selected', self.reset_character),
+                ('Reset party', self.reset_party),
+                ('Reset all', self.reset_all)
+            ]
+        )
 
-        self.populate_damage_record_sheet()
+        self.populate_damage_record_sheet(self.damage_record_table)
 
         self.pack(fill=BOTH, expand=True)
 
         trace.exit()
 
-    def populate_damage_record_sheet(self):
+    def populate_damage_record_sheet(self, damage_record_table):
         """
         Populate the damage record sheet with all entries in the database.
         """
         trace.entry()
-        self.damage_record_list.delete('1.0', END)
-        self.damage_record_list.insert(END, "List of characters:\n")
-        characters = self.character_database.entries_in_database()
-        for character in characters:
+        _clear_table(damage_record_table)
+        characters = self.character_database.entries_in_database_with_indices()
+        for (character, index) in characters:
             trace.detail("Character stats %r" % character.stats)
             character_damage = character.wounds.total_damage
-            character_string = \
-                ("{}, hits {}, hits/rnd {}, stun {}, stun no parry {}, penalty {}\n".format(
+            damage_record_table.insert(
+                parent="",
+                index=index,
+                iid=index,
+                values=(
                     character.name,
                     character_damage.hits,
                     character_damage.bleeding,
                     character_damage.stun,
                     character_damage.stun_no_parry,
-                    character_damage.penalty))
-            self.damage_record_list.insert(END, character_string)
+                    character_damage.penalty,
+                    character_damage.incapacitation
+                )
+            )
 
         trace.exit()
 
@@ -122,7 +181,72 @@ class DamageRecordSheet(Frame):
         Redraw the character display with the new database
         """
         trace.entry()
-        self.populate_damage_record_sheet()
+        self.populate_damage_record_sheet(self.damage_record_table)
+        trace.exit()
+
+    def view_edit_character(self):
+        """
+        View or edit the currently selected character.
+        """
+        trace.entry()
+        character = self.damage_record_table.focus()
+        if character is not None:
+            if self.character_damage_record.get(character) is None:
+                trace.flow("Open character damage record sheet, index %s" % character)
+                self.character_damage_record_window[character] = Toplevel(self)
+                self.character_damage_record_window[character].protocol(
+                    "WM_DELETE_WINDOW",
+                    lambda charcter=character: self.character_damage_window_closed(character))
+                self.character_damage_record[character] = \
+                    CharacterDamageRecord(
+                        self.character_damage_record_window[character],
+                        self,
+                        self.character_database,
+                        int(character)
+                    )
+
+            elif self.character_damage_record_window[character].state() == 'normal':
+                trace.flow("Switch focus to damage record sheet")
+                self.character_damage_record_window[character].focus_set()
+            else:
+                trace.flow("Deiconify character viewer")
+                self.character_damage_record_window[character].deiconify()
+        trace.exit()
+
+    def character_damage_window_closed(self, character):
+        """
+        Callback when a request is received to close the character damage record window.
+        """
+        trace.entry()
+        self.character_damage_record_window[character].destroy()
+        self.character_damage_record_window[character] = None
+        self.character_damage_record[character] = None
+
+        trace.exit()
+
+
+    def reset_character(self):
+        """
+        Reset the currently selected character.
+        """
+        trace.entry()
+        character = self.damage_record_table.selection()
+        if character is not None:
+            trace.flow("Reset character index %r" % character)
+        trace.exit()
+
+    def reset_party(self):
+        """
+        Reset all PCs.
+        """
+        trace.entry()
+        trace.exit()
+
+    def reset_all(self):
+        """
+        Reset all PCs and NPCs.
+        """
+        trace.entry()
         trace.exit()
 
 

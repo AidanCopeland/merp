@@ -10,7 +10,7 @@ Functions:
     setup_optionmenu_frame(parent_frame, prompt_text, default, variable, *options)
 """
 import sys
-from tkinter import LEFT, RIGHT, BOTH, RAISED
+from tkinter import LEFT, RIGHT, BOTH, RAISED, TOP
 from tkinter.ttk import Frame, Label, Entry, Checkbutton, OptionMenu, Button
 from future import standard_library
 import trace_log as trace
@@ -121,3 +121,21 @@ def init_ui_go_button(parent, text, command):
     selection_button.pack()
 
     trace.exit()
+
+
+def init_ui_go_buttons(parent, button_list):
+    trace.entry()
+
+    selection_frame = Frame(parent, relief=RAISED, borderwidth=1)
+    selection_frame.pack(fill=BOTH, expand=True)
+
+    num_columns = len(button_list)
+    for column in range(num_columns):
+        selection_frame.columnconfigure(column, weight=1)
+
+    column = 0
+    for (text, command) in button_list:
+        trace.flow("Process next button")
+        selection_button = Button(selection_frame, text=text, command=command)
+        selection_button.grid(row=1, column=column, padx=20)
+        column += 1
