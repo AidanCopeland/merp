@@ -11,6 +11,7 @@ Functions:
 """
 import sys
 from tkinter import LEFT, RIGHT, BOTH, RAISED, TOP
+from tkinter.constants import W
 from tkinter.ttk import Frame, Label, Entry, Checkbutton, OptionMenu, Button
 from future import standard_library
 import trace_log as trace
@@ -80,6 +81,41 @@ def setup_entry_frame(parent_frame, entry_text, entry_variable):
         textvariable=entry_variable
     )
     entry_input.pack(side=RIGHT)
+
+    trace.exit()
+
+
+def setup_grid_double_entry(
+        parent_frame,
+        entry_text,
+        entry_variable_1,
+        entry_variable_2,
+        row
+):
+    """
+    Sets up a row containing two Entries in a grid.
+    :param parent_frame: The parent frame.
+    :param entry_text: The text to apply to the entry.
+    :param entry_variable_1: The variable that tracks the first entry.
+    :param entry_variable_2: The variable that tracks the second entry.
+    :param row: The index of the row in the grid.
+    """
+    trace.entry()
+
+    entry_prompt = Label(parent_frame, text=entry_text)
+    entry_prompt.grid(row=row, column=0, sticky=W)
+
+    entry_input_1 = Entry(
+        parent_frame,
+        textvariable=entry_variable_1
+    )
+    entry_input_1.grid(row=row, column=1)
+
+    entry_input_2 = Entry(
+        parent_frame,
+        textvariable=entry_variable_2
+    )
+    entry_input_2.grid(row=row, column=2)
 
     trace.exit()
 

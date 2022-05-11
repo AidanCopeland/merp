@@ -21,7 +21,7 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 # Work to do:
-# Add option to update each field for a single character
+# Add combat readiness for a single character
 # Add option to reset a single character
 # Add option to reset all damage
 # Add option to reset PCs only
@@ -33,6 +33,7 @@ sys.path.append('../../')
 # Allow collected wounds to determine incapacity state
 
 DAMAGE_RECORD_SHEET = ": Damage Record Sheet"
+
 
 def _clear_table(damage_record_table):
     trace.entry()
@@ -66,7 +67,6 @@ class DamageRecordSheet(Frame):
 
         self.character_damage_record = {}
         self.character_damage_record_window = {}
-#        self.current_character_record = None
 
         self._initialize_variables()
         self._init_ui()
@@ -198,7 +198,7 @@ class DamageRecordSheet(Frame):
                     "%s%s" % (character.name, DAMAGE_RECORD_SHEET))
                 self.character_damage_record_window[character_index].protocol(
                     "WM_DELETE_WINDOW",
-                    lambda charcter=character_index: self.character_damage_window_closed(character_index))
+                    lambda character=character_index: self.character_damage_window_closed(character_index))
                 self.character_damage_record[character_index] = \
                     CharacterDamageRecord(
                         self.character_damage_record_window[character_index],
