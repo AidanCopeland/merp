@@ -40,6 +40,7 @@ class Character:
     def __init__(self, character_object):
         trace.entry()
         self.name = character_object.get("name")
+        self.is_pc = character_object.get("is-pc", False)
 
         self.total_damage = TotalDamage()
 

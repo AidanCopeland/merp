@@ -21,8 +21,6 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 # Work to do:
-# Add option to reset all damage
-# Add option to reset PCs only
 # Feed penalty into maneuvers
 # Feed stun into maneuvers
 # Allow maneuvers (fumbles) to update damage sheet
@@ -189,8 +187,9 @@ class DamageRecordSheet(Frame):
         View or edit the currently selected character.
         """
         trace.entry()
-        character_index = self.damage_record_table.focus()
-        if character_index != '':
+        character_index_str = self.damage_record_table.focus()
+        if character_index_str != '':
+            character_index = int(character_index_str)
             if self.character_damage_record.get(character_index) is None:
                 trace.flow("Open character damage record sheet, index %s" % character_index)
                 character = self.character_database.get_character(int(character_index))
@@ -232,14 +231,12 @@ class DamageRecordSheet(Frame):
         Reset the currently selected character.
         """
         trace.entry()
-        character_index = self.damage_record_table.focus()
-        if character_index != '':
-            trace.flow("Reset character index %s" % character_index)
-            character = self.character_database.get_character(int(character_index))
-            character.total_damage.reset()
-            if self.character_damage_record.get(character_index) is not None:
-                trace.flow("Reset character record window")
-                self.character_damage_record[character_index].populate_damage_record_sheet()
+        character_index_str = self.damage_record_table.focus()
+        if character_index_str != '':
+            trace.flow("Reset character index %d" % int(character_index_str))
+            character_index = int(character_index_str)
+            character = self.character_database.get_character(character_index)
+            self._reset_character(character, character_index)
             self.characters_updated()
         trace.exit()
 
@@ -248,6 +245,13 @@ class DamageRecordSheet(Frame):
         Reset all PCs.
         """
         trace.entry()
+        characters_with_indices = self.character_database.entries_in_database_with_indices()
+        for (character, character_index) in characters_with_indices:
+            trace.flow("Check character index %d" % character_index)
+            if character.is_pc:
+                trace.flow("Reset character")
+                self._reset_character(character, character_index)
+        self.characters_updated()
         trace.exit()
 
     def reset_all(self):
@@ -255,6 +259,24 @@ class DamageRecordSheet(Frame):
         Reset all PCs and NPCs.
         """
         trace.entry()
+        characters_with_indices = self.character_database.entries_in_database_with_indices()
+        for (character, character_index) in characters_with_indices:
+            trace.flow("Reset character index %d" % character_index)
+            self._reset_character(character, character_index)
+        self.characters_updated()
+        trace.exit()
+
+    def _reset_character(self, character, character_index):
+        """
+        Reset all damage for the specified character.
+        :param character: The character to reset.
+        :param character_index: The index of the character to reset.
+        """
+        trace.entry()
+        character.total_damage.reset()
+        if self.character_damage_record.get(character_index) is not None:
+            trace.flow("Reset character record window for index %s" % character_index)
+            self.character_damage_record[character_index].populate_damage_record_sheet()
         trace.exit()
 
 

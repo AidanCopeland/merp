@@ -1,5 +1,6 @@
 {
   "name": "Dolwin",
+  "is-pc": true,
   "basic-stats": {
     "level": 20,
     "melee-obs": [

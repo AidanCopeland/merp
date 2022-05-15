@@ -1,5 +1,6 @@
 {
   "name": "Morn",
+  "is-pc": true,
   "basic-stats": {
     "level": 15,
     "melee-obs": [
