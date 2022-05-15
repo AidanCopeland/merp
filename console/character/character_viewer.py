@@ -24,14 +24,15 @@ class CharacterViewer(Frame):
     The console allowing viewing and updating of character information.
 
     Methods:
-        __init__(self, master, parent_console, character_database)
+        __init__(self, master, merp_console, parent_console, character_database)
         populate_character_display(self)
         characters_updated(self)
     """
-    def __init__(self, master, parent_console, character_database):
+    def __init__(self, master, merp_console, parent_console, character_database):
         trace.entry()
 
         Frame.__init__(self, master)
+        self.merp_console = merp_console
         self.parent_console = parent_console
         self.master = master
         self.character_database = character_database
@@ -108,16 +109,17 @@ class CharacterViewer(Frame):
         trace.exit()
 
 
-def main(master=None, parent_console=None, character_database=None):
+def main(master=None, merp_console=None, parent_console=None, character_database=None):
     """
     Starts the CharacterViewer window.
     :param master: The owning window.
+    :param merp_console: The ancestor MERP console.
     :param parent_console: The Character Manager that started this Character Viewer.
     :param character_database: The database of all active character information.
     """
     trace.init("Character Viewer")
     root = Tk()
-    CharacterViewer(master, parent_console, character_database)
+    CharacterViewer(master, merp_console, parent_console, character_database)
     root.mainloop()
 
 

@@ -21,7 +21,6 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 # Work to do:
-# Feed penalty into maneuvers
 # Feed stun into maneuvers
 # Allow maneuvers (fumbles) to update damage sheet
 # Add combat readiness for a single character: track weapon arm, inactive, unconscious, dead separately
@@ -47,14 +46,14 @@ class DamageRecordSheet(Frame):
     The console allowing viewing and updating of character information.
 
     Methods:
-        __init__(self, master, parent_console, character_database)
+        __init__(self, master, merp_console, parent_console, character_database)
         populate_damage_record_sheet(self)
-        characters_updated(self)
     """
-    def __init__(self, master, parent_console, character_database):
+    def __init__(self, master, merp_console, parent_console, character_database):
         trace.entry()
 
         Frame.__init__(self, master)
+        self.merp_console = merp_console
         self.parent_console = parent_console
         self.master = master
         self.character_database = character_database
@@ -202,6 +201,7 @@ class DamageRecordSheet(Frame):
                 self.character_damage_record[character_index] = \
                     CharacterDamageRecord(
                         self.character_damage_record_window[character_index],
+                        self.merp_console,
                         self,
                         self.character_database,
                         int(character_index)
@@ -237,7 +237,7 @@ class DamageRecordSheet(Frame):
             character_index = int(character_index_str)
             character = self.character_database.get_character(character_index)
             self._reset_character(character, character_index)
-            self.characters_updated()
+            self.merp_console.characters_updated()
         trace.exit()
 
     def reset_party(self):
@@ -251,7 +251,7 @@ class DamageRecordSheet(Frame):
             if character.is_pc:
                 trace.flow("Reset character")
                 self._reset_character(character, character_index)
-        self.characters_updated()
+        self.merp_console.characters_updated()
         trace.exit()
 
     def reset_all(self):
@@ -263,7 +263,7 @@ class DamageRecordSheet(Frame):
         for (character, character_index) in characters_with_indices:
             trace.flow("Reset character index %d" % character_index)
             self._reset_character(character, character_index)
-        self.characters_updated()
+        self.merp_console.characters_updated()
         trace.exit()
 
     def _reset_character(self, character, character_index):
@@ -280,16 +280,17 @@ class DamageRecordSheet(Frame):
         trace.exit()
 
 
-def main(master=None, parent_console=None, character_database=None):
+def main(master=None, merp_console=None, parent_console=None, character_database=None):
     """
     Starts the DamageRecordSheet window.
     :param master: The owning window.
+    :param merp_console: The ancestor MERP console.
     :param parent_console: The Character Manager that started this Damage Record Sheet.
     :param character_database: The database of all active character information.
     """
     trace.init("Damage Record Sheet")
     root = Tk()
-    DamageRecordSheet(master, parent_console, character_database)
+    DamageRecordSheet(master, merp_console, parent_console, character_database)
     root.mainloop()
 
 

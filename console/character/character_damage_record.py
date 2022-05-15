@@ -38,16 +38,16 @@ class CharacterDamageRecord(Frame):
     The console allowing viewing and updating of a single character information.
 
     Methods:
-        __init__(self, master, parent_console, character_database)
+        __init__(self, master, merp_console, parent_console, character_database)
         populate_damage_record_sheet(self)
-        characters_updated(self)
     """
-    def __init__(self, master, parent_console, character_database, character_index):
+    def __init__(self, master, merp_console, parent_console, character_database, character_index):
         trace.entry()
 
         Frame.__init__(self, master)
         self.character = character_database.get_character(character_index)
         self.total_damage = self.character.total_damage
+        self.merp_console = merp_console
         self.parent_console = parent_console
         self.master = master
 
@@ -260,7 +260,7 @@ class CharacterDamageRecord(Frame):
         self._apply_deltas()
 
         self.populate_damage_record_sheet()
-        self.parent_console.characters_updated()
+        self.merp_console.characters_updated()
 
     def _verify_values(self):
         """
@@ -330,17 +330,28 @@ class CharacterDamageRecord(Frame):
         self.rounds_to_death_delta.set('')
 
 
-def main(master=None, parent_console=None, character_database=None, character_index=None):
+def main(
+        master=None,
+        merp_console=None,
+        parent_console=None,
+        character_database=None,
+        character_index=None):
     """
     Starts the CharacterDamageRecord window.
     :param master: The owning window.
+    :param merp_console: The ancestor console for this Damage Record Sheet.
     :param parent_console: The Character Manager that started this Damage Record Sheet.
     :param character_database: The database of all active character information.
     :param character_index: The index of the character corresponding to this record.
     """
     trace.init("Character Damage Record")
     root = Tk()
-    CharacterDamageRecord(master, parent_console, character_database, character_index)
+    CharacterDamageRecord(
+        master,
+        merp_console,
+        parent_console,
+        character_database,
+        character_index)
     root.mainloop()
 
 

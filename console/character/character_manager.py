@@ -40,7 +40,7 @@ class CharacterManager(Frame):
     Includes character import, update, deletion and damage record.
 
     Methods:
-        __init__(self, master, parent_console, character_database)
+        __init__(self, master, merp_console, parent_console, character_database)
         init_ui(self)
         option_change_callback(self)
         set_current_option(self, option)
@@ -50,10 +50,11 @@ class CharacterManager(Frame):
         damage_record_sheet_closed(self)
         characters_updated(self)
     """
-    def __init__(self, master, parent_console, character_database):
+    def __init__(self, master, merp_console, parent_console, character_database):
         trace.entry()
 
         Frame.__init__(self, master)
+        self.merp_console = merp_console
         self.parent_console = parent_console
         self.master = master
         self.character_database = character_database
@@ -170,6 +171,7 @@ class CharacterManager(Frame):
                 self.character_importer_window.protocol("WM_DELETE_WINDOW",
                                                         self.character_importer_closed)
                 self.character_importer = CharacterImporter(self.character_importer_window,
+                                                            self.merp_console,
                                                             self,
                                                             self.character_database)
             elif self.character_importer_window.state() == 'normal':
@@ -188,6 +190,7 @@ class CharacterManager(Frame):
                 self.character_viewer_window.protocol("WM_DELETE_WINDOW",
                                                       self.character_viewer_closed)
                 self.character_viewer = CharacterViewer(self.character_viewer_window,
+                                                        self.merp_console,
                                                         self,
                                                         self.character_database)
             elif self.character_viewer_window.state() == 'normal':
@@ -205,6 +208,7 @@ class CharacterManager(Frame):
                 self.damage_record_sheet_window.protocol("WM_DELETE_WINDOW",
                                                          self.damage_record_sheet_closed)
                 self.damage_record_sheet = DamageRecordSheet(self.damage_record_sheet_window,
+                                                             self.merp_console,
                                                              self,
                                                              self.character_database)
             elif self.damage_record_sheet_window.state() == 'normal':
@@ -253,7 +257,6 @@ class CharacterManager(Frame):
         Tell any other objects using the characters that the characters have been updated.
         """
         trace.entry()
-        self.parent_console.characters_updated()
         if self.character_viewer is not None:
             trace.flow("Kick character viewer")
             self.character_viewer.characters_updated()
@@ -261,20 +264,20 @@ class CharacterManager(Frame):
         if self.damage_record_sheet is not None:
             trace.flow("Kick damage record sheet")
             self.damage_record_sheet.characters_updated()
-
         trace.exit()
 
 
-def main(master=None, parent_console=None, character_database=None):
+def main(master=None, merp_console=None, parent_console=None, character_database=None):
     """
     Starts the Character Manager window.
     :param master: The owning window.
+    :param merp_console: The ancestor MERP console object.
     :param parent_console: The Console object that started this Character Manager.
     :param character_database: The database of all active character information.
     """
     trace.init("Character Manager")
     root = Tk()
-    CharacterManager(master, parent_console, character_database)
+    CharacterManager(master, merp_console, parent_console, character_database)
     root.mainloop()
 
 

@@ -104,6 +104,7 @@ class ManeuverTable(Frame):
         characters_updated(self)
         populate_maneuver_character_frame(self, parent_frame)
         populate_skill_choice_frame(self, parent_frame)
+        update_character_penalty(self)
         maneuver_type_change_callback(self, *_args)
         verify_inputs(self)
         calculate_modifiers(self)
@@ -129,6 +130,7 @@ class ManeuverTable(Frame):
         self.maneuver_difficulty_frame = Frame()
         self.maneuver_character_frame = Frame()
         self.skill_choice_frame = Frame()
+        self.character_penalty_frame = Frame()
         self.maneuver_type = StringVar()
         self.old_maneuver_type = StringVar()
         self.skill_bonus = StringVar()
@@ -138,11 +140,13 @@ class ManeuverTable(Frame):
         self.dice_roll = StringVar()
         self.result_text = Text(wrap=WORD)
         self.maneuver_table = None
-        self.maneuver_character = StringVar()
+        self.maneuver_character_name_and_index = StringVar()
         self.maneuver_character_selector = None
         self.skill_choice_selector = None
         self.chosen_skill = StringVar()
         self.chosen_skill.trace("w", self.chosen_skill_change_callback)
+        self.current_character_index = 0
+        self.current_character = parent_console.character_database.get_character(0)
 
         self.maneuver_type_options = maneuver_type_options
 
@@ -351,7 +355,10 @@ class ManeuverTable(Frame):
         Entry widget.
         """
         trace.entry()
+
         frame_utils.setup_entry_frame(self, CHARACTER_PENALTY_LABEL_TEXT, self.character_penalty)
+        self.update_character_penalty()
+
         trace.exit()
 
     def __setup_additional_bonus_frame(self):
@@ -426,8 +433,15 @@ class ManeuverTable(Frame):
         """
         trace.entry()
 
+        trace.detail("Character is %r" % self.maneuver_character_name_and_index.get())
+        self.current_character_index = int(
+            self.maneuver_character_name_and_index.get().split(":", 1)[0])
+        self.current_character = \
+            self.parent_console.character_database.get_character(
+                self.current_character_index)
         self.populate_maneuver_character_frame(self.maneuver_character_frame)
         self.populate_skill_choice_frame(self.skill_choice_frame)
+        self.update_character_penalty()
 
         trace.exit()
 
@@ -447,16 +461,20 @@ class ManeuverTable(Frame):
 
         names_with_indices = tuple(self.parent_console.character_database.names_with_indices())
 
-        self.maneuver_character.set(names_with_indices[0])
-        self.maneuver_character.trace("w", self.maneuver_character_change_callback)
+        self.maneuver_character_name_and_index.set(names_with_indices[0])
+        self.maneuver_character_name_and_index.trace("w", self.maneuver_character_change_callback)
 
         self.maneuver_character_selector = \
             OptionMenu(
                 maneuver_character_frame,
-                self.maneuver_character,
+                self.maneuver_character_name_and_index,
                 names_with_indices[0],
                 *names_with_indices)
         self.maneuver_character_selector.pack(side=RIGHT)
+        self.current_character_index = 0
+        self.current_character = \
+            self.parent_console.character_database.get_character(
+                self.current_character_index)
 
     def populate_skill_choice_frame(self, parent_frame):
         """
@@ -472,14 +490,12 @@ class ManeuverTable(Frame):
                                     text=SKILL_CHOICE_LABEL_TEXT)
         skill_choice_prompt.pack(side=LEFT)
 
-        trace.detail("Character is %r" % self.maneuver_character.get())
-        current_character_index = int(self.maneuver_character.get().split(":", 1)[0])
         maneuver_preferred_skills = \
             self.maneuver_table.get_maneuver_preferred_skills(self.maneuver_type.get())
         trace.detail("Preferred skills %r" % maneuver_preferred_skills)
         character_skills = \
             self.parent_console.character_database.get_character_skills(
-                current_character_index,
+                self.current_character_index,
                 maneuver_preferred_skills
             )
         trace.detail("Character skills %r" % character_skills)
@@ -493,6 +509,17 @@ class ManeuverTable(Frame):
                 character_skills[0],
                 *character_skills)
         self.skill_choice_selector.pack(side=RIGHT)
+
+    def update_character_penalty(self):
+        """
+        Update the current penalty to activity based on the currently selected character.
+        """
+        trace.entry()
+        penalty = self.current_character.total_damage.get_penalty()
+        self.character_penalty.set(penalty)
+        trace.detail("Penalty to bonuses %d" % penalty)
+        trace.exit()
+
 
     def maneuver_type_change_callback(self, *_args):
         """
@@ -519,7 +546,14 @@ class ManeuverTable(Frame):
         """
         Callback made when the character carrying out a maneuver changes.
         """
+        self.current_character_index = int(
+            self.maneuver_character_name_and_index.get().split(":", 1)[0])
+        self.current_character = \
+            self.parent_console.character_database.get_character(
+                self.current_character_index)
+
         self.populate_skill_choice_frame(self.skill_choice_frame)
+        self.update_character_penalty()
 
     def chosen_skill_change_callback(self, *_args):
         """
@@ -533,7 +567,7 @@ class ManeuverTable(Frame):
         skill_value = int(chosen_skill.rsplit(":")[1]) if ':' in chosen_skill else -25
         trace.detail("Skill value is %d" % skill_value)
 
-        self.skill_bonus.set(skill_value)
+        self.skill_bonus.set(str(skill_value))
 
         trace.exit()
 

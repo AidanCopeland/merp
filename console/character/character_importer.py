@@ -46,7 +46,7 @@ class CharacterImporter(Frame):
     """
     Defines functions for importing characters into the database of active characters.
     Functions:
-        __init__(self, master, parent_console, character_database)
+        __init__(self, master, merp_console, parent_console, character_database)
         init_ui(self)
         get_categories()
         get_names_in_category(category)
@@ -54,10 +54,11 @@ class CharacterImporter(Frame):
         character_select_callback(self)
         import_character(self, character_object)
     """
-    def __init__(self, master, parent_console, character_database):
+    def __init__(self, master, merp_console, parent_console, character_database):
         trace.entry()
 
         Frame.__init__(self, master)
+        self.merp_console = merp_console
         self.parent_console = parent_console
         self.master = master
         self.character_database = character_database
@@ -271,7 +272,7 @@ class CharacterImporter(Frame):
             character_object = self.character_map[character_name]
             self.import_character(character_object)
         self.character_selector.selection_clear(0, END)
-        self.parent_console.characters_updated()
+        self.merp_console.characters_updated()
 
         trace.exit()
 
@@ -286,16 +287,17 @@ class CharacterImporter(Frame):
         trace.exit()
 
 
-def main(master=None, parent_console=None, character_database=None):
+def main(master=None, merp_console=None, parent_console=None, character_database=None):
     """
     Starts the Character Importer window.
     :param master: The owning window.
+    :param merp_console: The ancestor MERP console.
     :param parent_console: The Console object that started this Character Importer.
     :param character_database: Database of all active character information.
     """
     trace.init("Character Importer")
     root = Tk()
-    CharacterImporter(master, parent_console, character_database)
+    CharacterImporter(master, merp_console, parent_console, character_database)
     root.mainloop()
 
 

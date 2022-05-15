@@ -172,6 +172,14 @@ class TotalDamage:
         trace.detail("Set subtraction from bonuses to {}".format(self.subtraction_from_bonuses))
         trace.exit()
 
+    def get_penalty(self):
+        """
+        Return the penalty that the character is taking to their bonuses.
+        """
+        trace.entry()
+        trace.exit()
+        return self.subtraction_from_bonuses
+
     def add_rounds_to_death(self, rounds):
         """
         Updates the number of rounds until death for the character, ensuring

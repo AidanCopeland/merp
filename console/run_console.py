@@ -194,6 +194,7 @@ class Console(Frame):
                                                    self.character_manager_closed)
             self.character_manager = CharacterManager(self.character_manager_window,
                                                       self,
+                                                      self,
                                                       self.character_database)
         elif self.character_manager_window.state() == 'normal':
             trace.flow("Shift focus to character manager")
@@ -331,6 +332,8 @@ class Console(Frame):
         trace.entry()
         if self.maneuver_table is not None:
             self.maneuver_table.characters_updated()
+        if self.character_manager is not None:
+            self.character_manager.characters_updated()
         trace.exit()
 
 
