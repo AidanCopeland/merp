@@ -54,3 +54,27 @@ class BasicStats:
         self.criticals = basic_stats_object.get("size", "medium")
 
         trace.exit()
+
+    def set_hits(self, hits):
+        """
+        Set the total number of hits that the character can take.
+        :param hits: The number of hits that the character can take.
+        """
+        trace.entry()
+        self.hits = hits
+        trace.exit()
+
+    def add_hits(self, hits):
+        """
+        Updates the number of hits that the character can take, ensuring
+        that the number of hits is greater than or equal to 0.
+        :param rounds: The number of rounds to add.
+        """
+        trace.entry()
+        self.hits += hits
+        self.hits = max(0, self.hits)
+        trace.detail(
+            "Added {} hits, total hits {}".format(
+                hits,
+                self.hits))
+        trace.exit()

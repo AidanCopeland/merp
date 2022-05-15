@@ -87,7 +87,7 @@ class CharacterDamageRecord(Frame):
 
         frame_utils.init_ui_go_button(
             self, 'Apply updates', self._apply_updates)
-        self._populate_damage_record_sheet()
+        self.populate_damage_record_sheet()
 
         self._display_frames()
 
@@ -233,7 +233,7 @@ class CharacterDamageRecord(Frame):
 
         trace.exit()
 
-    def _populate_damage_record_sheet(self):
+    def populate_damage_record_sheet(self):
         """
         Populate the damage record sheet with all entries in the database.
         """
@@ -259,11 +259,8 @@ class CharacterDamageRecord(Frame):
         self._update_absolute_values()
         self._apply_deltas()
 
-        self._populate_damage_record_sheet()
+        self.populate_damage_record_sheet()
         self.parent_console.characters_updated()
-
-        # Apply deltas to the character
-        # Clear delta values
 
     def _verify_values(self):
         """
@@ -295,13 +292,13 @@ class CharacterDamageRecord(Frame):
         Update absolute values as specified.
         """
         trace.entry()
-        self.total_damage.hits_taken = int(self.hits_taken.get())
-        self.character.basic_stats.hits = int(self.total_hits.get())
-        self.total_damage.hits_per_round = int(self.bleeding.get())
-        self.total_damage.stun = int(self.stun.get())
-        self.total_damage.stun_no_parry = int(self.stun_no_parry.get())
-        self.total_damage.subtraction_from_bonuses = int(self.subtraction_from_bonuses.get())
-        self.total_damage.rounds_to_death = int(self.rounds_to_death.get())
+        self.total_damage.set_hits(int(self.hits_taken.get()))
+        self.character.basic_stats.set_hits(int(self.total_hits.get()))
+        self.total_damage.set_bleeding(int(self.bleeding.get()))
+        self.total_damage.set_stun(int(self.stun.get()))
+        self.total_damage.set_stun_no_parry(int(self.stun_no_parry.get()))
+        self.total_damage.set_penalty(int(self.subtraction_from_bonuses.get()))
+        self.total_damage.set_rounds_to_death(int(self.rounds_to_death.get()))
 
         trace.exit()
 
@@ -309,27 +306,20 @@ class CharacterDamageRecord(Frame):
         """
         Apply deltas to values as required.
         """
-        self.total_damage.hits_taken = self._apply_delta(
-            self.hits_taken_delta,
-            self.total_damage.hits_taken)
-        self.character.basic_stats.hits = self._apply_delta(
-            self.total_hits_delta,
-            self.character.basic_stats.hits)
-        self.total_damage.hits_per_round = self._apply_delta(
-            self.bleeding_delta,
-            self.total_damage.hits_per_round)
-        self.total_damage.stun = self._apply_delta(
-            self.stun_delta,
-            self.total_damage.stun)
-        self.total_damage.stun_no_parry = self._apply_delta(
-            self.stun_no_parry_delta,
-            self.total_damage.stun_no_parry)
-        self.total_damage.subtraction_from_bonuses = self._apply_delta(
-            self.subtraction_from_bonuses_delta,
-            self.total_damage.subtraction_from_bonuses)
-        self.total_damage.rounds_to_death = self._apply_delta(
-            self.rounds_to_death_delta,
-            self.total_damage.rounds_to_death)
+        if self.hits_taken_delta.get() != '':
+            self.total_damage.add_hits(int(self.hits_taken_delta.get()))
+        if self.total_hits_delta.get() != '':
+            self.character.basic_stats.add_hits(int(self.total_hits_delta.get()))
+        if self.bleeding_delta.get() != '':
+            self.total_damage.add_bleeding(int(self.bleeding_delta.get()))
+        if self.stun_delta.get() != '':
+            self.total_damage.add_stun(int(self.stun_delta.get()))
+        if self.stun_no_parry_delta.get() != '':
+            self.total_damage.add_stun_no_parry(int(self.stun_no_parry_delta.get()))
+        if self.subtraction_from_bonuses_delta.get() != '':
+            self.total_damage.add_penalty(int(self.subtraction_from_bonuses_delta.get()))
+        if self.rounds_to_death_delta.get() != '':
+            self.total_damage.add_rounds_to_death(int(self.rounds_to_death_delta.get()))
 
         self.hits_taken_delta.set('')
         self.total_hits_delta.set('')
@@ -339,16 +329,6 @@ class CharacterDamageRecord(Frame):
         self.subtraction_from_bonuses_delta.set('')
         self.rounds_to_death_delta.set('')
 
-    @staticmethod
-    def _apply_delta(delta_value, stored_value):
-        """
-        Apply a delta to a value.
-        """
-        if delta_value.get() != '':
-            trace.flow("Apply delta %d, original value %d" %
-                       (int(delta_value.get()), stored_value))
-            stored_value = max(0, stored_value + int(delta_value.get()))
-        return stored_value
 
 def main(master=None, parent_console=None, character_database=None, character_index=None):
     """

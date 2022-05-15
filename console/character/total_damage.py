@@ -148,13 +148,13 @@ class TotalDamage:
     def add_penalty(self, penalty):
         """
         Updates the penalty that the character is taking to their bonuses by
-        adding (or subtracing) the penalty specified, ensuring that the
+        adding (or subtracting) the penalty specified, ensuring that the
         resulting penalty is greater than or equal to 0.
         :param penalty: The penalty to add.
         """
         trace.entry()
         self.subtraction_from_bonuses += penalty
-        self.subtraction_from_bonuses = max(0, penalty)
+        self.subtraction_from_bonuses = max(0, self.subtraction_from_bonuses)
         trace.detail(
             "Added {} penalty, total subtraction from bonuses {}".format(
                 penalty,
@@ -172,6 +172,21 @@ class TotalDamage:
         trace.detail("Set subtraction from bonuses to {}".format(self.subtraction_from_bonuses))
         trace.exit()
 
+    def add_rounds_to_death(self, rounds):
+        """
+        Updates the number of rounds until death for the character, ensuring
+        that the number of rounds is greater than or equal to 0.
+        :param rounds: The number of rounds to add.
+        """
+        trace.entry()
+        self.rounds_to_death += rounds
+        self.rounds_to_death = max(0, self.rounds_to_death)
+        trace.detail(
+            "Added {} rounds, total rounds {}".format(
+                rounds,
+                self.rounds_to_death))
+        trace.exit()
+
     def set_rounds_to_death(self, rounds):
         """
         Sets the number of rounds until death for the character.
@@ -180,3 +195,17 @@ class TotalDamage:
         trace.entry()
         self.rounds_to_death = max(0, rounds)
         trace.detail("Set rounds to death to {}".format(self.rounds_to_death))
+
+    def reset(self):
+        """
+        Resets damage to this character.
+        """
+        trace.entry()
+        self.hits_taken = 0
+        self.hits_per_round = 0
+        self.stun = 0
+        self.stun_no_parry = 0
+        self.subtraction_from_bonuses = 0
+        self.rounds_to_death = 0
+
+        trace.exit()

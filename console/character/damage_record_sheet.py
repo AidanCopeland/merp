@@ -21,16 +21,17 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 # Work to do:
-# Add combat readiness for a single character
-# Add option to reset a single character
 # Add option to reset all damage
 # Add option to reset PCs only
 # Feed penalty into maneuvers
 # Feed stun into maneuvers
 # Allow maneuvers (fumbles) to update damage sheet
+# Add combat readiness for a single character: track weapon arm, inactive, unconscious, dead separately
 # Add end of round trigger: add bleeding, subtract stun (stun no parry first), update rounds to death
 # Update incapacity if rounds to death reaches zero
 # Allow collected wounds to determine incapacity state
+# Update state based on hits, total hits
+# Add checker to verify resetting character/party/all
 
 DAMAGE_RECORD_SHEET = ": Damage Record Sheet"
 
@@ -231,9 +232,15 @@ class DamageRecordSheet(Frame):
         Reset the currently selected character.
         """
         trace.entry()
-        character_index = self.damage_record_table.selection()
+        character_index = self.damage_record_table.focus()
         if character_index != '':
-            trace.flow("Reset character index %r" % character_index)
+            trace.flow("Reset character index %s" % character_index)
+            character = self.character_database.get_character(int(character_index))
+            character.total_damage.reset()
+            if self.character_damage_record.get(character_index) is not None:
+                trace.flow("Reset character record window")
+                self.character_damage_record[character_index].populate_damage_record_sheet()
+            self.characters_updated()
         trace.exit()
 
     def reset_party(self):
