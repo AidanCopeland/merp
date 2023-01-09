@@ -1,20 +1,20 @@
 {
   "name": "Anwarewen",
   "basic-stats": {
-    "level": 15,
+    "level": 17,
     "melee-obs": [
       {
-        "ob": 72,
+        "ob": 74,
         "ob-type": "th"
       }
     ],
-    "missile-ob": 70,
+    "missile-ob": 72,
     "missile-ob-type": "sb",
-    "body-development": 86,
-    "armour-type": 5,
-    "defensive-bonus": 85,
-    "shield-bonus": 15,
-    "movement-speed": 20,
+    "body-development": 96,
+    "armour-type": 9,
+    "defensive-bonus": 65,
+    "shield-bonus": 0,
+    "movement-speed": 0,
     "essence-rr": 0,
     "channeling-rr": 15,
     "mentalism-rr": 10,
@@ -51,27 +51,27 @@
     "movement-skills": {
       "no-armour": 30,
       "soft-leather": 20,
-      "rigid-leather": -35,
+      "rigid-leather": 0,
       "chain": -70,
       "plate": -85
     },
     "weapon-skills": {
       "1h-edged": 5,
       "1h-concussion": -25,
-      "2-handed": 72,
+      "2-handed": 74,
       "thrown": -5,
-      "missile": 70,
+      "missile": 72,
       "pole-arms": -25
     },
     "general-skills": {
-      "climb": 130,
-      "ride": 105,
-      "swim": 110,
-      "track": 112,
-      "foraging": 125,
-      "herb-lore": 110,
-      "survival": 115,
-      "navigation": 110
+      "climb": 140,
+      "ride": 128,
+      "swim": 118,
+      "track": 126,
+      "foraging": 133,
+      "herb-lore": 118,
+      "survival": 128,
+      "navigation": 128
     },
     "subterfuge-skills": {
       "ambush": -25,
@@ -81,20 +81,20 @@
       "poison-lore": 40
     },
     "magical-skills": {
-      "read-runes": 30,
-      "use-items": 55,
-      "directed-spells": 10,
-      "split-focus": 55,
-      "spell-concentration": 60
+      "read-runes": 32,
+      "use-items": 57,
+      "directed-spells": 12,
+      "split-focus": 62,
+      "spell-concentration": 72
     },
     "leadership-skills": {
       "leadership": 10
     },
     "miscellaneous-bonuses": {
-      "base-spells": 40
+      "base-spells": 44
     },
     "secondary-skills": {
-      "perception": 90,
+      "perception": 103,
       "discern-wounds": 50,
       "animal-handling": 65,
       "music": 30,

@@ -1,27 +1,27 @@
 {
   "name": "Morn",
   "basic-stats": {
-    "level": 15,
+    "level": 18,
     "melee-obs": [
       {
-        "ob": 145,
+        "ob": 152,
         "ob-type": "sc"
       },
       {
-        "ob": 150,
+        "ob": 157,
         "ob-type": "sc"
       },
       {
-        "ob": 145,
+        "ob": 152,
         "ob-type": "wh"
       }
     ],
-    "missile-ob": 80,
+    "missile-ob": 84,
     "missile-ob-type": "cb",
-    "body-development": 215,
+    "body-development": 232,
     "armour-type": 20,
-    "defensive-bonus": 70,
-    "shield-bonus": 35,
+    "defensive-bonus": 95,
+    "shield-bonus": 40,
     "movement-speed": 5,
     "essence-rr": 50,
     "channeling-rr": 15,
@@ -47,8 +47,8 @@
       "bonus": 0
     },
     "IT": {
-      "value": 90,
-      "bonus": 5
+      "value": 95,
+      "bonus": 10
     },
     "PR": {
       "value": 41,
@@ -64,51 +64,51 @@
       "plate": 5
     },
     "weapon-skills": {
-      "1h-edged": 150,
-      "1h-concussion": 145,
-      "2-handed": 45,
-      "thrown": 5,
-      "missile": 80,
-      "pole-arms": 75,
-      "adrenal-strength": 120,
-      "shield-mastery": 106,
-      "stunned-maneuvering": 70,
-      "adrenal-quickdraw": 50,
+      "1h-edged": 152,
+      "1h-concussion": 152,
+      "2-handed": 49,
+      "thrown": 59,
+      "missile": 84,
+      "pole-arms": 79,
+      "adrenal-strength": 128,
+      "shield-mastery": 120,
+      "stunned-maneuvering": 89,
+      "adrenal-quickdraw": 95,
       "rapid-fire": 50
     },
     "general-skills": {
-      "climb": 69,
-      "ride": 25,
-      "swim": -60,
-      "track": 65
+      "climb": 79,
+      "ride": 33,
+      "swim": -57,
+      "track": 72
     },
     "subterfuge-skills": {
       "ambush": -25,
       "stalk-hide": 0,
       "pick-lock": 30,
-      "disarm-trap": 40
+      "disarm-trap": 45
     },
     "magical-skills": {
       "read-runes": -25,
-      "use-items": -20,
+      "use-items": -15,
       "directed-spells": -20
     },
     "leadership-skills": {
       "leadership": -5
     },
     "miscellaneous-bonuses": {
-      "base-spells": 30
+      "base-spells": 33
     },
     "secondary-skills": {
       "adrenal-defence": 35,
-      "perception": 78,
-      "transcend-armour": 63,
+      "perception": 85,
+      "transcend-armour": 72,
       "dragon-lore": 25,
-      "discern-wounds": 25,
-      "drug-tolerance": 50,
+      "discern-wounds": 35,
+      "poison-tolerance": 60,
       "siege-engineering": 15,
       "smithing": 40,
-      "undead-lore": 20
+      "undead-lore": 30
     }
   }
 }

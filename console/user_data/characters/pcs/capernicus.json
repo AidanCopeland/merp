@@ -1,16 +1,16 @@
 {
   "name": "Capernicus",
   "basic-stats": {
-    "level": 15,
+    "level": 18,
     "melee-obs": [
       {
-        "ob": 139,
+        "ob": 159,
         "ob-type": "th"
       }
     ],
-    "missile-ob": 80,
+    "missile-ob": 86,
     "missile-ob-type": "sb",
-    "body-development": 106,
+    "body-development": 111,
     "armour-type": 1,
     "defensive-bonus": 55,
     "shield-bonus": 0,
@@ -54,42 +54,42 @@
       "rigid-leather": -20,
       "chain": -40,
       "plate": -55,
-      "adrenal-leaping": 15,
-      "adrenal-speed": 15
+      "adrenal-leaping": 25,
+      "adrenal-speed": 25
     },
     "weapon-skills": {
-      "1h-edged": 77,
-      "1h-concussion": 77,
-      "2-handed": 141,
-      "thrown": 92,
-      "missile": 82,
-      "pole-arms": 82,
-      "adrenal-strength": 102,
-      "martial-arts-strikes": 82,
-      "martial-arts-sweeps": 87,
-      "martial-arts-pillars-mirror": 129,
-      "combat-deception": 52,
-      "combat-deception-feint": 52,
-      "combat-deception-intimidate": 52
+      "1h-edged": 81,
+      "1h-concussion": 81,
+      "2-handed": 159,
+      "thrown": 96,
+      "missile": 86,
+      "pole-arms": 86,
+      "adrenal-strength": 106,
+      "martial-arts-strikes": 96,
+      "martial-arts-sweeps": 101,
+      "martial-arts-pillars-mirror": 162,
+      "combat-deception": 56,
+      "combat-deception-feint": 81,
+      "combat-deception-intimidate": 76
     },
     "general-skills": {
-      "climb": 82,
-      "ride": 72,
-      "swim": 72,
-      "track": 62,
-      "acrobatics": 127,
-      "navigation": 72,
-      "survival - desert": 37,
-      "sailing": 72
+      "climb": 86,
+      "ride": 76,
+      "swim": 76,
+      "track": 66,
+      "acrobatics": 131,
+      "navigation": 86,
+      "survival - desert": 41,
+      "sailing": 86
     },
     "subterfuge-skills": {
       "ambush": 10,
-      "stalk-hide": 92,
-      "pick-lock": 42,
-      "disarm-trap": 37,
-      "contacting": 47,
-      "streetwise": 42,
-      "bribery": 37
+      "stalk-hide": 96,
+      "pick-lock": 46,
+      "disarm-trap": 41,
+      "contacting": 51,
+      "streetwise": 46,
+      "bribery": 41
     },
     "magical-skills": {
       "read-runes": 10,
@@ -97,27 +97,27 @@
       "directed-spells": 20
     },
     "leadership-skills": {
-      "leadership": 65,
-      "public-speaking": 57,
-      "diplomacy": 82
+      "leadership": 71,
+      "public-speaking": 66,
+      "diplomacy": 91
     },
     "miscellaneous-bonuses": {
-      "base-spells": 25
+      "base-spells": 28
     },
     "secondary-skills": {
       "perception": 30,
-      "adrenal-defence": 52,
+      "adrenal-defence": 58,
       "adrenal-focus": 30,
       "appraisal": 20,
-      "trading": 35,
+      "trading": 45,
       "trading-lore": 25,
       "region-lore-near-harad": 30,
       "region-lore-far-harad": 20,
       "region-lore-rhun": 10,
       "region-lore-mordor": 10,
       "religion-harad": 15,
-      "poetry": 25,
-      "dancing": 80,
+      "poetry": 40,
+      "dancing": 95,
       "animal-husbandry": 5
     }
   }

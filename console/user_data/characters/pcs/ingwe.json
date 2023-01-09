@@ -1,7 +1,7 @@
 {
   "name": "Ingwë",
   "basic-stats": {
-    "level": 15,
+    "level": 17,
     "melee-obs": [
       {
         "ob": 55,
@@ -10,7 +10,7 @@
     ],
     "missile-ob": 20,
     "missile-ob-type": "cb",
-    "body-development": 83,
+    "body-development": 89,
     "armour-type": 1,
     "defensive-bonus": 70,
     "shield-bonus": 35,
@@ -64,36 +64,38 @@
       "pole-arms": -25
     },
     "general-skills": {
-      "climb": 35,
-      "ride": 45,
-      "swim": 50,
-      "track": 90
+      "climb": 37,
+      "ride": 47,
+      "swim": 52,
+      "track": 97,
+      "preparing-herbs": 57
     },
     "subterfuge-skills": {
-      "ambush": 35,
-      "stalk-hide": 107,
-      "pick-lock": 110,
-      "disarm-trap": 80,
-      "contacting": 60
+      "ambush": 40,
+      "stalk-hide": 111,
+      "pick-lock": 114,
+      "disarm-trap": 84,
+      "contacting": 72,
+      "hiding-items": 74
     },
     "magical-skills": {
-      "read-runes": 110,
-      "use-items": 80,
-      "directed-spells": 70,
-      "magic-lore": 85,
-      "spell-mastery": 95,
-      "spell-trickery": 75,
-      "divination": 50
+      "read-runes": 114,
+      "use-items": 84,
+      "directed-spells": 84,
+      "magic-lore": 99,
+      "spell-mastery": 99,
+      "spell-trickery": 89,
+      "divination": 54
     },
     "leadership-skills": {
       "leadership": 40,
-      "diplomacy": 50
+      "diplomacy": 52
     },
     "miscellaneous-bonuses": {
-      "base-spells": 40
+      "base-spells": 44
     },
     "secondary-skills": {
-      "perception": 55
+      "perception": 59
     }
   }
 }
