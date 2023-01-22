@@ -1,0 +1,25 @@
+{
+  "name": "Saptah",
+  "is-pc": false,
+  "basic-stats": {
+    "level": 17,
+    "melee-obs": [
+      {
+        "ob": 137,
+        "ob-type": "sp"
+      }
+    ],
+    "missile-ob": 106,
+    "missile-ob-type": "da",
+    "body-development": 128,
+    "armour-type": 5,
+    "defensive-bonus": 45,
+    "shield-bonus": 0,
+    "movement-speed": 20,
+    "essence-rr": 0,
+    "channeling-rr": 15,
+    "mentalism-rr": 10,
+    "poison-rr": 10,
+    "disease-rr": 10
+  }
+}

@@ -46,7 +46,7 @@ class Character:
         self.stats = {}
         self.init_stats(character_object.get("stats"))
 
-        abilities_object = character_object.get("abilities")
+        abilities_object = character_object.get("abilities", {})
         self.abilities = Abilities(abilities_object)
 
         self.locked = False
@@ -59,11 +59,12 @@ class Character:
         """
         trace.entry()
 
-        self.stats = {
-            "ST": Stat(stats_object.get("ST")),
-            "AG": Stat(stats_object.get("AG")),
-            "CO": Stat(stats_object.get("CO")),
-            "IG": Stat(stats_object.get("IG")),
-            "IT": Stat(stats_object.get("IT")),
-            "PR": Stat(stats_object.get("PR"))
-        }
+        if stats_object is not None:
+            self.stats = {
+                "ST": Stat(stats_object.get("ST")),
+                "AG": Stat(stats_object.get("AG")),
+                "CO": Stat(stats_object.get("CO")),
+                "IG": Stat(stats_object.get("IG")),
+                "IT": Stat(stats_object.get("IT")),
+                "PR": Stat(stats_object.get("PR"))
+            }
