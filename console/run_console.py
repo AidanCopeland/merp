@@ -44,8 +44,6 @@ class Console(Frame):
 
     Methods:
         __init__(self)
-        init_ui(self)
-        set_current_option(self, option)
         option_change_callback(self)
         launch_option(self)
         character_manager_closed(self)
@@ -55,6 +53,7 @@ class Console(Frame):
         characters_updated(self)
         """
     def __init__(self):
+        ### Class constructor
         trace.entry()
         trace.detail("Path is %r" % sys.path)
         Frame.__init__(self)
@@ -77,30 +76,30 @@ class Console(Frame):
 
         self.character_database = CharacterDatabase()
         self.current_option = ""
-        self.init_ui()
+        self.__init_ui()
 
         trace.exit()
 
-    def init_ui(self):
+    def __init_ui(self):
         """
         Initializes the components of the Console window.
         """
         trace.entry()
 
-        self._initialize_variables()
-        self._initialize_ui_variables()
+        self.__initialize_variables()
+        self.__initialize_ui_variables()
 
-        self._init_ui_title()
-        self._init_ui_selector()
+        self.__init_ui_title()
+        self.__init_ui_selector()
         frame_utils.init_ui_go_button(self, 'Go!', self.launch_option)
 
-        self._add_entries_to_option_selector()
+        self.__add_entries_to_option_selector()
 
         self.pack(fill=BOTH, expand=True)
 
         trace.exit()
 
-    def _initialize_variables(self):
+    def __initialize_variables(self):
         trace.entry()
         self.master.title("Console")
         self.style = Style()
@@ -111,20 +110,20 @@ class Console(Frame):
         self.current_option = DICE_ROLLER
         trace.exit()
 
-    def _initialize_ui_variables(self):
+    def __initialize_ui_variables(self):
         trace.entry()
         self.selector_widget = StringVar()
         self.selector_widget.set(self.options[0])
         self.selector_widget.trace("w", lambda *args: self.option_change_callback())
         trace.exit()
 
-    def _init_ui_title(self):
+    def __init_ui_title(self):
         title_frame = Frame(self, relief=RAISED, borderwidth=1)
         title_frame.pack(fill=BOTH, expand=True)
         title_label = Label(title_frame, text="Console")
         title_label.pack()
 
-    def _init_ui_selector(self):
+    def __init_ui_selector(self):
         self.selector_frame = Frame(self, relief=RAISED, borderwidth=1)
         self.selector_frame.pack(fill=BOTH, expand=True)
         selector_prompt_label = Label(self.selector_frame, text="Option to select: ")
@@ -133,14 +132,14 @@ class Console(Frame):
             OptionMenu(self.selector_frame, self.selector_widget, *self.options)
         self.option_selector.pack(side=RIGHT)
 
-    def _add_entries_to_option_selector(self):
+    def __add_entries_to_option_selector(self):
         trace.entry()
         clear_option_menu(self.option_selector)
         refresh_option_menu(self.option_selector, self.selector_widget, self.options)
-        self.set_current_option(self.selector_widget.get())
+        self.__set_current_option(self.selector_widget.get())
         trace.exit()
 
-    def set_current_option(self, option):
+    def __set_current_option(self, option):
         """
         Sets the current option to the option specified.
         :param option: The option to set.  Specifies which child console is desired.
@@ -153,7 +152,7 @@ class Console(Frame):
         """Handles the callback when an option is selected by storing the selected option."""
         trace.entry()
         trace.detail("Option selected is %r" % self.selector_widget.get())
-        self.set_current_option(self.selector_widget.get())
+        self.__set_current_option(self.selector_widget.get())
         trace.exit()
 
     def launch_option(self):
@@ -162,27 +161,27 @@ class Console(Frame):
         trace.detail("Trigger option %s" % self.current_option)
         if self.current_option == CHARACTER_MANAGER:
             trace.flow("Start character manager")
-            self._start_character_manager()
+            self.__start_character_manager()
 
         elif self.current_option == MANEUVERS:
             trace.flow("Start maneuver table")
-            self._start_maneuver_table()
+            self.__start_maneuver_table()
 
         elif self.current_option == DICE_ROLLER:
             trace.flow("Start dice roller")
-            self._start_dice_roller()
+            self.__start_dice_roller()
 
         elif self.current_option == ENCOUNTER_GENERATOR:
             trace.flow("Start encounter generator")
-            self._start_encounter_generator()
+            self.__start_encounter_generator()
 
         else:
             trace.flow("Start name selector")
-            self._start_name_selector()
+            self.__start_name_selector()
 
         trace.exit()
 
-    def _start_character_manager(self):
+    def __start_character_manager(self):
         """
         Launches or switches focus to the character manager
         """
@@ -202,7 +201,7 @@ class Console(Frame):
             trace.flow("Deiconify character manager")
             self.character_manager_window.deiconify()
 
-    def _start_maneuver_table(self):
+    def __start_maneuver_table(self):
         """
         Launches or switches focus to the maneuver table
         """
@@ -219,7 +218,7 @@ class Console(Frame):
             trace.flow("Deiconify maneuver table")
             self.maneuver_window.deiconify()
 
-    def _start_dice_roller(self):
+    def __start_dice_roller(self):
         """
         Launches or switches focus to the dice roller
         """
@@ -236,7 +235,7 @@ class Console(Frame):
             trace.flow("Deiconify window")
             self.dice_roller_window.deiconify()
 
-    def _start_encounter_generator(self):
+    def __start_encounter_generator(self):
         """
         Launches or switches focus to the encounter generator
         """
@@ -254,7 +253,7 @@ class Console(Frame):
             trace.flow("Deiconify window")
             self.encounter_generator.deiconify()
 
-    def _start_name_selector(self):
+    def __start_name_selector(self):
         """
         Launches or switches focus to the name selector
         """

@@ -290,7 +290,7 @@ def main(master=None, parent_console=None, character_database=None):
     """
     Starts the Character Importer window.
     :param master: The owning window.
-    :param parent_console: The Console object that started this Character Importer.
+    :param parent_console: The CharacterManager object that started this Character Importer.
     :param character_database: Database of all active character information.
     """
     trace.init("Character Importer")
