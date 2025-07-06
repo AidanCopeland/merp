@@ -10,6 +10,7 @@ from tkinter import Tk, LEFT, RIGHT, BOTH, RAISED, StringVar, OptionMenu, Toplev
 from tkinter.ttk import Frame, Style, Label
 
 from future import standard_library
+from typing import Optional
 
 import frame_utils
 from console.character_database.character_database import CharacterDatabase
@@ -32,11 +33,11 @@ sys.path.append('encounters/modules')  #
 sys.path.append('../maneuvers')  #
 sys.path.append('name_database')  #
 
-MANEUVERS = "Maneuvers"
-CHARACTER_MANAGER = "Character manager"
-DICE_ROLLER = "Dice roller"
-ENCOUNTER_GENERATOR = "Encounter generator"
-NAME_SELECTOR = "Name selector"
+MANEUVERS: str = "Maneuvers"
+CHARACTER_MANAGER: str = "Character manager"
+DICE_ROLLER: str = "Dice roller"
+ENCOUNTER_GENERATOR: str = "Encounter generator"
+NAME_SELECTOR: str = "Name selector"
 
 
 class Console(Frame):
@@ -58,24 +59,19 @@ class Console(Frame):
         trace.detail("Path is %r" % sys.path)
         Frame.__init__(self)
 
-        self.style = None
-        self.options = None
-        self.selector_widget = None
-        self.selector_frame = None
-        self.option_selector = None
-        self.character_manager_window = None
-        self.maneuver_window = None
-        self.dice_roller_window = None
-        self.encounter_generator = None
-        self.name_selector_window = None
+        self.character_manager_window: Optional[Toplevel] = None
+        self.maneuver_window: Optional[Toplevel] = None
+        self.dice_roller_window: Optional[Toplevel] = None
+        self.encounter_generator: Optional[Toplevel] = None
+        self.name_selector_window: Optional[Toplevel] = None
 
-        self.character_manager = None
-        self.maneuver_table = None
-        self.dice_roller = None
-        self.name_selector = None
+        self.character_manager: Optional[CharacterManager] = None
+        self.maneuver_table: Optional[ManeuverTable] = None
+        self.dice_roller: Optional[DiceRoller] = None
+        self.name_selector: Optional[NameSelector] = None
 
-        self.character_database = CharacterDatabase()
-        self.current_option = ""
+        self.character_database: CharacterDatabase = CharacterDatabase()
+        self.current_option: str = ""
         self.__init_ui()
 
         trace.exit()
@@ -87,7 +83,6 @@ class Console(Frame):
         trace.entry()
 
         self.__initialize_variables()
-        self.__initialize_ui_variables()
 
         self.__init_ui_title()
         self.__init_ui_selector()
@@ -95,42 +90,40 @@ class Console(Frame):
 
         self.__add_entries_to_option_selector()
 
-        self.pack(fill=BOTH, expand=True)
+        self.pack(fill="both", expand=True)
 
         trace.exit()
 
     def __initialize_variables(self):
         trace.entry()
         self.master.title("Console")
-        self.style = Style()
+        self.style: Style = Style()
         self.style.theme_use("default")
 
-        self.options = \
+        self.options: tuple[str, str, str, str, str] = \
             (CHARACTER_MANAGER, MANEUVERS, DICE_ROLLER, ENCOUNTER_GENERATOR, NAME_SELECTOR)
-        self.current_option = DICE_ROLLER
-        trace.exit()
-
-    def __initialize_ui_variables(self):
-        trace.entry()
-        self.selector_widget = StringVar()
-        self.selector_widget.set(self.options[0])
-        self.selector_widget.trace("w", lambda *args: self.option_change_callback())
+        self.current_option: str = DICE_ROLLER
         trace.exit()
 
     def __init_ui_title(self):
-        title_frame = Frame(self, relief=RAISED, borderwidth=1)
-        title_frame.pack(fill=BOTH, expand=True)
-        title_label = Label(title_frame, text="Console")
+        title_frame: Frame = Frame(self, relief="raised", borderwidth=1)
+        title_frame.pack(fill="both", expand=True)
+        title_label: Label = Label(title_frame, text="Console")
         title_label.pack()
 
     def __init_ui_selector(self):
-        self.selector_frame = Frame(self, relief=RAISED, borderwidth=1)
-        self.selector_frame.pack(fill=BOTH, expand=True)
-        selector_prompt_label = Label(self.selector_frame, text="Option to select: ")
-        selector_prompt_label.pack(side=LEFT)
-        self.option_selector = \
+        self.selector_frame: Frame = Frame(self, relief="raised", borderwidth=1)
+        self.selector_frame.pack(fill="both", expand=True)
+        selector_prompt_label: Label = Label(self.selector_frame, text="Option to select: ")
+        selector_prompt_label.pack(side="left")
+
+        self.selector_widget: StringVar = StringVar()
+        self.selector_widget.set(self.options[0])
+        self.selector_widget.trace("w", lambda *args: self.option_change_callback())
+
+        self.option_selector: OptionMenu = \
             OptionMenu(self.selector_frame, self.selector_widget, *self.options)
-        self.option_selector.pack(side=RIGHT)
+        self.option_selector.pack(side="right")
 
     def __add_entries_to_option_selector(self):
         trace.entry()
@@ -139,7 +132,7 @@ class Console(Frame):
         self.__set_current_option(self.selector_widget.get())
         trace.exit()
 
-    def __set_current_option(self, option):
+    def __set_current_option(self, option: str):
         """
         Sets the current option to the option specified.
         :param option: The option to set.  Specifies which child console is desired.
@@ -151,7 +144,7 @@ class Console(Frame):
     def option_change_callback(self):
         """Handles the callback when an option is selected by storing the selected option."""
         trace.entry()
-        trace.detail("Option selected is %r" % self.selector_widget.get())
+        trace.detail("Option selected is %s" % self.selector_widget.get())
         self.__set_current_option(self.selector_widget.get())
         trace.exit()
 
@@ -211,9 +204,11 @@ class Console(Frame):
             self.maneuver_window.wm_title(MANEUVERS)
             self.maneuver_window.protocol("WM_DELETE_WINDOW", self.maneuver_window_closed)
             self.maneuver_table = ManeuverTable(self.maneuver_window, self)
+
         elif self.maneuver_window.state() == 'normal':
             trace.flow("Switch focus to maneuver table")
             self.maneuver_window.focus_set()
+
         else:
             trace.flow("Deiconify maneuver table")
             self.maneuver_window.deiconify()
@@ -228,9 +223,11 @@ class Console(Frame):
             self.dice_roller_window.wm_title(DICE_ROLLER)
             self.dice_roller_window.protocol("WM_DELETE_WINDOW", self.dice_roller_closed)
             self.dice_roller = DiceRoller(self.dice_roller_window, self)
+
         elif self.dice_roller_window.state() == 'normal':
             trace.flow("Switch focus to dice roller")
             self.dice_roller_window.focus_set()
+
         else:
             trace.flow("Deiconify window")
             self.dice_roller_window.deiconify()
@@ -246,9 +243,11 @@ class Console(Frame):
             self.encounter_generator.protocol("WM_DELETE_WINDOW",
                                               self.encounter_generator_closed)
             EncounterGenerator(self.encounter_generator, self, "./encounters")
+
         elif self.encounter_generator.state() == 'normal':
             trace.flow("Switch focus to encounter generator")
             self.encounter_generator.focus_set()
+
         else:
             trace.flow("Deiconify window")
             self.encounter_generator.deiconify()
@@ -263,8 +262,10 @@ class Console(Frame):
             self.name_selector_window.wm_title(NAME_SELECTOR)
             self.name_selector_window.protocol("WM_DELETE_WINDOW", self.name_selector_closed)
             self.name_selector = NameSelector(self.name_selector_window, self)
+
         elif self.name_selector_window.state() == 'normal':
             trace.flow("Switch focus to name selector")
+
         else:
             trace.flow("Deiconify window")
             self.name_selector_window.deiconify()
