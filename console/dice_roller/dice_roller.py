@@ -8,7 +8,7 @@ Classes:
 """
 from builtins import range
 import sys
-from tkinter import Tk, LEFT, RIGHT, END, BOTH, RAISED, StringVar, Text
+from tkinter import Tk, LEFT, RIGHT, END, BOTH, RAISED, StringVar, Text, Toplevel
 from tkinter.ttk import Frame, Style, Label, Entry, Button, OptionMenu
 
 from future import standard_library
@@ -22,19 +22,19 @@ standard_library.install_aliases()
 sys.path.append('../../')
 
 
-D10 = "d10"
-D100 = "d100"
-D100_HIGH = "d100 (open high)"
-D100_OPEN = "d100 (open)"
-D1000 = "d1000"
+D10: str = "d10"
+D100: str = "d100"
+D100_HIGH: str = "d100 (open high)"
+D100_OPEN: str = "d100 (open)"
+D1000: str = "d1000"
 
-dice_value_options = (D10, D100, D100_HIGH, D100_OPEN, D1000)
+dice_value_options: tuple[str, str, str, str, str] = (D10, D100, D100_HIGH, D100_OPEN, D1000)
 
-DICE_SEPARATE = "Separate"
-DICE_COMBINED = "Combined"
-DICE_SEPARATE_COMBINED = "Separate then combined"
+DICE_SEPARATE: str = "Separate"
+DICE_COMBINED: str = "Combined"
+DICE_SEPARATE_COMBINED: str = "Separate then combined"
 
-combine_dice_options = (DICE_SEPARATE, DICE_COMBINED, DICE_SEPARATE_COMBINED)
+combine_dice_options: tuple[str, str, str] = (DICE_SEPARATE, DICE_COMBINED, DICE_SEPARATE_COMBINED)
 
 
 class DiceRoller(Frame):
@@ -42,7 +42,7 @@ class DiceRoller(Frame):
     The console handling dice rolling.
 
     Methods:
-        __init__(self, master, parent_console)
+        __init__(self, master)
         single_roll(self)
         roll_dice(self)
         reset_num_dice(self)
@@ -51,25 +51,18 @@ class DiceRoller(Frame):
         combine_dice_change_callback(self, *_args)
     """
 
-    def __init__(self, master, parent_console):
-        self.style = Style()
-        self.dice_value = StringVar()
-        self.dice_value_options = None
-        self.dice_value_selector = None
+    def __init__(self, master: Toplevel):
+        self.style: Style = Style()
+        self.dice_value: StringVar = StringVar()
 
-        self.num_dice = StringVar()
+        self.num_dice: StringVar = StringVar()
 
-        self.combine_dice_options = combine_dice_options
-        self.combine_dice_choice = StringVar()
-
-        self.combine_dice_selector = None
-        self.roll_result_text = None
+        self.combine_dice_options: tuple[str, str, str] = combine_dice_options
+        self.combine_dice_choice: StringVar = StringVar()
 
         trace.entry()
 
         Frame.__init__(self, master)
-
-        self.parent_console = parent_console
 
         self._initialize_variables()
         dice.randomize()
@@ -98,24 +91,24 @@ class DiceRoller(Frame):
 
     def _display_title(self):
         trace.entry()
-        title_frame = Frame(self, relief=RAISED, borderwidth=1)
+        title_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         title_frame.pack(fill=BOTH, expand=True)
-        title_label = Label(title_frame, text="Dice Roller")
+        title_label: Label = Label(title_frame, text="Dice Roller")
         title_label.pack(side=LEFT)
         trace.exit()
 
     def _display_dice_value_choice(self):
         trace.entry()
-        dice_value_frame = Frame(self, relief=RAISED, borderwidth=1)
+        dice_value_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         dice_value_frame.pack(fill=BOTH, expand=True)
 
-        dice_value_prompt = Label(dice_value_frame, text="Value of dice to roll: ")
+        dice_value_prompt: Label = Label(dice_value_frame, text="Value of dice to roll: ")
         dice_value_prompt.pack(side=LEFT)
 
-        self.dice_value_options = dice_value_options
+        self.dice_value_options: tuple[str, str, str, str, str] = dice_value_options
         self.dice_value.trace("w", self.dice_value_change_callback)
 
-        self.dice_value_selector = \
+        self.dice_value_selector: OptionMenu = \
             OptionMenu(
                 dice_value_frame,
                 self.dice_value,
@@ -128,27 +121,27 @@ class DiceRoller(Frame):
     def _display_num_dice_choice(self):
         trace.entry()
 
-        num_dice_frame = Frame(self, relief=RAISED, borderwidth=1)
+        num_dice_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         num_dice_frame.pack(fill=BOTH, expand=True)
 
-        num_dice_prompt = Label(num_dice_frame, text="Number of dice to roll: ")
+        num_dice_prompt: Label = Label(num_dice_frame, text="Number of dice to roll: ")
         num_dice_prompt.pack(side=LEFT)
 
-        num_dice_input = Entry(num_dice_frame, textvariable=self.num_dice)
+        num_dice_input: Entry = Entry(num_dice_frame, textvariable=self.num_dice)
         self.num_dice.trace("w", self.num_dice_change_callback)
         num_dice_input.pack(side=RIGHT)
         trace.exit()
 
     def _display_combine_dice_choice(self):
         trace.entry()
-        combine_dice_frame = Frame(self, relief=RAISED, borderwidth=1)
+        combine_dice_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         combine_dice_frame.pack(fill=BOTH, expand=True)
 
-        combine_dice_prompt = Label(combine_dice_frame,
+        combine_dice_prompt: Label = Label(combine_dice_frame,
                                     text="Combine dice or report separately: ")
         combine_dice_prompt.pack(side=LEFT)
 
-        self.combine_dice_selector = \
+        self.combine_dice_selector: OptionMenu = \
             OptionMenu(
                 combine_dice_frame,
                 self.combine_dice_choice,
@@ -161,16 +154,16 @@ class DiceRoller(Frame):
 
     def _display_roll_dice(self):
         trace.entry()
-        trigger_frame = Frame(self, relief=RAISED, borderwidth=1)
+        trigger_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         trigger_frame.pack(fill=BOTH, expand=True)
-        trigger_button = Button(trigger_frame, text='Roll dice', command=self.roll_dice)
+        trigger_button: Button = Button(trigger_frame, text='Roll dice', command=self.roll_dice)
         trigger_button.pack()
         trace.exit()
 
     def _display_roll_results(self):
         trace.entry()
-        roll_results_frame = Frame(self, relief=RAISED, borderwidth=1)
-        self.roll_result_text = Text(roll_results_frame)
+        roll_results_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
+        self.roll_result_text: Text = Text(roll_results_frame)
         roll_results_frame.pack(fill=BOTH, expand=True)
         self.roll_result_text.pack(fill=BOTH)
         trace.exit()
@@ -188,26 +181,26 @@ class DiceRoller(Frame):
                             self.combine_dice_options)
         trace.exit()
 
-    def single_roll(self):
+    def single_roll(self) -> int:
         """
         Makes a single dice roll.
         """
         trace.entry()
         if self.dice_value.get() == D10:
             trace.flow("Roll d10")
-            result = dice.d10()
+            result: int = dice.d10()
         elif self.dice_value.get() == D100:
             trace.flow("Roll d100")
-            result = dice.d100()
+            result: int = dice.d100()
         elif self.dice_value.get() == D100_HIGH:
             trace.flow("Roll d100 (open high)")
-            result = dice.d100high()
+            result: int = dice.d100high()
         elif self.dice_value.get() == D100_OPEN:
             trace.flow("Roll d100 (open)")
-            result = dice.d100open()
+            result: int = dice.d100open()
         else:
             trace.flow("Roll d1000")
-            result = dice.d1000()
+            result: int = dice.d1000()
         trace.exit()
         return result
 
@@ -217,9 +210,9 @@ class DiceRoller(Frame):
         """
         trace.entry()
         self.roll_result_text.delete(1.0, END)
-        total_result = 0
+        total_result: int = 0
         for _roll in range(0, int(self.num_dice.get())):
-            result = self.single_roll()
+            result: int = self.single_roll()
             if self.combine_dice_choice.get() != DICE_COMBINED:
                 self.roll_result_text.insert(END, ("Roll: %d\n" % result))
             total_result += result
@@ -266,15 +259,14 @@ class DiceRoller(Frame):
         trace.exit()
 
 
-def main(master=None, parent_console=None):
+def main(master: Toplevel = None):
     """
     Starts the Dice Roller window.
     :param master: The owning window.
-    :param parent_console: The console that started this instance of dice_roller.
     """
     trace.init("dice_roller")
     root = Tk()
-    DiceRoller(master, parent_console)
+    DiceRoller(master)
     root.mainloop()
 
 
