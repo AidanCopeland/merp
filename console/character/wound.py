@@ -22,14 +22,14 @@ class Wound:
     # pylint: disable = too-few-public-methods
     def __init__(self):
         trace.entry()
-        self.hits = 0
-        self.bleeding = 0
-        self.stun = 0
-        self.penalty = 0
-        self.temporary = False
-        self.duration_remain = 0
-        self.rounds_to_death = 0
-        self.location = ""
-        self.severity = ""
-        self.incapacitation = ""
+        self.hits: int = 0
+        self.bleeding: int = 0
+        self.stun: int = 0
+        self.penalty: int = 0
+        self.temporary: bool = False
+        self.duration_remain: int = 0
+        self.rounds_to_death: int = 0
+        self.location: str = ""
+        self.severity: str = ""
+        self.incapacitation: str = ""
         trace.exit()

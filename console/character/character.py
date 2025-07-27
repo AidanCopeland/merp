@@ -7,9 +7,12 @@ Classes:
     character
 """
 import sys
+from typing import Union
+
 import trace_log as trace
 from .abilities import Abilities
 from .basic_stats import BasicStats
+from .stats import Stats
 
 sys.path.append('../../')
 
@@ -21,10 +24,10 @@ class Stat:
         __init__(self, stat_object)
     """
     # pylint: disable=too-few-public-methods
-    def __init__(self, stat_object):
+    def __init__(self, stat_object: dict[str, int]):
         trace.entry()
-        self.value = stat_object.get("value")
-        self.bonus = stat_object.get("bonus")
+        self.value: int = stat_object.get("value")
+        self.bonus: int = stat_object.get("bonus")
         trace.exit()
 
 
@@ -38,33 +41,17 @@ class Character:
     # pylint: disable=too-few-public-methods
     def __init__(self, character_object):
         trace.entry()
-        self.name = character_object.get("name")
+        self.name: str = character_object.get("name")
 
-        basic_stats_object = character_object.get("basic-stats")
-        self.basic_stats = BasicStats(basic_stats_object)
+        basic_stats_object: dict[str, Union[str, list, int]] = character_object.get("basic-stats")
+        self.basic_stats: BasicStats = BasicStats(basic_stats_object)
 
-        self.stats = {}
-        self.init_stats(character_object.get("stats"))
+        stats_object: dict[str, dict[str, int]] = character_object.get("stats")
+        if stats_object is not None:
+            self.stats: Stats = Stats(stats_object)
 
-        abilities_object = character_object.get("abilities", {})
-        self.abilities = Abilities(abilities_object)
+        abilities_object: dict[str, dict[str, int]] = character_object.get("abilities", {})
+        self.abilities: Abilities = Abilities(abilities_object)
 
         self.locked = False
         trace.exit()
-
-    def init_stats(self, stats_object):
-        """This method stores a characters primary stats.
-
-        Input arguments: stats_object contains the character's primary stats.
-        """
-        trace.entry()
-
-        if stats_object is not None:
-            self.stats = {
-                "ST": Stat(stats_object.get("ST")),
-                "AG": Stat(stats_object.get("AG")),
-                "CO": Stat(stats_object.get("CO")),
-                "IG": Stat(stats_object.get("IG")),
-                "IT": Stat(stats_object.get("IT")),
-                "PR": Stat(stats_object.get("PR"))
-            }

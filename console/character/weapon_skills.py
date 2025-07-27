@@ -9,6 +9,8 @@ Functions:
 import string
 import sys
 from collections import OrderedDict
+from typing import Optional
+
 import trace_log as trace
 
 sys.path.append('../../')
@@ -96,23 +98,23 @@ json_input_map = {
 # List of non-standard skills to loop through and check?
 
 
-def init_weapon_skills(weapon_skills_json_object):
+def init_weapon_skills(weapon_skills_json_object: Optional[dict[str, int]]):
     """
     Populate a set of weapon skills in an Abilities object.
     :param weapon_skills_json_object: JSON object containing weapon skills information.
     :return: Parsed weapon skills information.
     """
     trace.entry()
-    weapon_skills = OrderedDict()
+    weapon_skills: OrderedDict = OrderedDict()
     if weapon_skills_json_object is not None:
         for json_skill in list(weapon_skills_json_object.keys()):
-            skill_value = weapon_skills_json_object[json_skill]
-            skill_name = json_input_map.get(json_skill)
+            skill_value: int = weapon_skills_json_object[json_skill]
+            skill_name: Optional[str] = json_input_map.get(json_skill)
             if skill_name is None:
                 trace.flow("Unexpected skill %s, convert JSON name" % json_skill)
-                skill_words = json_skill.split('-')
-                skill_name_lc = (' '.join(skill_words))
-                skill_name = string.capwords(skill_name_lc)
+                skill_words: list[str] = json_skill.split('-')
+                skill_name_lc: str = (' '.join(skill_words))
+                skill_name: str = string.capwords(skill_name_lc)
             weapon_skills[skill_name] = skill_value
 
     trace.exit()

@@ -8,6 +8,8 @@ Classes:
     BasicStats
 """
 import sys
+from typing import Union
+
 import trace_log as trace
 
 sys.path.append('../../')
@@ -20,10 +22,10 @@ class MeleeOb:
         __init__(self, melee_ob_object)
     """
     # pylint: disable=too-few-public-methods
-    def __init__(self, melee_ob_object):
+    def __init__(self, melee_ob_object: dict[str, Union[str, int]]):
         trace.entry()
-        self.ob = melee_ob_object.get("ob")
-        self.ob_type = melee_ob_object.get("ob-type")
+        self.ob: int = melee_ob_object.get("ob")
+        self.ob_type: str = melee_ob_object.get("ob-type")
         trace.exit()
 
 
@@ -34,23 +36,23 @@ class BasicStats:
         __init__(self, basic_stats_object)
     """
     # pylint: disable=too-few-public-methods
-    def __init__(self, basic_stats_object):
+    def __init__(self, basic_stats_object: dict[str, Union[int, str, list[dict[str, Union[str, int]]]]]):
         trace.entry()
-        self.level = basic_stats_object.get("level")
-        self.hits = basic_stats_object.get("body-development")
-        self.at = basic_stats_object.get("armour-type")
-        self.db = basic_stats_object.get("defensive-bonus")
-        self.shield = basic_stats_object.get("shield-bonus")
+        self.level: int = basic_stats_object.get("level")
+        self.hits: int = basic_stats_object.get("body-development")
+        self.at: int = basic_stats_object.get("armour-type")
+        self.db: int = basic_stats_object.get("defensive-bonus")
+        self.shield: int = basic_stats_object.get("shield-bonus")
 
-        self.melee_obs = []
-        ob_objects_list = basic_stats_object.get("melee-obs")
+        self.melee_obs: list[MeleeOb] = []
+        ob_objects_list: list[dict[str, Union[str, int]]] = basic_stats_object.get("melee-obs")
         for ob_object in ob_objects_list:
-            melee_ob = MeleeOb(ob_object)
+            melee_ob: MeleeOb = MeleeOb(ob_object)
             self.melee_obs.append(melee_ob)
 
-        self.missile_ob = basic_stats_object.get("missile-ob")
-        self.missile_type_ob = basic_stats_object.get("missile-ob-type")
-        self.mm = basic_stats_object.get("movement-speed")
-        self.criticals = basic_stats_object.get("size", "medium")
+        self.missile_ob: int = basic_stats_object.get("missile-ob")
+        self.missile_type_ob: str = basic_stats_object.get("missile-ob-type")
+        self.mm: int = basic_stats_object.get("movement-speed")
+        self.criticals: str = basic_stats_object.get("size", "medium")
 
         trace.exit()

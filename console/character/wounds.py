@@ -23,6 +23,6 @@ class Wounds:
     # pylint: disable=too-few-public-methods
     def __init__(self):
         trace.entry()
-        self.wound_list = list()
-        self.total_damage = Wound()
+        self.wound_list: list[Wound] = list()
+        self.total_damage: Wound = Wound()
         trace.exit()

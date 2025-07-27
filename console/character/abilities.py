@@ -7,6 +7,8 @@ Classes: Abilities
 """
 import fnmatch
 import sys
+from typing import OrderedDict
+
 import trace_log as trace
 from .movement_skills import init_movement_skills
 from .weapon_skills import init_weapon_skills
@@ -28,35 +30,35 @@ class Abilities:
         get_skills(self)
     """
     # pylint: disable=too-few-public-methods
-    def __init__(self, abilities_object):
+    def __init__(self, abilities_object: dict[str, dict[str, int]]):
         trace.entry()
 
-        self.movement_skills = init_movement_skills(abilities_object.get("movement-skills"))
+        self.movement_skills: OrderedDict[str, int] = init_movement_skills(abilities_object.get("movement-skills"))
         trace.detail("Movement skills: %r" % self.movement_skills)
 
-        self.weapon_skills = init_weapon_skills(abilities_object.get("weapon-skills"))
+        self.weapon_skills: OrderedDict[str, int] = init_weapon_skills(abilities_object.get("weapon-skills"))
         trace.detail("Weapon skills: %r" % self.weapon_skills)
 
-        self.general_skills = init_general_skills(abilities_object.get("general-skills"))
+        self.general_skills: OrderedDict[str, int] = init_general_skills(abilities_object.get("general-skills"))
         trace.detail("General skills: %r" % self.general_skills)
 
-        self.subterfuge_skills = init_subterfuge_skills(abilities_object.get("subterfuge-skills"))
+        self.subterfuge_skills: OrderedDict[str, int] = init_subterfuge_skills(abilities_object.get("subterfuge-skills"))
         trace.detail("Subterfuge skills: %r" % self.subterfuge_skills)
 
-        self.magical_skills = init_magical_skills(abilities_object.get("magical-skills"))
+        self.magical_skills: OrderedDict[str, int] = init_magical_skills(abilities_object.get("magical-skills"))
         trace.detail("Magical skills: %r" % self.magical_skills)
 
-        self.leadership_skills = init_leadership_skills(abilities_object.get("leadership-skills"))
+        self.leadership_skills: OrderedDict[str, int] = init_leadership_skills(abilities_object.get("leadership-skills"))
         trace.detail("Leadership skills: %r" % self.leadership_skills)
 
-        self.body_development_skills = \
+        self.body_development_skills: OrderedDict[str, int] = \
             init_body_development_skills(abilities_object.get("body-development-skills"))
         trace.detail("Body development skills: %r" % self.body_development_skills)
 
-        self.language_skills = init_language_skills(abilities_object.get("language-skills"))
+        self.language_skills: OrderedDict[str, int] = init_language_skills(abilities_object.get("language-skills"))
         trace.detail("Language skills: %r" % self.language_skills)
 
-        self.secondary_skills = init_secondary_skills(abilities_object.get("secondary-skills"))
+        self.secondary_skills: OrderedDict[str, int] = init_secondary_skills(abilities_object.get("secondary-skills"))
         trace.detail("Secondary skills: %r" % self.secondary_skills)
 
         trace.exit()

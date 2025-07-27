@@ -55,7 +55,7 @@ class CharacterDatabase:
 
     def entries_in_database(self):
         """
-        Return a the entries in the database.
+        Return the entries in the database.
         """
         trace.entry()
 

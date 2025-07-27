@@ -10,11 +10,13 @@ Classes:
 import sys
 from tkinter import Tk, LEFT, RIGHT, BOTH, RAISED, OptionMenu, StringVar, Toplevel
 from tkinter.ttk import Frame, Label, Style
+from typing import Optional
 
 from future import standard_library
 
 import frame_utils
 import trace_log as trace
+from console.character_database.character_database import CharacterDatabase
 
 from tk_helper import clear_option_menu, refresh_option_menu
 
@@ -49,29 +51,22 @@ class CharacterManager(Frame):
         damage_record_sheet_closed(self)
         characters_updated(self)
     """
-    def __init__(self, master, parent_console, character_database):
+    def __init__(self, master: Toplevel, parent_console, character_database: CharacterDatabase):
         trace.entry()
 
         Frame.__init__(self, master)
         self.parent_console = parent_console
-        self.master = master
-        self.character_database = character_database
+        self.master: Toplevel = master
+        self.character_database: CharacterDatabase = character_database
 
-        self.options = None
-        self.selector_widget = None
-        self.current_option = None
-        self.style = None
-        self.selector_frame = None
-        self.option_selector = None
+        self.character_importer: Optional[CharacterImporter] = None
+        self.character_importer_window: Optional[Toplevel] = None
 
-        self.character_importer = None
-        self.character_importer_window = None
-
-        self.character_viewer = None
-        self.character_viewer_window = None
+        self.character_viewer: Optional[CharacterViewer] = None
+        self.character_viewer_window: Optional[Toplevel] = None
 
         self.damage_record_sheet = None
-        self.damage_record_sheet_window = None
+        self.damage_record_sheet_window: Optional[Toplevel] = None
 
         self._initialize_variables()
         self.init_ui()
@@ -80,11 +75,11 @@ class CharacterManager(Frame):
 
     def _initialize_variables(self):
         trace.entry()
-        self.style = Style()
+        self.style: Style = Style()
         self.style.theme_use("default")
 
-        self.options = (IMPORT_CHARACTERS, UPDATE_CHARACTERS, DAMAGE_RECORD_SHEET)
-        self.current_option = IMPORT_CHARACTERS
+        self.options: tuple[str, str, str] = (IMPORT_CHARACTERS, UPDATE_CHARACTERS, DAMAGE_RECORD_SHEET)
+        self.current_option: str = IMPORT_CHARACTERS
         trace.exit()
 
     def init_ui(self):
@@ -105,27 +100,28 @@ class CharacterManager(Frame):
         trace.exit()
 
     def _init_ui_title(self):
-        title_frame = Frame(self, relief=RAISED, borderwidth=1)
+        title_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         title_frame.pack(fill=BOTH, expand=True)
-        title_label = Label(title_frame, text="Character Manager")
+        title_label: Label = Label(title_frame, text="Character Manager")
         title_label.pack()
 
     def _init_ui_variables(self):
         trace.entry()
-        self.selector_widget = StringVar()
+        self.selector_widget: StringVar = StringVar()
         self.selector_widget.set(self.options[0])
         self.selector_widget.trace("w", lambda *args: self.option_change_callback())
         trace.exit()
 
     def _init_ui_selector(self):
-        self.selector_frame = Frame(self, relief=RAISED, borderwidth=1)
+        self.selector_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
         self.selector_frame.pack(fill=BOTH, expand=True)
-        selector_prompt_label = Label(self.selector_frame, text="Option to select: ")
+        selector_prompt_label: Label = Label(self.selector_frame, text="Option to select: ")
         selector_prompt_label.pack(side=LEFT)
-        self.option_selector = OptionMenu(self.selector_frame,
-                                          self.selector_widget,
-                                          IMPORT_CHARACTERS,
-                                          *self.options)
+        self.option_selector: OptionMenu = OptionMenu(
+            self.selector_frame,
+            self.selector_widget,
+            IMPORT_CHARACTERS,
+            *self.options)
         self.selector_widget.set(IMPORT_CHARACTERS)
         self.option_selector.pack(side=RIGHT)
 
@@ -145,7 +141,7 @@ class CharacterManager(Frame):
         self.set_current_option(self.selector_widget.get())
         trace.exit()
 
-    def set_current_option(self, option):
+    def set_current_option(self, option: str):
         """
         Sets the current option to the option specified.
         :param option: The option to set.  Specifies which child console is desired.
@@ -264,7 +260,10 @@ class CharacterManager(Frame):
         trace.exit()
 
 
-def main(master=None, parent_console=None, character_database=None):
+def main(
+        master: Toplevel=None,
+        parent_console=None,
+        character_database: CharacterDatabase=None):
     """
     Starts the Character Manager window.
     :param master: The owning window.

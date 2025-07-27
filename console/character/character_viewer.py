@@ -7,12 +7,13 @@ Classes:
     CharacterViewer
 """
 import sys
-from tkinter import Tk, BOTH, RAISED, END, Text, WORD
+from tkinter import Tk, BOTH, RAISED, END, Text, WORD, Toplevel
 from tkinter.ttk import Frame, Label, Style
 
 from future import standard_library
 
 import trace_log as trace
+from console.character_database.character_database import CharacterDatabase
 
 standard_library.install_aliases()
 
@@ -28,17 +29,13 @@ class CharacterViewer(Frame):
         populate_character_display(self)
         characters_updated(self)
     """
-    def __init__(self, master, parent_console, character_database):
+    def __init__(self, master: Toplevel, parent_console, character_database: CharacterDatabase):
         trace.entry()
 
         Frame.__init__(self, master)
         self.parent_console = parent_console
-        self.master = master
-        self.character_database = character_database
-
-        self.style = None
-        self.character_display_frame = None
-        self.character_list = None
+        self.master: Toplevel = master
+        self.character_database: CharacterDatabase = character_database
 
         self._initialize_variables()
         self._init_ui()
@@ -47,7 +44,7 @@ class CharacterViewer(Frame):
 
     def _initialize_variables(self):
         trace.entry()
-        self.style = Style()
+        self.style: Style = Style()
         self.style.theme_use("default")
 
         trace.exit()
@@ -60,15 +57,15 @@ class CharacterViewer(Frame):
 
         def init_ui_title(this):
             trace.entry()
-            title_frame = Frame(this, relief=RAISED, borderwidth=1)
+            title_frame: Frame = Frame(this, relief=RAISED, borderwidth=1)
             title_frame.pack(fill=BOTH, expand=True)
-            title_label = Label(title_frame, text="Character Viewer")
+            title_label: Label = Label(title_frame, text="Character Viewer")
             title_label.pack()
             trace.exit()
 
         def init_character_display(this):
-            this.character_display_frame = Frame(self, relief=RAISED, borderwidth=1)
-            this.character_list = Text(this.character_display_frame, wrap=WORD)
+            this.character_display_frame: Frame = Frame(self, relief=RAISED, borderwidth=1)
+            this.character_list: Text = Text(this.character_display_frame, wrap=WORD)
             this.character_display_frame.pack(fill=BOTH, expand=True)
             this.character_list.pack(fill=BOTH)
 
@@ -88,13 +85,13 @@ class CharacterViewer(Frame):
         trace.entry()
         self.character_list.delete('1.0', END)
         self.character_list.insert(END, "List of characters:\n")
-        characters = self.character_database.entries_in_database()
+        characters: list = self.character_database.entries_in_database()
         for character in characters:
             trace.detail("Character stats %r" % character.stats)
-            character_string = ("%s, level %d, ST stat %d\n" %
-                                (character.name,
-                                 character.basic_stats.level,
-                                 character.stats["ST"].value))
+            character_string: str = ("%s, level %d, ST stat %d\n" %
+                                     (character.name,
+                                      character.basic_stats.level,
+                                      character.stats["ST"].value))
             self.character_list.insert(END, character_string)
 
         trace.exit()
@@ -108,7 +105,9 @@ class CharacterViewer(Frame):
         trace.exit()
 
 
-def main(master=None, parent_console=None, character_database=None):
+def main(master: Toplevel = None,
+         parent_console = None,
+         character_database: CharacterDatabase = None):
     """
     Starts the CharacterViewer window.
     :param master: The owning window.

@@ -36,9 +36,9 @@ class Stats:
         __init__(self, stats_object)
     """
     # pylint: disable=too-few-public-methods
-    def __init__(self, stats_object):
+    def __init__(self, stats_object: dict[str, dict[str, int]]):
         trace.entry()
-        self.stats = {
+        self.stats: dict[str, Stat] = {
             "ST": Stat(stats_object.get("ST")),
             "AG": Stat(stats_object.get("AG")),
             "CO": Stat(stats_object.get("CO")),
